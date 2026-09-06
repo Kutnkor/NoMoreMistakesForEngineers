@@ -1,0 +1,853 @@
+{
+  "version": "embedded-validation-1.0",
+  "date": "2026-09-05",
+  "tools": {
+    "wokwiCLI": "0.26.1",
+    "arduinoCLI": "1.5.1",
+    "cores": {
+      "arduino:avr": "1.8.8",
+      "esp32:esp32": "3.3.11",
+      "rp2040:rp2040": "6.1.0"
+    }
+  },
+  "scope": "Diagram lint with official Wokwi CLI, and native Arduino CLI compilation. No cloud simulator execution, physical wiring, or hardware measurements. All supported single module/board pairs plus one combined interactive design per board are linted. All modules on UNO, ESP32 and Pico plus the Nano/Mega combined examples are compiled.",
+  "diagrams": {
+    "total": 53,
+    "passed": 53
+  },
+  "compiles": {
+    "total": 33,
+    "passed": 33
+  },
+  "rejected": [
+    {
+      "board": "esp32-devkitc-v4",
+      "parts": [
+        "hcsr04-5v-sparkfun"
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "EXTERNAL_RAIL",
+          "text": "HC-SR04 5 V — SparkFun SEN-15569: 5–5 V separate supply required; check the board's power pins.",
+          "itemId": "m0"
+        },
+        {
+          "severity": "error",
+          "code": "ECHO_LEVEL",
+          "text": "HC-SR04 ECHO may output 5 V. A 3.3 V board needs a voltage divider/level shifter; this direct-wiring template is enabled only for 5 V boards.",
+          "itemId": "m0"
+        }
+      ]
+    },
+    {
+      "board": "raspberry-pi-pico",
+      "parts": [
+        "hcsr04-5v-sparkfun"
+      ],
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "EXTERNAL_RAIL",
+          "text": "HC-SR04 5 V — SparkFun SEN-15569: 5–5 V separate supply required; check the board's power pins.",
+          "itemId": "m0"
+        },
+        {
+          "severity": "error",
+          "code": "ECHO_LEVEL",
+          "text": "HC-SR04 ECHO may output 5 V. A 3.3 V board needs a voltage divider/level shifter; this direct-wiring template is enabled only for 5 V boards.",
+          "itemId": "m0"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "name": "uno_rev3_led_red",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "led-red"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 3406 bytes (10%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 4.8362844589864835
+    },
+    {
+      "name": "uno_rev3_pot_10k",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "pot-10k"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 3314 bytes (10%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 4.831161041016458
+    },
+    {
+      "name": "uno_rev3_pushbutton",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "pushbutton"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 3250 bytes (10%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 198 bytes (9%) of dynamic memory, leaving 1850 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 0.9368749590066727
+    },
+    {
+      "name": "uno_rev3_led_rgb_cc",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "led-rgb-cc"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 2334 bytes (7%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 192 bytes (9%) of dynamic memory, leaving 1856 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 0.9604664580256213
+    },
+    {
+      "name": "uno_rev3_piezo_passive",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "piezo-passive"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 2798 bytes (8%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 213 bytes (10%) of dynamic memory, leaving 1835 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 0.9864125830063131
+    },
+    {
+      "name": "uno_rev3_dht22",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "dht22"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 4842 bytes (15%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 215 bytes (10%) of dynamic memory, leaving 1833 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 1.2608387499931268
+    },
+    {
+      "name": "uno_rev3_ds18b20",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "ds18b20"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"part1\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (part1)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 5900 bytes (18%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 239 bytes (11%) of dynamic memory, leaving 1809 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 1.294933500001207
+    },
+    {
+      "name": "uno_rev3_mpu6050_adafruit",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "mpu6050-adafruit"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 12466 bytes (38%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 559 bytes (27%) of dynamic memory, leaving 1489 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 2.979744624986779
+    },
+    {
+      "name": "uno_rev3_ssd1306_adafruit_128x64",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 15560 bytes (48%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 528 bytes (25%) of dynamic memory, leaving 1520 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 2.2048485830018762
+    },
+    {
+      "name": "uno_rev3_hcsr04_5v_sparkfun",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "hcsr04-5v-sparkfun"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 3744 bytes (11%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 0.9816640000208281
+    },
+    {
+      "name": "uno_rev3_interactive",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton",
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 16552 bytes (51%) of program storage space. Maximum is 32256 bytes.\nGlobal variables use 538 bytes (26%) of dynamic memory, leaving 1510 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 2.176308499998413
+    },
+    {
+      "name": "nano_led_red",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "led-red"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.3510438340017572
+    },
+    {
+      "name": "nano_pot_10k",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "pot-10k"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.21512745899963193
+    },
+    {
+      "name": "nano_pushbutton",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "pushbutton"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.20706487499410287
+    },
+    {
+      "name": "nano_led_rgb_cc",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "led-rgb-cc"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.19419325000490062
+    },
+    {
+      "name": "nano_piezo_passive",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "piezo-passive"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.25157979200594127
+    },
+    {
+      "name": "nano_dht22",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "dht22"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.20230787500622682
+    },
+    {
+      "name": "nano_ds18b20",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "ds18b20"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"part1\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (part1)\n",
+      "compile": null,
+      "elapsedSeconds": 0.19503887498285621
+    },
+    {
+      "name": "nano_mpu6050_adafruit",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "mpu6050-adafruit"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.20072079199599102
+    },
+    {
+      "name": "nano_ssd1306_adafruit_128x64",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.22215824999148026
+    },
+    {
+      "name": "nano_hcsr04_5v_sparkfun",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "hcsr04-5v-sparkfun"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.22454529200331308
+    },
+    {
+      "name": "nano_interactive",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton",
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 16552 bytes (53%) of program storage space. Maximum is 30720 bytes.\nGlobal variables use 538 bytes (26%) of dynamic memory, leaving 1510 bytes for local variables. Maximum is 2048 bytes.\n"
+      },
+      "elapsedSeconds": 2.139436833007494
+    },
+    {
+      "name": "mega_2560_led_red",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "led-red"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.20181791702634655
+    },
+    {
+      "name": "mega_2560_pot_10k",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "pot-10k"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.22975399999995716
+    },
+    {
+      "name": "mega_2560_pushbutton",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "pushbutton"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.21810820800601505
+    },
+    {
+      "name": "mega_2560_led_rgb_cc",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "led-rgb-cc"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.2329576670017559
+    },
+    {
+      "name": "mega_2560_piezo_passive",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "piezo-passive"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.21925649998593144
+    },
+    {
+      "name": "mega_2560_dht22",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "dht22"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.18550141699961387
+    },
+    {
+      "name": "mega_2560_ds18b20",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "ds18b20"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"part1\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (part1)\n",
+      "compile": null,
+      "elapsedSeconds": 0.26927341701230034
+    },
+    {
+      "name": "mega_2560_mpu6050_adafruit",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "mpu6050-adafruit"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.2034580830077175
+    },
+    {
+      "name": "mega_2560_ssd1306_adafruit_128x64",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.2619819160026964
+    },
+    {
+      "name": "mega_2560_hcsr04_5v_sparkfun",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "hcsr04-5v-sparkfun"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": null,
+      "elapsedSeconds": 0.20189362499513663
+    },
+    {
+      "name": "mega_2560_interactive",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton",
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 17414 bytes (6%) of program storage space. Maximum is 253952 bytes.\nGlobal variables use 538 bytes (6%) of dynamic memory, leaving 7654 bytes for local variables. Maximum is 8192 bytes.\n"
+      },
+      "elapsedSeconds": 2.215068457997404
+    },
+    {
+      "name": "esp32_devkitc_v4_led_red",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "led-red"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 277700 bytes (21%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 22172 bytes (6%) of dynamic memory, leaving 305508 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 35.8832219169999
+    },
+    {
+      "name": "esp32_devkitc_v4_pot_10k",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "pot-10k"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 279024 bytes (21%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 22196 bytes (6%) of dynamic memory, leaving 305484 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 33.77473950001877
+    },
+    {
+      "name": "esp32_devkitc_v4_pushbutton",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "pushbutton"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 277660 bytes (21%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 22196 bytes (6%) of dynamic memory, leaving 305484 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 26.70490000001155
+    },
+    {
+      "name": "esp32_devkitc_v4_led_rgb_cc",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "led-rgb-cc"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 285295 bytes (21%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 22384 bytes (6%) of dynamic memory, leaving 305296 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 26.8418191249948
+    },
+    {
+      "name": "esp32_devkitc_v4_piezo_passive",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "piezo-passive"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 284463 bytes (21%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 22392 bytes (6%) of dynamic memory, leaving 305288 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 25.097551542014116
+    },
+    {
+      "name": "esp32_devkitc_v4_dht22",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "dht22"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 279132 bytes (21%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 22196 bytes (6%) of dynamic memory, leaving 305484 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 27.955005625000922
+    },
+    {
+      "name": "esp32_devkitc_v4_ds18b20",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "ds18b20"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 2 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\nℹ [unsupported-part] Part \"part1\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (part1)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 281540 bytes (21%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 22228 bytes (6%) of dynamic memory, leaving 305452 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 23.80435883300379
+    },
+    {
+      "name": "esp32_devkitc_v4_mpu6050_adafruit",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "mpu6050-adafruit"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 307772 bytes (23%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 23724 bytes (7%) of dynamic memory, leaving 303956 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 29.299918250006158
+    },
+    {
+      "name": "esp32_devkitc_v4_ssd1306_adafruit_128x64",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 311912 bytes (23%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 23732 bytes (7%) of dynamic memory, leaving 303948 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 29.467963292001514
+    },
+    {
+      "name": "esp32_devkitc_v4_interactive",
+      "board": "esp32-devkitc-v4",
+      "fqbn": "esp32:esp32:esp32",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton",
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"board\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (board)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 315896 bytes (24%) of program storage space. Maximum is 1310720 bytes.\nGlobal variables use 23788 bytes (7%) of dynamic memory, leaving 303892 bytes for local variables. Maximum is 327680 bytes.\n"
+      },
+      "elapsedSeconds": 30.280864833999658
+    },
+    {
+      "name": "raspberry_pi_pico_led_red",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "led-red"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 55224 bytes (2%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 8908 bytes (3%) of dynamic memory, leaving 253236 bytes for local variables. Maximum is 262144 bytes.\n"
+      },
+      "elapsedSeconds": 20.83668141698581
+    },
+    {
+      "name": "raspberry_pi_pico_pot_10k",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "pot-10k"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 55456 bytes (2%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 8880 bytes (3%) of dynamic memory, leaving 253264 bytes for local variables. Maximum is 262144 bytes.\n"
+      },
+      "elapsedSeconds": 11.533455833006883
+    },
+    {
+      "name": "raspberry_pi_pico_pushbutton",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "pushbutton"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 55224 bytes (2%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 8912 bytes (3%) of dynamic memory, leaving 253232 bytes for local variables. Maximum is 262144 bytes.\n"
+      },
+      "elapsedSeconds": 1.7551650000095833
+    },
+    {
+      "name": "raspberry_pi_pico_led_rgb_cc",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "led-rgb-cc"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 55312 bytes (2%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 8932 bytes (3%) of dynamic memory, leaving 253212 bytes for local variables. Maximum is 262144 bytes.\n"
+      },
+      "elapsedSeconds": 1.7473505419911817
+    },
+    {
+      "name": "raspberry_pi_pico_piezo_passive",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "piezo-passive"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 58552 bytes (2%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 9028 bytes (3%) of dynamic memory, leaving 253116 bytes for local variables. Maximum is 262144 bytes.\n"
+      },
+      "elapsedSeconds": 1.7045165000017732
+    },
+    {
+      "name": "raspberry_pi_pico_dht22",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "dht22"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 56268 bytes (2%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 8928 bytes (3%) of dynamic memory, leaving 253216 bytes for local variables. Maximum is 262144 bytes.\n"
+      },
+      "elapsedSeconds": 2.690727707988117
+    },
+    {
+      "name": "raspberry_pi_pico_ds18b20",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "ds18b20"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\nℹ [unsupported-part] Part \"part1\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (part1)\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 57556 bytes (2%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 8960 bytes (3%) of dynamic memory, leaving 253184 bytes for local variables. Maximum is 262144 bytes.\nIn file included from $WORK/arduino-cli/sketchbook/libraries/OneWire/OneWire.cpp:149:\n$WORK/arduino-cli/sketchbook/libraries/OneWire/util/OneWire_direct_gpio.h:502:2: warning: #warning \"OneWire. RP2040 in Fallback mode. Using API calls for pinMode,digitalRead and digitalWrite.\" [-Wcpp]\n  502 | #warning \"OneWire. RP2040 in Fallback mode. Using API calls for pinMode,digitalRead and digitalWrite.\"\n      |  ^~~~~~~\n"
+      },
+      "elapsedSeconds": 2.5848263750085607
+    },
+    {
+      "name": "raspberry_pi_pico_mpu6050_adafruit",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "mpu6050-adafruit"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 63712 bytes (3%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 9192 bytes (3%) of dynamic memory, leaving 252952 bytes for local variables. Maximum is 262144 bytes.\n"
+      },
+      "elapsedSeconds": 4.796504124999046
+    },
+    {
+      "name": "raspberry_pi_pico_ssd1306_adafruit_128x64",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 70724 bytes (3%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 9648 bytes (3%) of dynamic memory, leaving 252496 bytes for local variables. Maximum is 262144 bytes.\n"
+      },
+      "elapsedSeconds": 5.820975209004246
+    },
+    {
+      "name": "raspberry_pi_pico_interactive",
+      "board": "raspberry-pi-pico",
+      "fqbn": "rp2040:rp2040:rpipico",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton",
+        "ssd1306-adafruit-128x64"
+      ],
+      "lintPassed": true,
+      "lintOutput": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n✓ No issues found\n",
+      "compile": {
+        "passed": true,
+        "exitCode": 0,
+        "output": "Sketch uses 71708 bytes (3%) of program storage space. Maximum is 2093056 bytes.\nGlobal variables use 9652 bytes (3%) of dynamic memory, leaving 252492 bytes for local variables. Maximum is 262144 bytes.\n"
+      },
+      "elapsedSeconds": 5.6960082089935895
+    }
+  ],
+  "localization": {
+    "language": "en",
+    "note": "Recorded diagnostic text translated; compilation and validation results are unchanged."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "browser": "151.0.7922.34",
+  "launchArguments": [
+    "--enable-gpu",
+    "--use-angle=metal"
+  ],
+  "date": "2026-09-05T20:24:47.592Z",
+  "checks": [
+    {
+      "name": "bidirectional schematic and board hover",
+      "result": true
+    },
+    {
+      "name": "2D pointer drag snaps and diagnoses wrong pin",
+      "result": {
+        "1": "7-B",
+        "2": "13-B"
+      }
+    },
+    {
+      "name": "attached jumpers follow a real 2D drag",
+      "result": {
+        "1": "4-C",
+        "2": "8-C"
+      }
+    },
+    {
+      "name": "empty board completes through 15 learning hints",
+      "result": true
+    },
+    {
+      "name": "manual hole-to-hole jumper creates a detectable short",
+      "result": true
+    },
+    {
+      "name": "net hover highlights physical copper group",
+      "result": true
+    },
+    {
+      "name": "five auto layouts export print-engine PDFs",
+      "result": true
+    },
+    {
+      "name": "3D pointer drag updates shared pin coordinates",
+      "result": {
+        "pins": {
+          "1": "9-B",
+          "2": "15-B"
+        },
+        "status": "830 delik · 3D görünüm · son sürükleme 120 fps"
+      }
+    },
+    {
+      "name": "2D and 3D keep identical physical layout",
+      "result": true
+    },
+    {
+      "name": "3D PNG export",
+      "result": true
+    },
+    {
+      "name": "390px dark theme without page overflow",
+      "result": true
+    },
+    {
+      "name": "no browser page errors",
+      "result": true
+    }
+  ],
+  "pdfs": [
+    "sk-lp.pdf",
+    "sk-hp.pdf",
+    "mfb-bp.pdf",
+    "rc.pdf",
+    "cascade.pdf"
+  ],
+  "errors": [],
+  "gpuRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)"
+}

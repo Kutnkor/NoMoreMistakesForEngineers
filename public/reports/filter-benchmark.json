@@ -1,0 +1,133 @@
+{
+  "version": "1.0.0",
+  "scope": "10 predeclared seeds 0–9, default specs, 64 candidate evaluations per method. Simulation only; no hardware validation. No general superiority claim.",
+  "specs": {
+    "passHz": 1000,
+    "stopHz": 5000,
+    "rippleDb": 1,
+    "stopDb": 20,
+    "rTol": 1,
+    "cTol": 5,
+    "budget": 64,
+    "seed": 42
+  },
+  "seeds": [
+    {
+      "seed": 0,
+      "budget": 64,
+      "aiScore": -0.14066948149878455,
+      "randomScore": 0.09153004967731548,
+      "aiYield": 100,
+      "randomYield": 0,
+      "aiNominalPass": true,
+      "randomNominalPass": false,
+      "elapsedMs": 649
+    },
+    {
+      "seed": 1,
+      "budget": 64,
+      "aiScore": 0.08936096068714794,
+      "randomScore": 0.3404748337575918,
+      "aiYield": 0,
+      "randomYield": 0,
+      "aiNominalPass": false,
+      "randomNominalPass": false,
+      "elapsedMs": 709
+    },
+    {
+      "seed": 2,
+      "budget": 64,
+      "aiScore": -0.10309537575760475,
+      "randomScore": -0.11320809938973175,
+      "aiYield": 100,
+      "randomYield": 100,
+      "aiNominalPass": true,
+      "randomNominalPass": true,
+      "elapsedMs": 696
+    },
+    {
+      "seed": 3,
+      "budget": 64,
+      "aiScore": 0.3038843081278195,
+      "randomScore": -0.01041561948138825,
+      "aiYield": 0,
+      "randomYield": 99.31640625,
+      "aiNominalPass": false,
+      "randomNominalPass": true,
+      "elapsedMs": 696
+    },
+    {
+      "seed": 4,
+      "budget": 64,
+      "aiScore": 0.0434953516436456,
+      "randomScore": 0.0780453851327717,
+      "aiYield": 21.875,
+      "randomYield": 0,
+      "aiNominalPass": false,
+      "randomNominalPass": false,
+      "elapsedMs": 700
+    },
+    {
+      "seed": 5,
+      "budget": 64,
+      "aiScore": 0.07889131113507175,
+      "randomScore": 0.031692573944244296,
+      "aiYield": 0,
+      "randomYield": 40.33203125,
+      "aiNominalPass": false,
+      "randomNominalPass": false,
+      "elapsedMs": 715
+    },
+    {
+      "seed": 6,
+      "budget": 64,
+      "aiScore": -0.1445143700032523,
+      "randomScore": 0.06653782054614543,
+      "aiYield": 100,
+      "randomYield": 4.00390625,
+      "aiNominalPass": true,
+      "randomNominalPass": false,
+      "elapsedMs": 703
+    },
+    {
+      "seed": 7,
+      "budget": 64,
+      "aiScore": 0.04301476482778388,
+      "randomScore": 0.2753139634362667,
+      "aiYield": 15.4296875,
+      "randomYield": 62.98828125,
+      "aiNominalPass": false,
+      "randomNominalPass": true,
+      "elapsedMs": 704
+    },
+    {
+      "seed": 8,
+      "budget": 64,
+      "aiScore": 0.07191582423528808,
+      "randomScore": 0.12535054885664132,
+      "aiYield": 0.48828125,
+      "randomYield": 0,
+      "aiNominalPass": false,
+      "randomNominalPass": false,
+      "elapsedMs": 709
+    },
+    {
+      "seed": 9,
+      "budget": 64,
+      "aiScore": -0.21304944274682014,
+      "randomScore": -0.10474348041820924,
+      "aiYield": 100,
+      "randomYield": 100,
+      "aiNominalPass": true,
+      "randomNominalPass": true,
+      "elapsedMs": 701
+    }
+  ],
+  "summary": {
+    "aiLowerTrainingScore": 7,
+    "randomLowerTrainingScore": 3,
+    "ties": 0,
+    "meanAiYield": 43.779296875,
+    "meanRandomYield": 40.6640625
+  }
+}

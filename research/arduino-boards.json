@@ -1,0 +1,1872 @@
+{
+  "schemaVersion": "1.0.0",
+  "researchedDate": "2026-09-05",
+  "scope": "Resmî Arduino kartları, MCU modülleri ve hibrit SBC ürünlerinden seçilmiş 45 kayıt; tüm Arduino ürünlerinin eksiksiz listesi değildir.",
+  "supportMeaning": {
+    "ready": "Uygulama tarafından uygun testlerden geçirilmiş profil; araştırma kataloğu bu durumu atamaz.",
+    "codeProfile": "Kaynakları araştırılmış pin/kod metaverisi; ayrıca derleme ve bağlam doğrulaması gerekir.",
+    "catalogOnly": "Tanıtım kaydı; doğrulanmayan pinlerden kod veya bağlantı üretme."
+  },
+  "fieldPolicy": {
+    "null": "Araştırmada doğrulanmadı veya tek değerle ifade edilemez; sıfır/anlamsız özellik demek değildir.",
+    "emptyPwmPins": "Doğrulanmış PWM listesi yok; PWM desteklenmiyor anlamına gelmez.",
+    "logicVoltage": "Başlık GPIO mantık seviyesi; VIN/USB besleme gerilimi değildir.",
+    "digitalPins": "Belirtilen sayım kapsamına bak; analog alternatiflerle örtüşme olabilir.",
+    "defaultDigitalPins": "Belgelenmiş GPIO pinleri içinden seçilmiş varsayılanlar; başka çevre birimi tarafından rezerve edilen pinler kullanılamaz.",
+    "adcResolution": "defaultBits Arduino API varsayılanı; maxBits donanım/board ADC kapasitesi; codeBits örneğin açıkça kullanması gereken çözünürlük. Daha fazla yazılım biti fiziksel doğruluğu artırmaz."
+  },
+  "indexSources": [
+    "https://docs.arduino.cc/hardware/",
+    "https://docs.arduino.cc/retired/"
+  ],
+  "boards": [
+    {
+      "id": "uno-rev3",
+      "name": "Arduino UNO R3",
+      "family": "UNO",
+      "kind": "mcuBoard",
+      "mcu": "ATmega328P",
+      "logicVoltage": 5,
+      "analogInputs": 6,
+      "digitalPins": 14,
+      "digitalPinsDefinition": "D0–D13 etiketli başlık pinleri; analog pinlerin ek GPIO kullanımını saymaz.",
+      "pwmPins": [
+        "D3",
+        "D5",
+        "D6",
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "i2c": {
+        "sda": "A4",
+        "scl": "A5"
+      },
+      "spi": {
+        "copi": "D11",
+        "cipo": "D12",
+        "sck": "D13",
+        "ss": "D10",
+        "note": "Varsayılan SPI; bu pinler SPI kullanılırken başka görev için ayrılamaz."
+      },
+      "defaultDigitalPins": [
+        "D2",
+        "D4",
+        "D7",
+        "D8"
+      ],
+      "adcResolution": {
+        "defaultBits": 10,
+        "maxBits": 10,
+        "codeBits": 10,
+        "note": null
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:avr:uno",
+      "pinCodeStyle": "numeric-digital",
+      "description": "Klasik AVR geliştirme kartı; temel giriş/çıkış ve sensör örnekleri.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/uno-rev3/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/uno-rev3/",
+        "https://docs.arduino.cc/resources/pinouts/A000066-full-pinout.pdf",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-avr/master/boards.txt",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://support.arduino.cc/hc/en-us/articles/9350537961500-Use-PWM-output-with-Arduino",
+        "https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir."
+      ]
+    },
+    {
+      "id": "uno-rev3-smd",
+      "name": "Arduino UNO R3 SMD",
+      "family": "UNO",
+      "kind": "mcuBoard",
+      "mcu": "ATmega328P",
+      "logicVoltage": 5,
+      "analogInputs": 6,
+      "digitalPins": 14,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 10,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "UNO R3 ile aynı temel MCU; işlemci kart üzerine lehimlidir.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/uno-rev3-smd/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/uno-rev3-smd/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "uno-mini-limited-edition",
+      "name": "Arduino UNO Mini Limited Edition",
+      "family": "UNO",
+      "kind": "mcuBoard",
+      "mcu": "ATmega328P",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Küçültülmüş UNO; USB-C ve farklı pin aralığı bulunan özel sürüm.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/uno-mini-limited-edition/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/uno-mini-limited-edition/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "uno-r4-minima",
+      "name": "Arduino UNO R4 Minima",
+      "family": "UNO",
+      "kind": "mcuBoard",
+      "mcu": "Renesas RA4M1",
+      "logicVoltage": 5,
+      "analogInputs": 6,
+      "digitalPins": 14,
+      "digitalPinsDefinition": "D0–D13 etiketli başlık pinleri; analog pinlerin ek GPIO kullanımını saymaz.",
+      "pwmPins": [
+        "D3",
+        "D5",
+        "D6",
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "i2c": {
+        "sda": "A4",
+        "scl": "A5"
+      },
+      "spi": {
+        "copi": "D11",
+        "cipo": "D12",
+        "sck": "D13",
+        "ss": "D10",
+        "note": "Varsayılan SPI; bu pinler SPI kullanılırken başka görev için ayrılamaz."
+      },
+      "defaultDigitalPins": [
+        "D2",
+        "D7",
+        "D8"
+      ],
+      "adcResolution": {
+        "defaultBits": 10,
+        "maxBits": 14,
+        "codeBits": 10,
+        "note": null
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:renesas_uno:minima",
+      "pinCodeStyle": "numeric-digital",
+      "description": "32 bit UNO; 5 V başlık pinleri, gelişmiş ADC ve DAC.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/uno-r4-minima/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/uno-r4-minima/",
+        "https://docs.arduino.cc/resources/pinouts/ABX00080-full-pinout.pdf",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-renesas/main/boards.txt",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://support.arduino.cc/hc/en-us/articles/9350537961500-Use-PWM-output-with-Arduino",
+        "https://docs.arduino.cc/resources/datasheets/ABX00080-datasheet.pdf"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir.",
+        "D4/D5 CAN ile paylaşılır; CAN kullanılırken ayrılmalıdır. Başlık GPIO gerilimi 5 V; VIN besleme aralığı mantık gerilimi değildir."
+      ]
+    },
+    {
+      "id": "uno-r4-wifi",
+      "name": "Arduino UNO R4 WiFi",
+      "family": "UNO",
+      "kind": "mcuBoard",
+      "mcu": "Renesas RA4M1; ESP32-S3 bağlantı işlemcisi",
+      "logicVoltage": 5,
+      "analogInputs": 6,
+      "digitalPins": 14,
+      "digitalPinsDefinition": "D0–D13 etiketli başlık pinleri; analog pinlerin ek GPIO kullanımını saymaz.",
+      "pwmPins": [
+        "D3",
+        "D5",
+        "D6",
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "i2c": {
+        "sda": "A4",
+        "scl": "A5"
+      },
+      "spi": {
+        "copi": "D11",
+        "cipo": "D12",
+        "sck": "D13",
+        "ss": "D10",
+        "note": "Varsayılan SPI; bu pinler SPI kullanılırken başka görev için ayrılamaz."
+      },
+      "defaultDigitalPins": [
+        "D2",
+        "D4",
+        "D7",
+        "D8"
+      ],
+      "adcResolution": {
+        "defaultBits": 10,
+        "maxBits": 14,
+        "codeBits": 10,
+        "note": null
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:renesas_uno:unor4wifi",
+      "pinCodeStyle": "numeric-digital",
+      "description": "RA4M1 tabanlı UNO; kablosuz bağlantı ve LED matris içerir.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/uno-r4-wifi/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/uno-r4-wifi/",
+        "https://docs.arduino.cc/resources/pinouts/ABX00087-full-pinout.pdf",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-renesas/main/boards.txt",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://support.arduino.cc/hc/en-us/articles/9350537961500-Use-PWM-output-with-Arduino",
+        "https://docs.arduino.cc/resources/datasheets/ABX00087-datasheet.pdf"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir.",
+        "Ana A4/A5 Wire bus başlığı 5 V; ayrı Qwiic konektörü 3,3 V Wire1 bus üzerindedir. ESP32-S3, varsayılan sketch ana MCU değildir."
+      ]
+    },
+    {
+      "id": "uno-wifi-rev2",
+      "name": "Arduino UNO WiFi Rev2",
+      "family": "UNO",
+      "kind": "mcuBoard",
+      "mcu": "ATmega4809",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Wi-Fi/Bluetooth modüllü AVR UNO; klasik R3 ile MCU farklıdır.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/uno-wifi-rev2/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/uno-wifi-rev2/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "uno-q",
+      "name": "Arduino UNO Q",
+      "family": "UNO",
+      "kind": "hybridSbc",
+      "mcu": "STM32U585 MCU; Qualcomm Dragonwing QRB2210 MPU",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Linux uygulamalarını gerçek zamanlı MCU yazılımıyla birleştiren kart.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/uno-q/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/uno-q/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "nano",
+      "name": "Arduino Nano (classic)",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "ATmega328P",
+      "logicVoltage": 5,
+      "analogInputs": 8,
+      "digitalPins": 14,
+      "digitalPinsDefinition": "D0–D13 etiketli başlık pinleri; analog pinlerin ek GPIO kullanımını saymaz.",
+      "pwmPins": [
+        "D3",
+        "D5",
+        "D6",
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "i2c": {
+        "sda": "A4",
+        "scl": "A5"
+      },
+      "spi": {
+        "copi": "D11",
+        "cipo": "D12",
+        "sck": "D13",
+        "ss": "D10",
+        "note": "Varsayılan SPI; bu pinler SPI kullanılırken başka görev için ayrılamaz."
+      },
+      "defaultDigitalPins": [
+        "D2",
+        "D4",
+        "D7",
+        "D8"
+      ],
+      "adcResolution": {
+        "defaultBits": 10,
+        "maxBits": 10,
+        "codeBits": 10,
+        "note": null
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "pinCodeStyle": "numeric-digital",
+      "description": "Klasik küçük AVR kartı; A6/A7 yalnızca analog giriş içindir.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano/",
+        "https://docs.arduino.cc/resources/pinouts/A000005-full-pinout.pdf",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-avr/master/boards.txt",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://support.arduino.cc/hc/en-us/articles/9350537961500-Use-PWM-output-with-Arduino",
+        "https://docs.arduino.cc/resources/datasheets/A000005-datasheet.pdf"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir.",
+        "A6 ve A7 dijital GPIO/PWM değildir; analog giriş olarak kullanılmalıdır.",
+        "Eski bootloader kullanan Nano için cpu=atmega328old seçeneği gerekebilir; klon veya ATmega168 varyantı bu profil değildir."
+      ]
+    },
+    {
+      "id": "nano-every",
+      "name": "Arduino Nano Every",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "ATmega4809",
+      "logicVoltage": 5,
+      "analogInputs": 8,
+      "digitalPins": 14,
+      "digitalPinsDefinition": "D0–D13 etiketli başlık pinleri; analog pinlerin ek GPIO kullanımını saymaz.",
+      "pwmPins": [
+        "D3",
+        "D5",
+        "D6",
+        "D9",
+        "D10"
+      ],
+      "i2c": {
+        "sda": "A4",
+        "scl": "A5"
+      },
+      "spi": {
+        "copi": "D11",
+        "cipo": "D12",
+        "sck": "D13",
+        "ss": "D10",
+        "note": "Varsayılan SPI; bu pinler SPI kullanılırken başka görev için ayrılamaz."
+      },
+      "defaultDigitalPins": [
+        "D2",
+        "D4",
+        "D7",
+        "D8"
+      ],
+      "adcResolution": {
+        "defaultBits": 10,
+        "maxBits": 10,
+        "codeBits": 10,
+        "note": null
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:megaavr:nona4809",
+      "pinCodeStyle": "numeric-digital",
+      "description": "Nano biçiminde daha yeni AVR; beş desteklenen PWM çıkışı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-every/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-every/",
+        "https://docs.arduino.cc/resources/pinouts/ABX00028-full-pinout.pdf",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-megaavr/master/boards.txt",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://support.arduino.cc/hc/en-us/articles/9350537961500-Use-PWM-output-with-Arduino",
+        "https://docs.arduino.cc/resources/datasheets/ABX00028-datasheet.pdf",
+        "https://store.arduino.cc/products/nano-every"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir.",
+        "Nano Every için D11 PWM olarak atanmaz; DAC yoktur. Resmî mağaza teknik tablosu, bazı datasheet kopyalarındaki DAC0 etiketinden daha tutarlıdır."
+      ]
+    },
+    {
+      "id": "nano-esp32",
+      "name": "Arduino Nano ESP32",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "ESP32-S3 (u-blox NORA-W106)",
+      "logicVoltage": 3.3,
+      "analogInputs": 8,
+      "digitalPins": 14,
+      "digitalPinsDefinition": "D0–D13 etiketli başlık pinleri; analog pinlerin ek GPIO kullanımını saymaz.",
+      "pwmPins": [
+        "D0",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7"
+      ],
+      "i2c": {
+        "sda": "A4",
+        "scl": "A5"
+      },
+      "spi": {
+        "copi": "D11",
+        "cipo": "D12",
+        "sck": "D13",
+        "ss": "D10",
+        "note": "Varsayılan SPI; bu pinler SPI kullanılırken başka görev için ayrılamaz."
+      },
+      "defaultDigitalPins": [
+        "D2",
+        "D4",
+        "D7",
+        "D8"
+      ],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": 10,
+        "note": "Donanımsal azami çözünürlük 12 bit. Genel Arduino referansı ve ESP32 çekirdeği varsayılanı konusunda farklı bilgi verir; bu katalog defaultBits=null bırakır. Üretilen örnek analogReadResolution(10) ile açıkça 10 bit istemelidir; bu fiziksel ADC doğruluğu anlamına gelmez."
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:esp32:nano_nora",
+      "pinCodeStyle": "symbolic-labels",
+      "description": "3,3 V Nano; Wi-Fi/Bluetooth ve değiştirilebilir pin numaralandırması.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-esp32/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-esp32/",
+        "https://docs.arduino.cc/resources/pinouts/ABX00083-full-pinout.pdf",
+        "https://github.com/arduino/arduino-cloud-cli/blob/main/README.md",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://docs.arduino.cc/resources/datasheets/ABX00083-datasheet.pdf",
+        "https://support.arduino.cc/hc/en-us/articles/10483225565980-Select-pin-numbering-for-Nano-ESP32-in-Arduino-IDE",
+        "https://raw.githubusercontent.com/espressif/arduino-esp32/master/cores/esp32/esp32-hal-adc.c"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir.",
+        "D2 gibi sembolleri kullan; pin numaralandırması IDE menüsünde değişebilir. D2 fiziksel etiketi GPIO5 karşılığıdır.",
+        "PWM listesi resmî tam pinout sayfa 1 üzerindeki tilde işaretlerinden alınmıştır; tüm pinlerde eşzamanlı bağımsız PWM kanalı olduğu anlamına gelmez.",
+        "Analog girişler 3,3 V toleranslıdır; ADC ölçüm aralığı, kalibrasyon ve attenuasyon ayarları ayrıca değerlendirilmelidir."
+      ]
+    },
+    {
+      "id": "nano-33-ble",
+      "name": "Arduino Nano 33 BLE",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "Nordic nRF52840",
+      "logicVoltage": 3.3,
+      "analogInputs": 8,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Bluetooth LE ve hareket algılama; ilk nesil BLE kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-33-ble/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-33-ble/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "endOfLife",
+      "notes": []
+    },
+    {
+      "id": "nano-33-ble-rev2",
+      "name": "Arduino Nano 33 BLE Rev2",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "Nordic nRF52840",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Bluetooth LE ve dokuz eksenli hareket sensörü bulunan yenilenmiş Nano.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-33-ble-rev2/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-33-ble-rev2/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "nano-33-ble-sense",
+      "name": "Arduino Nano 33 BLE Sense",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "Nordic nRF52840",
+      "logicVoltage": 3.3,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Çevre sensörleri ve mikrofonla gömülü ML geliştirme kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-33-ble-sense/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-33-ble-sense/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "endOfLife",
+      "notes": []
+    },
+    {
+      "id": "nano-33-ble-sense-rev2",
+      "name": "Arduino Nano 33 BLE Sense Rev2",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "Nordic nRF52840",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Yenilenmiş sensör paketiyle gömülü makine öğrenmesi Nano kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-33-ble-sense-rev2/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-33-ble-sense-rev2/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "nano-33-iot",
+      "name": "Arduino Nano 33 IoT",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 8,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Wi-Fi/Bluetooth ve IMU içeren IoT odaklı Nano.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-33-iot/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-33-iot/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "nano-rp2040-connect",
+      "name": "Arduino Nano RP2040 Connect",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "Raspberry Pi RP2040",
+      "logicVoltage": 3.3,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "RP2040, kablosuz modül ve sensörler içeren Nano.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-rp2040-connect/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-rp2040-connect/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "endOfLife",
+      "notes": []
+    },
+    {
+      "id": "nano-matter",
+      "name": "Arduino Nano Matter",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "Silicon Labs MGM240S",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Matter ve Thread projelerine yönelik kompakt kablosuz kart.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-matter/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-matter/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "nano-r4",
+      "name": "Arduino Nano R4",
+      "family": "Nano",
+      "kind": "mcuBoard",
+      "mcu": "Renesas RA4M1",
+      "logicVoltage": 5,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 14,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "RA4M1 gücünü Nano biçimine taşır; Qwiic ve CAN desteği.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-r4/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nano-r4/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "GPIO başlıkları 5 V; Qwiic mantık seviyesi 3,3 V. Pin ve kod profili bu katalogda doğrulanmadı."
+      ]
+    },
+    {
+      "id": "mega-2560",
+      "name": "Arduino Mega 2560 Rev3",
+      "family": "Mega",
+      "kind": "mcuBoard",
+      "mcu": "ATmega2560",
+      "logicVoltage": 5,
+      "analogInputs": 16,
+      "digitalPins": 54,
+      "digitalPinsDefinition": "Arduino resmî kart özetindeki dijital I/O sayısı; analog alternatif işlevlerle örtüşebilir.",
+      "pwmPins": [
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D44",
+        "D45",
+        "D46"
+      ],
+      "i2c": {
+        "sda": "D20",
+        "scl": "D21"
+      },
+      "spi": {
+        "copi": "D51",
+        "cipo": "D50",
+        "sck": "D52",
+        "ss": "D53",
+        "note": "Ana MCU SPI; aynı sinyaller ICSP başlığında bulunur."
+      },
+      "defaultDigitalPins": [
+        "D22",
+        "D23",
+        "D24",
+        "D25"
+      ],
+      "adcResolution": {
+        "defaultBits": 10,
+        "maxBits": 10,
+        "codeBits": 10,
+        "note": null
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "pinCodeStyle": "numeric-digital",
+      "description": "Çok sayıda pin ve dört donanım seri portu sunan AVR kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mega-2560/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mega-2560/",
+        "https://docs.arduino.cc/resources/pinouts/A000067-full-pinout.pdf",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-avr/master/boards.txt",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://support.arduino.cc/hc/en-us/articles/9350537961500-Use-PWM-output-with-Arduino",
+        "https://docs.arduino.cc/resources/datasheets/A000067-datasheet.pdf"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir."
+      ]
+    },
+    {
+      "id": "due",
+      "name": "Arduino Due",
+      "family": "Mega",
+      "kind": "mcuBoard",
+      "mcu": "Atmel SAM3X8E",
+      "logicVoltage": 3.3,
+      "analogInputs": 12,
+      "digitalPins": 54,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Cortex-M3 tabanlı 32 bit kart; 54 dijital ve 12 analog giriş.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/due/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/due/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "giga-r1-wifi",
+      "name": "Arduino GIGA R1 WiFi",
+      "family": "Mega",
+      "kind": "mcuBoard",
+      "mcu": "STM32H747XI",
+      "logicVoltage": 3.3,
+      "analogInputs": null,
+      "digitalPins": 76,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 16,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Çift çekirdek, kamera/ekran bağlantıları ve geniş GPIO kapasitesi.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/giga-r1-wifi/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/giga-r1-wifi/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "leonardo",
+      "name": "Arduino Leonardo",
+      "family": "Classic",
+      "kind": "mcuBoard",
+      "mcu": "ATmega32U4",
+      "logicVoltage": 5,
+      "analogInputs": 12,
+      "digitalPins": 20,
+      "digitalPinsDefinition": "Arduino resmî kart özetindeki dijital I/O sayısı; analog alternatif işlevlerle örtüşebilir.",
+      "pwmPins": [
+        "D3",
+        "D5",
+        "D6",
+        "D9",
+        "D10",
+        "D11",
+        "D13"
+      ],
+      "i2c": {
+        "sda": "D2",
+        "scl": "D3"
+      },
+      "spi": {
+        "copi": "ICSP-4",
+        "cipo": "ICSP-1",
+        "sck": "ICSP-3",
+        "ss": null,
+        "note": "SPI yalnızca ICSP başlığından erişilir; UNO D11-D13 haritası uygulanmaz. Çevre birimi CS pini ayrıca atanır."
+      },
+      "defaultDigitalPins": [
+        "D4",
+        "D7",
+        "D8"
+      ],
+      "adcResolution": {
+        "defaultBits": 10,
+        "maxBits": 10,
+        "codeBits": 10,
+        "note": null
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:avr:leonardo",
+      "pinCodeStyle": "numeric-digital",
+      "description": "Yerel USB desteğiyle klavye/fare ve genel kontrol projeleri.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/leonardo/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/leonardo/",
+        "https://docs.arduino.cc/resources/pinouts/A000057-full-pinout.pdf",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-avr/master/boards.txt",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://support.arduino.cc/hc/en-us/articles/9350537961500-Use-PWM-output-with-Arduino"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir.",
+        "A6,A7,A8,A9,A10,A11 sırasıyla D4,D6,D8,D9,D10,D12 ile aynıdır. Serial USB CDC, Serial1 D0/D1 kullanır."
+      ]
+    },
+    {
+      "id": "micro",
+      "name": "Arduino Micro",
+      "family": "Classic",
+      "kind": "mcuBoard",
+      "mcu": "ATmega32U4",
+      "logicVoltage": 5,
+      "analogInputs": 12,
+      "digitalPins": 20,
+      "digitalPinsDefinition": "Arduino resmî kart özetindeki dijital I/O sayısı; analog alternatif işlevlerle örtüşebilir.",
+      "pwmPins": [
+        "D3",
+        "D5",
+        "D6",
+        "D9",
+        "D10",
+        "D11",
+        "D13"
+      ],
+      "i2c": {
+        "sda": "D2",
+        "scl": "D3"
+      },
+      "spi": {
+        "copi": "D16/COPI",
+        "cipo": "D14/CIPO",
+        "sck": "D15/SCK",
+        "ss": "D17/SS",
+        "note": "Micro SPI, UNO D11-D13 haritasını kullanmaz."
+      },
+      "defaultDigitalPins": [
+        "D4",
+        "D7",
+        "D8"
+      ],
+      "adcResolution": {
+        "defaultBits": 10,
+        "maxBits": 10,
+        "codeBits": 10,
+        "note": null
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:avr:micro",
+      "pinCodeStyle": "numeric-digital",
+      "description": "Leonardo benzeri yerel USB özelliklerini küçük biçimde sunar.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/micro/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/micro/",
+        "https://docs.arduino.cc/resources/pinouts/A000053-full-pinout.pdf",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-avr/master/boards.txt",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://support.arduino.cc/hc/en-us/articles/9350537961500-Use-PWM-output-with-Arduino"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir.",
+        "A6,A7,A8,A9,A10,A11 sırasıyla D4,D6,D8,D9,D10,D12 ile aynıdır. Analog/dijital çift adlar ayrı fiziksel pinler değildir."
+      ]
+    },
+    {
+      "id": "zero",
+      "name": "Arduino Zero",
+      "family": "Classic",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 6,
+      "digitalPins": 14,
+      "digitalPinsDefinition": "D0–D13 etiketli başlık pinleri; analog pinlerin ek GPIO kullanımını saymaz.",
+      "pwmPins": [
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D8",
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D13"
+      ],
+      "i2c": {
+        "sda": "D20/SDA",
+        "scl": "D21/SCL"
+      },
+      "spi": {
+        "copi": "ICSP-4",
+        "cipo": "ICSP-1",
+        "sck": "ICSP-3",
+        "ss": null,
+        "note": "Varsayılan SPI altı pinli SPI/ICSP başlığında. Çevre birimi CS ayrıca atanır; A2 çekirdekte yalnızca referans SS sabitidir."
+      },
+      "defaultDigitalPins": [
+        "D2",
+        "D4",
+        "D7",
+        "D8"
+      ],
+      "adcResolution": {
+        "defaultBits": 10,
+        "maxBits": 12,
+        "codeBits": 10,
+        "note": null
+      },
+      "support": "codeProfile",
+      "fqbn": "arduino:samd:arduino_zero_edbg",
+      "pinCodeStyle": "numeric-digital",
+      "description": "32 bit Cortex-M0+ ve kart üzerinde EDBG hata ayıklayıcı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/zero/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/zero/",
+        "https://docs.arduino.cc/resources/pinouts/ABX00003-full-pinout.pdf",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-samd/master/boards.txt",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "https://support.arduino.cc/hc/en-us/articles/9350537961500-Use-PWM-output-with-Arduino",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-samd/master/variants/arduino_zero/variant.h",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-samd/master/variants/arduino_zero/variant.cpp"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "codeProfile: resmî pin belgesine göre araştırılmıştır; bu katalog tek başına derleme veya donanım testi yapıldığı anlamına gelmez.",
+        "Varsayılan dijital pinler, belgelenmiş GPIO içinden seçilmiş proje varsayımıdır. Bağlı çevre birimleri ve timer/pin çakışmaları ayrıca denetlenmelidir.",
+        "PWM listesi resmî tam pinout üzerindeki tilde işaretli dijital başlık pinleriyle sınırlandırıldı; ek timer çıkışları bu profil dışında. A0, analogWrite ile DAC çıkışıdır.",
+        "I2C ayrı SDA/SCL pinlerindedir; UNO R3 A4/A5 haritasını kullanma. Varsayılan SPI de UNO R3 D11–D13 haritasını kullanmaz.",
+        "FQBN programlama USB portunu seçer; native USB için arduino:samd:arduino_zero_native kullanılabilir. Serial EDBG portudur; native USB seri bağlantısı SerialUSB kullanır."
+      ]
+    },
+    {
+      "id": "yun-rev2",
+      "name": "Arduino Yún Rev2",
+      "family": "Classic",
+      "kind": "hybridSbc",
+      "mcu": null,
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Linux ve Arduino ortamlarını birleştiren eski ağ kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/yun-rev2/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/yun-rev2/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "endOfLife",
+      "notes": []
+    },
+    {
+      "id": "mkr-1000-wifi",
+      "name": "Arduino MKR 1000 WiFi",
+      "family": "MKR",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 7,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Wi-Fi bağlantılı ilk MKR ailesi kartlarından biri.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-1000-wifi/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mkr-1000-wifi/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "endOfLife",
+      "notes": []
+    },
+    {
+      "id": "mkr-wifi-1010",
+      "name": "Arduino MKR WiFi 1010",
+      "family": "MKR",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 7,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Wi-Fi/Bluetooth bağlantılı SAMD21 kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-wifi-1010/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mkr-wifi-1010/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "mkr-fox-1200",
+      "name": "Arduino MKR FOX 1200",
+      "family": "MKR",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 7,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Sigfox tabanlı eski düşük güç iletişim kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-fox-1200/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mkr-fox-1200/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "endOfLife",
+      "notes": []
+    },
+    {
+      "id": "mkr-gsm-1400",
+      "name": "Arduino MKR GSM 1400",
+      "family": "MKR",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 7,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "GSM/3G modüllü eski hücresel IoT kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-gsm-1400/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mkr-gsm-1400/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "endOfLife",
+      "notes": []
+    },
+    {
+      "id": "mkr-nb-1500",
+      "name": "Arduino MKR NB 1500",
+      "family": "MKR",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 7,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "NB-IoT ve LTE-M modüllü hücresel IoT kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-nb-1500/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mkr-nb-1500/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "mkr-wan-1300",
+      "name": "Arduino MKR WAN 1300",
+      "family": "MKR",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 7,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Arduino tarafından yayımlanan ilk LoRa MKR kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-wan-1300/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mkr-wan-1300/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "mkr-wan-1310",
+      "name": "Arduino MKR WAN 1310",
+      "family": "MKR",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 7,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "LoRa bağlantısı ve düşük güç uygulamalarına yönelik MKR.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-wan-1310/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mkr-wan-1310/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "mkr-vidor-4000",
+      "name": "Arduino MKR Vidor 4000",
+      "family": "MKR",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 7,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "SAMD21 yanında Intel Cyclone 10CL016 FPGA içerir.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-vidor-4000/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mkr-vidor-4000/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "endOfLife",
+      "notes": []
+    },
+    {
+      "id": "mkr-zero",
+      "name": "Arduino MKR Zero",
+      "family": "MKR",
+      "kind": "mcuBoard",
+      "mcu": "Microchip SAMD21",
+      "logicVoltage": 3.3,
+      "analogInputs": 7,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": 12,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "SD kart ve ses projelerine yönelik SAMD21 kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-zero/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/mkr-zero/",
+        "https://raw.githubusercontent.com/arduino/reference-en/master/Language/Functions/Analog%20IO/analogRead.adoc"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "portenta-h7",
+      "name": "Arduino Portenta H7",
+      "family": "Portenta",
+      "kind": "mcuModule",
+      "mcu": "STM32H747XI",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "M7/M4 çift çekirdekli MCU modülü; yüksek yoğunluklu bağlantılar.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/portenta-h7/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/portenta-h7/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "portenta-h7-lite",
+      "name": "Arduino Portenta H7 Lite",
+      "family": "Portenta",
+      "kind": "mcuModule",
+      "mcu": "STM32H747XI",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Portenta H7 ailesinin sadeleştirilmiş çift çekirdekli modülü.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/portenta-h7-lite/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/portenta-h7-lite/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "portenta-h7-lite-connected",
+      "name": "Arduino Portenta H7 Lite Connected",
+      "family": "Portenta",
+      "kind": "mcuModule",
+      "mcu": "STM32H747XI",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Kablosuz bağlantılı H7 Lite modülü.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/portenta-h7-lite-connected/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/portenta-h7-lite-connected/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "portenta-c33",
+      "name": "Arduino Portenta C33",
+      "family": "Portenta",
+      "kind": "mcuModule",
+      "mcu": "Renesas RA6M5 (R7FA6M5BH2CBG)",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Cortex-M33 ve kablosuz bağlantı içeren Portenta modülü.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/portenta-c33/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/portenta-c33/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "portenta-x8",
+      "name": "Arduino Portenta X8",
+      "family": "Portenta",
+      "kind": "hybridSbc",
+      "mcu": "STM32H747XI MCU; NXP i.MX 8M Mini MPU",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Linux konteynerleri ve MCU görevleri için hibrit modül.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/portenta-x8/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/portenta-x8/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "nicla-sense-me",
+      "name": "Arduino Nicla Sense ME",
+      "family": "Nicla",
+      "kind": "mcuBoard",
+      "mcu": "Nordic nRF52832",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Bosch hareket ve çevre sensörleriyle kompakt veri toplama kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nicla-sense-me/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nicla-sense-me/",
+        "https://docs.arduino.cc/resources/datasheets/ABX00050-datasheet.pdf"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "nicla-vision",
+      "name": "Arduino Nicla Vision",
+      "family": "Nicla",
+      "kind": "mcuBoard",
+      "mcu": "STM32H747AII6",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Kamera, mikrofon ve hareket sensörleriyle görüntü işleme kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nicla-vision/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nicla-vision/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": []
+    },
+    {
+      "id": "nicla-voice",
+      "name": "Arduino Nicla Voice",
+      "family": "Nicla",
+      "kind": "mcuBoard",
+      "mcu": "Nordic nRF52832; Syntiant NDP120 ML işlemcisi",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Düşük güçte konuşma ve hareket tanıma için özel ML kartı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nicla-voice/",
+      "sources": [
+        "https://docs.arduino.cc/hardware/nicla-voice/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": null,
+      "notes": [
+        "Mantık seviyesi LDO/level-shifter yapılandırmasına bağlı olabildiği için logicVoltage=null bırakıldı."
+      ]
+    },
+    {
+      "id": "arduino-101",
+      "name": "Arduino 101",
+      "family": "Legacy",
+      "kind": "mcuBoard",
+      "mcu": "Intel Curie",
+      "logicVoltage": 3.3,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Üretimden kalkmış Curie tabanlı kart; yalnızca katalog kaydı.",
+      "sourceUrl": "https://docs.arduino.cc/retired/boards/arduino-101-619/",
+      "sources": [
+        "https://docs.arduino.cc/retired/boards/arduino-101-619/",
+        "https://docs.arduino.cc/resources/datasheets/intel-curie-module-datasheet.pdf",
+        "https://docs.arduino.cc/resources/datasheets/intel-curie-shield-compat-guide.pdf"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "retired",
+      "notes": []
+    },
+    {
+      "id": "arduino-duemilanove",
+      "name": "Arduino Duemilanove",
+      "family": "Legacy",
+      "kind": "mcuBoard",
+      "mcu": "ATmega168 / ATmega328P (sürüme bağlı)",
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "MCU sürümü seçilmesi gereken eski AVR geliştirme kartı.",
+      "sourceUrl": "https://docs.arduino.cc/retired/boards/arduino-duemilanove/",
+      "sources": [
+        "https://docs.arduino.cc/retired/boards/arduino-duemilanove/",
+        "https://raw.githubusercontent.com/arduino/ArduinoCore-avr/master/boards.txt"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "retired",
+      "notes": []
+    },
+    {
+      "id": "arduino-pro-mini",
+      "name": "Arduino Pro Mini",
+      "family": "Legacy",
+      "kind": "mcuBoard",
+      "mcu": null,
+      "logicVoltage": null,
+      "analogInputs": null,
+      "digitalPins": null,
+      "digitalPinsDefinition": null,
+      "pwmPins": [],
+      "i2c": null,
+      "spi": null,
+      "defaultDigitalPins": [],
+      "adcResolution": {
+        "defaultBits": null,
+        "maxBits": null,
+        "codeBits": null,
+        "note": null
+      },
+      "support": "catalogOnly",
+      "fqbn": null,
+      "pinCodeStyle": null,
+      "description": "Gerilim ve işlemci varyantları bulunan eski küçük kart; varyantı doğrula.",
+      "sourceUrl": "https://docs.arduino.cc/retired/boards/arduino-pro-mini/",
+      "sources": [
+        "https://docs.arduino.cc/retired/boards/arduino-pro-mini/"
+      ],
+      "researchedDate": "2026-09-05",
+      "lifecycle": "retired",
+      "notes": []
+    }
+  ],
+  "nonBoardProducts": [
+    {
+      "id": "uno-breakout-carrier",
+      "name": "Arduino UNO Breakout Carrier",
+      "kind": "carrier",
+      "description": "UNO Q yüksek hızlı konnektörlerini erişilebilir yapan taşıyıcı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/uno-breakout-carrier/",
+      "support": "catalogOnly",
+      "researchedDate": "2026-09-05"
+    },
+    {
+      "id": "nano-connector-carrier",
+      "name": "Arduino Nano Connector Carrier",
+      "kind": "carrier",
+      "description": "Nano kartı gerektiren bağlantı taşıyıcısı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/nano-connector-carrier/",
+      "support": "catalogOnly",
+      "researchedDate": "2026-09-05"
+    },
+    {
+      "id": "portenta-breakout",
+      "name": "Arduino Portenta Breakout",
+      "kind": "carrier",
+      "description": "Portenta modülü gerektiren taşıyıcı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/portenta-breakout/",
+      "support": "catalogOnly",
+      "researchedDate": "2026-09-05"
+    },
+    {
+      "id": "mkr-iot-carrier",
+      "name": "Arduino MKR IoT Carrier",
+      "kind": "carrier",
+      "description": "MKR kartı ile kullanılan sensör/arayüz taşıyıcısı.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/mkr-iot-carrier/",
+      "support": "catalogOnly",
+      "researchedDate": "2026-09-05"
+    },
+    {
+      "id": "discovery-bundle",
+      "name": "Arduino Matter Discovery Bundle",
+      "kind": "kit",
+      "description": "Nano Matter, taşıyıcı ve aksesuarları içeren set; ayrı MCU modeli değildir.",
+      "sourceUrl": "https://docs.arduino.cc/hardware/discovery-bundle/",
+      "support": "catalogOnly",
+      "researchedDate": "2026-09-05"
+    }
+  ],
+  "limitations": [
+    "Stok veya satın alınabilirlik doğrulanmadı. lifecycle=null güncel üretim garantisi değildir.",
+    "Pin haritaları doğrulanmayan katalog kayıtları otomatik kod/bağlantı üretimi için kullanılmamalıdır.",
+    "FQBN platform kurulumu ve gerekirse kart menü seçenekleriyle birlikte kullanılmalıdır.",
+    "Birincil kaynaklarda bazı yazım/teknik tutarsızlıklar vardır; özellikle Nano ESP32 ADC varsayılanı bilinmiyor olarak bırakıldı."
+  ]
+}

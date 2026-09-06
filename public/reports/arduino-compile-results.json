@@ -1,0 +1,511 @@
+{
+  "date": "2026-09-05",
+  "hardwareTested": false,
+  "tool": "Arduino CLI 1.5.1",
+  "cores": {
+    "arduino:avr": "1.8.8",
+    "arduino:megaavr": "1.8.8",
+    "arduino:renesas_uno": "1.6.0",
+    "arduino:samd": "1.8.14"
+  },
+  "scope": "Nine boards: baseline LED + potentiometer + button. Every supported module individually on UNO R3; one BME280 + OLED combination. Nano ESP32 is generated but not compiled in this matrix. Compilation does not establish electrical correctness or physical performance.",
+  "passed": 34,
+  "total": 34,
+  "cases": [
+    {
+      "name": "uno_rev3_basics",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 1.67,
+      "compilerMemoryReport": [
+        "Sketch uses 3922 bytes (12%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 202 bytes (9%) of dynamic memory, leaving 1846 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_r4_minima_basics",
+      "board": "uno-r4-minima",
+      "fqbn": "arduino:renesas_uno:minima",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 0.96,
+      "compilerMemoryReport": [
+        "Sketch uses 40464 bytes (15%) of program storage space. Maximum is 262144 bytes.",
+        "Global variables use 3952 bytes (12%) of dynamic memory, leaving 28816 bytes for local variables. Maximum is 32768 bytes."
+      ]
+    },
+    {
+      "name": "uno_r4_wifi_basics",
+      "board": "uno-r4-wifi",
+      "fqbn": "arduino:renesas_uno:unor4wifi",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 0.52,
+      "compilerMemoryReport": [
+        "Sketch uses 53020 bytes (20%) of program storage space. Maximum is 262144 bytes.",
+        "Global variables use 6752 bytes (20%) of dynamic memory, leaving 26016 bytes for local variables. Maximum is 32768 bytes."
+      ]
+    },
+    {
+      "name": "nano_basics",
+      "board": "nano",
+      "fqbn": "arduino:avr:nano:cpu=atmega328",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 0.43,
+      "compilerMemoryReport": [
+        "Sketch uses 3922 bytes (12%) of program storage space. Maximum is 30720 bytes.",
+        "Global variables use 202 bytes (9%) of dynamic memory, leaving 1846 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "nano_every_basics",
+      "board": "nano-every",
+      "fqbn": "arduino:megaavr:nona4809",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 0.64,
+      "compilerMemoryReport": [
+        "Sketch uses 4731 bytes (9%) of program storage space. Maximum is 49152 bytes.",
+        "Global variables use 187 bytes (3%) of dynamic memory, leaving 5957 bytes for local variables. Maximum is 6144 bytes."
+      ]
+    },
+    {
+      "name": "mega_2560_basics",
+      "board": "mega-2560",
+      "fqbn": "arduino:avr:mega:cpu=atmega2560",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 0.43,
+      "compilerMemoryReport": [
+        "Sketch uses 4662 bytes (1%) of program storage space. Maximum is 253952 bytes.",
+        "Global variables use 202 bytes (2%) of dynamic memory, leaving 7990 bytes for local variables. Maximum is 8192 bytes."
+      ]
+    },
+    {
+      "name": "leonardo_basics",
+      "board": "leonardo",
+      "fqbn": "arduino:avr:leonardo",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 0.51,
+      "compilerMemoryReport": [
+        "Sketch uses 6108 bytes (21%) of program storage space. Maximum is 28672 bytes.",
+        "Global variables use 165 bytes (6%) of dynamic memory, leaving 2395 bytes for local variables. Maximum is 2560 bytes."
+      ]
+    },
+    {
+      "name": "micro_basics",
+      "board": "micro",
+      "fqbn": "arduino:avr:micro",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 0.48,
+      "compilerMemoryReport": [
+        "Sketch uses 6108 bytes (21%) of program storage space. Maximum is 28672 bytes.",
+        "Global variables use 165 bytes (6%) of dynamic memory, leaving 2395 bytes for local variables. Maximum is 2560 bytes."
+      ]
+    },
+    {
+      "name": "zero_basics",
+      "board": "zero",
+      "fqbn": "arduino:samd:arduino_zero_edbg",
+      "parts": [
+        "led-red",
+        "pot-10k",
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 0.35,
+      "compilerMemoryReport": [
+        "Sketch uses 21436 bytes (8%) of program storage space. Maximum is 262144 bytes.",
+        "Global variables use 3012 bytes (9%) of dynamic memory, leaving 29756 bytes for local variables. Maximum is 32768 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_led_red",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "led-red"
+      ],
+      "success": true,
+      "seconds": 0.45,
+      "compilerMemoryReport": [
+        "Sketch uses 3406 bytes (10%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_led_rgb_cc",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "led-rgb-cc"
+      ],
+      "success": true,
+      "seconds": 0.44,
+      "compilerMemoryReport": [
+        "Sketch uses 2334 bytes (7%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 192 bytes (9%) of dynamic memory, leaving 1856 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_pot_10k",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "pot-10k"
+      ],
+      "success": true,
+      "seconds": 0.44,
+      "compilerMemoryReport": [
+        "Sketch uses 3314 bytes (10%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_pushbutton",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "pushbutton"
+      ],
+      "success": true,
+      "seconds": 0.46,
+      "compilerMemoryReport": [
+        "Sketch uses 3250 bytes (10%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 198 bytes (9%) of dynamic memory, leaving 1850 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_reed_switch",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "reed-switch"
+      ],
+      "success": true,
+      "seconds": 0.42,
+      "compilerMemoryReport": [
+        "Sketch uses 3250 bytes (10%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 198 bytes (9%) of dynamic memory, leaving 1850 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_ldr",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "ldr"
+      ],
+      "success": true,
+      "seconds": 0.42,
+      "compilerMemoryReport": [
+        "Sketch uses 3314 bytes (10%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_fsr",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "fsr"
+      ],
+      "success": true,
+      "seconds": 0.43,
+      "compilerMemoryReport": [
+        "Sketch uses 3314 bytes (10%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_ntc_10k",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "ntc-10k"
+      ],
+      "success": true,
+      "seconds": 0.42,
+      "compilerMemoryReport": [
+        "Sketch uses 3314 bytes (10%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_piezo_passive",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "piezo-passive"
+      ],
+      "success": true,
+      "seconds": 0.63,
+      "compilerMemoryReport": [
+        "Sketch uses 2798 bytes (8%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 213 bytes (10%) of dynamic memory, leaving 1835 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_tmp36",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "tmp36"
+      ],
+      "success": true,
+      "seconds": 0.44,
+      "compilerMemoryReport": [
+        "Sketch uses 3218 bytes (9%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_lm35",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "lm35"
+      ],
+      "success": true,
+      "seconds": 0.44,
+      "compilerMemoryReport": [
+        "Sketch uses 3206 bytes (9%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_dht22",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "dht22"
+      ],
+      "success": true,
+      "seconds": 0.46,
+      "compilerMemoryReport": [
+        "Sketch uses 4842 bytes (15%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 215 bytes (10%) of dynamic memory, leaving 1833 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_ds18b20",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "ds18b20"
+      ],
+      "success": true,
+      "seconds": 0.9,
+      "compilerMemoryReport": [
+        "Sketch uses 5900 bytes (18%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 239 bytes (11%) of dynamic memory, leaving 1809 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_bme280_adafruit",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "bme280-adafruit"
+      ],
+      "success": true,
+      "seconds": 0.56,
+      "compilerMemoryReport": [
+        "Sketch uses 12456 bytes (38%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 483 bytes (23%) of dynamic memory, leaving 1565 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_bmp280_adafruit",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "bmp280-adafruit"
+      ],
+      "success": true,
+      "seconds": 0.56,
+      "compilerMemoryReport": [
+        "Sketch uses 12052 bytes (37%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 503 bytes (24%) of dynamic memory, leaving 1545 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_mpu6050_adafruit",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "mpu6050-adafruit"
+      ],
+      "success": true,
+      "seconds": 0.56,
+      "compilerMemoryReport": [
+        "Sketch uses 12466 bytes (38%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 559 bytes (27%) of dynamic memory, leaving 1489 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_hcsr04_5v_sparkfun",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "hcsr04-5v-sparkfun"
+      ],
+      "success": true,
+      "seconds": 0.45,
+      "compilerMemoryReport": [
+        "Sketch uses 3744 bytes (11%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_vl53l0x_adafruit",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "vl53l0x-adafruit"
+      ],
+      "success": true,
+      "seconds": 0.67,
+      "compilerMemoryReport": [
+        "Sketch uses 18420 bytes (57%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 1167 bytes (56%) of dynamic memory, leaving 881 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_ssd1306_adafruit_128x64",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "ssd1306-adafruit-128x64"
+      ],
+      "success": true,
+      "seconds": 0.77,
+      "compilerMemoryReport": [
+        "Sketch uses 15562 bytes (48%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 528 bytes (25%) of dynamic memory, leaving 1520 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_ds3231_adafruit",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "ds3231-adafruit"
+      ],
+      "success": true,
+      "seconds": 0.7,
+      "compilerMemoryReport": [
+        "Sketch uses 5968 bytes (18%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 421 bytes (20%) of dynamic memory, leaving 1627 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_mcp4725_adafruit",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "mcp4725-adafruit"
+      ],
+      "success": true,
+      "seconds": 0.48,
+      "compilerMemoryReport": [
+        "Sketch uses 5826 bytes (18%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 421 bytes (20%) of dynamic memory, leaving 1627 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_ads1115_adafruit",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "ads1115-adafruit"
+      ],
+      "success": true,
+      "seconds": 0.65,
+      "compilerMemoryReport": [
+        "Sketch uses 7302 bytes (22%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 433 bytes (21%) of dynamic memory, leaving 1615 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_flex_sensor",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "flex-sensor"
+      ],
+      "success": true,
+      "seconds": 0.42,
+      "compilerMemoryReport": [
+        "Sketch uses 3314 bytes (10%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_filter_output",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "filter-output"
+      ],
+      "success": true,
+      "seconds": 0.43,
+      "compilerMemoryReport": [
+        "Sketch uses 3314 bytes (10%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 196 bytes (9%) of dynamic memory, leaving 1852 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    },
+    {
+      "name": "uno_rev3_climate",
+      "board": "uno-rev3",
+      "fqbn": "arduino:avr:uno",
+      "parts": [
+        "bme280-adafruit",
+        "ssd1306-adafruit-128x64"
+      ],
+      "success": true,
+      "seconds": 0.91,
+      "compilerMemoryReport": [
+        "Sketch uses 22408 bytes (69%) of program storage space. Maximum is 32256 bytes.",
+        "Global variables use 592 bytes (28%) of dynamic memory, leaving 1456 bytes for local variables. Maximum is 2048 bytes."
+      ]
+    }
+  ]
+}

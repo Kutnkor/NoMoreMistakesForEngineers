@@ -1,0 +1,1577 @@
+{
+  "auditDate": "2026-09-05",
+  "verdict": "Model alignment required before training integration. The supplied finite-op-amp model differs from the Site ideal model; conditional ideal-model violations are not confirmed bad labels.",
+  "safeLoading": "np.load(..., allow_pickle=False); no supplied dataset scripts executed.",
+  "files": [
+    {
+      "name": "VERI_KARTI.md",
+      "bytes": 4333,
+      "sha256": "3b48c9210ce3516d2d5fead81711a83c10d2a8368ff3624705a5a4e41835c0f0"
+    },
+    {
+      "name": "cf_veri_ornegi.csv",
+      "bytes": 318620,
+      "sha256": "ed52a2227afb093f7cedd171381ea47679ebf5e22801ef3a7b731bf898d52e0a"
+    },
+    {
+      "name": "cf_train.npz",
+      "bytes": 3530515,
+      "sha256": "0d6cb0603cd55b872e333c6d6f29313fc2684e4bacf5049f29830a0813af9be9"
+    },
+    {
+      "name": "cf_val.npz",
+      "bytes": 472674,
+      "sha256": "0b8f9503cb7aca8ee694f3ca13102a1e228430dab7db60def22abf8a68021a7c"
+    }
+  ],
+  "actualSchema": {
+    "train": {
+      "rows": 121006,
+      "arrays": {
+        "fc": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 316.2277526855469,
+          "max": 100000.0
+        },
+        "gain": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": -2.9967594146728516,
+          "max": 39.995731353759766
+        },
+        "ripple": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.5206866264343262,
+          "max": 3.9999043941497803
+        },
+        "stop_ratio": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 1.600000023841858,
+          "max": 8.0
+        },
+        "stop_db": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 10.000006675720215,
+          "max": 48.67557907104492
+        },
+        "bw": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 1.149999976158142,
+          "max": 4.258270263671875
+        },
+        "margin": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.5000401735305786,
+          "max": 1.9999632835388184
+        },
+        "p05_drop": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32",
+          "nanCount": 90787,
+          "infiniteCount": 0,
+          "min": 2.285443406435661e-05,
+          "max": 12.823541641235352
+        },
+        "has_mc": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "U": {
+          "shape": [
+            121006,
+            10
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "topo_id": {
+          "shape": [
+            121006
+          ],
+          "dtype": "int16",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.0,
+          "max": 9.0
+        },
+        "kind_id": {
+          "shape": [
+            121006
+          ],
+          "dtype": "int16",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.0,
+          "max": 2.0
+        }
+      },
+      "kindCounts": {
+        "0": 73970,
+        "1": 40605,
+        "2": 6431
+      },
+      "topologyCounts": {
+        "0": 16006,
+        "1": 23660,
+        "2": 4876,
+        "3": 6431,
+        "4": 10563,
+        "5": 22367,
+        "6": 5301,
+        "7": 11283,
+        "8": 16945,
+        "9": 3574
+      },
+      "mcLabeledRows": 30219,
+      "mcMissingConsistency": true,
+      "fcUniqueValues": 176,
+      "stopRatioUniqueValues": 11
+    },
+    "val": {
+      "rows": 15948,
+      "arrays": {
+        "fc": {
+          "shape": [
+            15948
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 316.2277526855469,
+          "max": 100000.0
+        },
+        "gain": {
+          "shape": [
+            15948
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": -2.9957494735717773,
+          "max": 39.99628448486328
+        },
+        "ripple": {
+          "shape": [
+            15948
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.5452285408973694,
+          "max": 3.995435953140259
+        },
+        "stop_ratio": {
+          "shape": [
+            15948
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 1.600000023841858,
+          "max": 8.0
+        },
+        "stop_db": {
+          "shape": [
+            15948
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 10.00004768371582,
+          "max": 39.86372375488281
+        },
+        "bw": {
+          "shape": [
+            15948
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 1.149999976158142,
+          "max": 3.999884843826294
+        },
+        "margin": {
+          "shape": [
+            15948
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.5000290870666504,
+          "max": 1.999991774559021
+        },
+        "p05_drop": {
+          "shape": [
+            15948
+          ],
+          "dtype": "float32",
+          "nanCount": 11970,
+          "infiniteCount": 0,
+          "min": 0.0001353046391159296,
+          "max": 1.896756649017334
+        },
+        "has_mc": {
+          "shape": [
+            15948
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "U": {
+          "shape": [
+            15948,
+            10
+          ],
+          "dtype": "float32",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "topo_id": {
+          "shape": [
+            15948
+          ],
+          "dtype": "int16",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.0,
+          "max": 9.0
+        },
+        "kind_id": {
+          "shape": [
+            15948
+          ],
+          "dtype": "int16",
+          "nanCount": 0,
+          "infiniteCount": 0,
+          "min": 0.0,
+          "max": 2.0
+        }
+      },
+      "kindCounts": {
+        "0": 9725,
+        "1": 5395,
+        "2": 828
+      },
+      "topologyCounts": {
+        "0": 2069,
+        "1": 3137,
+        "2": 605,
+        "3": 828,
+        "4": 1400,
+        "5": 2974,
+        "6": 721,
+        "7": 1493,
+        "8": 2258,
+        "9": 463
+      },
+      "mcLabeledRows": 3978,
+      "mcMissingConsistency": true,
+      "fcUniqueValues": 176,
+      "stopRatioUniqueValues": 11
+    }
+  },
+  "csvRows": 3000,
+  "csvNpMatches": 3000,
+  "csvTrainMatches": 3000,
+  "csvValMatches": 0,
+  "csvMatchingCaveat": "Rounded CSV specs matched by documented tolerances; component decoding independently agrees within float32 error.",
+  "inferredDecoding": {
+    "mfb_bp2": {
+      "ids": {
+        "3": 141
+      },
+      "kinds": {
+        "2": 141
+      },
+      "matches": 141,
+      "decoding": [
+        {
+          "component": "R1",
+          "column": 0,
+          "slope": 3.999999983836264,
+          "intercept": 1.999999998525129,
+          "max_log10_error": 1.2723333231434708e-07
+        },
+        {
+          "component": "R2",
+          "column": 1,
+          "slope": 3.9999999970279836,
+          "intercept": 1.9999999998596338,
+          "max_log10_error": 1.1920410170063178e-07
+        },
+        {
+          "component": "R3",
+          "column": 2,
+          "slope": 4.000000022510422,
+          "intercept": 1.9999999886800939,
+          "max_log10_error": 1.2382976599667472e-07
+        },
+        {
+          "component": "C1",
+          "column": 3,
+          "slope": 4.999999942044111,
+          "intercept": -9.999999993341175,
+          "max_log10_error": 1.6794978918710513e-07
+        },
+        {
+          "component": "C2",
+          "column": 4,
+          "slope": 5.000000007194339,
+          "intercept": -10.00000000542471,
+          "max_log10_error": 1.4296510375544358e-07
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 196
+    },
+    "mfb_lp2": {
+      "ids": {
+        "2": 123
+      },
+      "kinds": {
+        "0": 123
+      },
+      "matches": 123,
+      "decoding": [
+        {
+          "component": "R1",
+          "column": 0,
+          "slope": 3.999999992777727,
+          "intercept": 1.9999999955223489,
+          "max_log10_error": 1.2519475411920666e-07
+        },
+        {
+          "component": "R2",
+          "column": 1,
+          "slope": 4.000000021034074,
+          "intercept": 1.999999990311388,
+          "max_log10_error": 1.243385217009063e-07
+        },
+        {
+          "component": "R3",
+          "column": 2,
+          "slope": 3.9999999987182613,
+          "intercept": 1.999999999104147,
+          "max_log10_error": 1.185840092787771e-07
+        },
+        {
+          "component": "C1",
+          "column": 3,
+          "slope": 4.999999914024736,
+          "intercept": -9.999999978835145,
+          "max_log10_error": 1.633053257066308e-07
+        },
+        {
+          "component": "C2",
+          "column": 4,
+          "slope": 5.000000078593708,
+          "intercept": -10.000000011744595,
+          "max_log10_error": 8.587433164564118e-08
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 204
+    },
+    "rc_lp2": {
+      "ids": {
+        "4": 249
+      },
+      "kinds": {
+        "0": 249
+      },
+      "matches": 249,
+      "decoding": [
+        {
+          "component": "R1",
+          "column": 0,
+          "slope": 3.999999990529798,
+          "intercept": 1.9999999974196205,
+          "max_log10_error": 1.2456490505741158e-07
+        },
+        {
+          "component": "R2",
+          "column": 1,
+          "slope": 3.999999995712167,
+          "intercept": 1.99999999834497,
+          "max_log10_error": 1.217896006266983e-07
+        },
+        {
+          "component": "C1",
+          "column": 2,
+          "slope": 4.999999952954597,
+          "intercept": -9.99999999587296,
+          "max_log10_error": 1.6318808260251672e-07
+        },
+        {
+          "component": "C2",
+          "column": 3,
+          "slope": 4.999999972911778,
+          "intercept": -9.999999998134866,
+          "max_log10_error": 1.5294348099104127e-07
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 396
+    },
+    "rlc_lp2": {
+      "ids": {
+        "5": 578
+      },
+      "kinds": {
+        "0": 578
+      },
+      "matches": 578,
+      "decoding": [
+        {
+          "component": "R1",
+          "column": 0,
+          "slope": 4.000000011833165,
+          "intercept": 1.9999999935374775,
+          "max_log10_error": 1.2056871590004903e-07
+        },
+        {
+          "component": "C1",
+          "column": 2,
+          "slope": 4.9999999830711985,
+          "intercept": -10.000000001052046,
+          "max_log10_error": 1.5074333248321636e-07
+        },
+        {
+          "component": "L1",
+          "column": 1,
+          "slope": 5.000000001206947,
+          "intercept": -6.000000007410362,
+          "max_log10_error": 1.4796662295424312e-07
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 426
+    },
+    "sk_hp2": {
+      "ids": {
+        "1": 564
+      },
+      "kinds": {
+        "1": 564
+      },
+      "matches": 564,
+      "decoding": [
+        {
+          "component": "R1",
+          "column": 0,
+          "slope": 4.000000003623291,
+          "intercept": 1.9999999956236927,
+          "max_log10_error": 1.1897848484210272e-07
+        },
+        {
+          "component": "R2",
+          "column": 1,
+          "slope": 3.999999996887191,
+          "intercept": 1.999999998346587,
+          "max_log10_error": 1.2083172773458273e-07
+        },
+        {
+          "component": "C1",
+          "column": 2,
+          "slope": 4.999999992594189,
+          "intercept": -10.000000001090118,
+          "max_log10_error": 1.459846492579686e-07
+        },
+        {
+          "component": "C2",
+          "column": 3,
+          "slope": 5.000000015118167,
+          "intercept": -10.000000010455668,
+          "max_log10_error": 1.4504826761907452e-07
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 562
+    },
+    "sk_hp2g": {
+      "ids": {
+        "8": 433
+      },
+      "kinds": {
+        "1": 433
+      },
+      "matches": 433,
+      "decoding": [
+        {
+          "component": "R1",
+          "column": 0,
+          "slope": 4.000000012153235,
+          "intercept": 1.9999999943633717,
+          "max_log10_error": 1.216379752477792e-07
+        },
+        {
+          "component": "R2",
+          "column": 1,
+          "slope": 4.000000003477889,
+          "intercept": 1.999999996684935,
+          "max_log10_error": 1.1799922283728392e-07
+        },
+        {
+          "component": "C1",
+          "column": 2,
+          "slope": 4.999999983370206,
+          "intercept": -10.000000000330537,
+          "max_log10_error": 1.4987121321752284e-07
+        },
+        {
+          "component": "C2",
+          "column": 3,
+          "slope": 5.000000006807581,
+          "intercept": -10.000000008221688,
+          "max_log10_error": 1.4595689368235298e-07
+        },
+        {
+          "component": "Ra",
+          "column": 4,
+          "slope": 4.000000009799215,
+          "intercept": 1.9999999945023827,
+          "max_log10_error": 1.1998711180183363e-07
+        },
+        {
+          "component": "Rb",
+          "column": 5,
+          "slope": 4.000000009104336,
+          "intercept": 1.9999999948954836,
+          "max_log10_error": 1.1985186176843854e-07
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 544
+    },
+    "sk_lp2": {
+      "ids": {
+        "0": 383
+      },
+      "kinds": {
+        "0": 383
+      },
+      "matches": 383,
+      "decoding": [
+        {
+          "component": "R1",
+          "column": 0,
+          "slope": 4.000000022650136,
+          "intercept": 1.999999989600041,
+          "max_log10_error": 1.2485594425015734e-07
+        },
+        {
+          "component": "R2",
+          "column": 1,
+          "slope": 4.0000000118725065,
+          "intercept": 1.9999999938401618,
+          "max_log10_error": 1.2090131384923097e-07
+        },
+        {
+          "component": "C1",
+          "column": 2,
+          "slope": 4.999999996738104,
+          "intercept": -10.000000003160729,
+          "max_log10_error": 1.4596795683274877e-07
+        },
+        {
+          "component": "C2",
+          "column": 3,
+          "slope": 4.9999999685004495,
+          "intercept": -9.999999997585878,
+          "max_log10_error": 1.5461649116588205e-07
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 506
+    },
+    "sk_lp2g": {
+      "ids": {
+        "7": 303
+      },
+      "kinds": {
+        "0": 303
+      },
+      "matches": 303,
+      "decoding": [
+        {
+          "component": "R1",
+          "column": 0,
+          "slope": 4.000000009045736,
+          "intercept": 1.9999999907881696,
+          "max_log10_error": 1.2075673527789377e-07
+        },
+        {
+          "component": "R2",
+          "column": 1,
+          "slope": 4.0000000125747395,
+          "intercept": 1.999999993097974,
+          "max_log10_error": 1.1754938356034472e-07
+        },
+        {
+          "component": "C1",
+          "column": 2,
+          "slope": 4.999999970314242,
+          "intercept": -9.999999998510525,
+          "max_log10_error": 1.546275258945684e-07
+        },
+        {
+          "component": "C2",
+          "column": 3,
+          "slope": 4.999999970465728,
+          "intercept": -9.999999998269418,
+          "max_log10_error": 1.5431011579636333e-07
+        },
+        {
+          "component": "Ra",
+          "column": 4,
+          "slope": 4.000000018006714,
+          "intercept": 1.9999999922158262,
+          "max_log10_error": 1.2394111248426043e-07
+        },
+        {
+          "component": "Rb",
+          "column": 5,
+          "slope": 3.9999999828844803,
+          "intercept": 1.9999999980622487,
+          "max_log10_error": 1.32511726036455e-07
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 501
+    },
+    "sk_lp4": {
+      "ids": {
+        "6": 117
+      },
+      "kinds": {
+        "0": 117
+      },
+      "matches": 117,
+      "decoding": [
+        {
+          "component": "R1a",
+          "column": 0,
+          "slope": 3.999999995309675,
+          "intercept": 1.9999999985480166,
+          "max_log10_error": 1.2191410903028554e-07
+        },
+        {
+          "component": "R2a",
+          "column": 1,
+          "slope": 4.000000019954807,
+          "intercept": 1.9999999925091818,
+          "max_log10_error": 1.2571569651953496e-07
+        },
+        {
+          "component": "C1a",
+          "column": 2,
+          "slope": 4.999999984546185,
+          "intercept": -9.999999998470418,
+          "max_log10_error": 1.474187500960511e-07
+        },
+        {
+          "component": "C2a",
+          "column": 3,
+          "slope": 4.999999999125473,
+          "intercept": -10.000000000714477,
+          "max_log10_error": 1.423191822169656e-07
+        },
+        {
+          "component": "R1b",
+          "column": 4,
+          "slope": 3.9999999692091692,
+          "intercept": 2.0000000025698976,
+          "max_log10_error": 1.3913329155457177e-07
+        },
+        {
+          "component": "R2b",
+          "column": 5,
+          "slope": 4.00000000841701,
+          "intercept": 1.9999999978614276,
+          "max_log10_error": 1.2229519974482628e-07
+        },
+        {
+          "component": "C1b",
+          "column": 6,
+          "slope": 4.999999984020957,
+          "intercept": -10.000000009278075,
+          "max_log10_error": 1.5582581713857735e-07
+        },
+        {
+          "component": "C2b",
+          "column": 7,
+          "slope": 4.999999948223319,
+          "intercept": -9.999999990526906,
+          "max_log10_error": 1.1605410676907013e-07
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 366
+    },
+    "sk_lp4g": {
+      "ids": {
+        "9": 109
+      },
+      "kinds": {
+        "0": 109
+      },
+      "matches": 109,
+      "decoding": [
+        {
+          "component": "Ra",
+          "column": 8,
+          "slope": 4.000000022959507,
+          "intercept": 1.9999999820720993,
+          "max_log10_error": 1.2162796991788127e-07
+        },
+        {
+          "component": "Rb",
+          "column": 9,
+          "slope": 4.00000000375397,
+          "intercept": 1.9999999929067769,
+          "max_log10_error": 1.2162172158269868e-07
+        },
+        {
+          "component": "R1a",
+          "column": 0,
+          "slope": 3.9999999909652373,
+          "intercept": 1.9999999991324133,
+          "max_log10_error": 1.1981633463165053e-07
+        },
+        {
+          "component": "R2a",
+          "column": 1,
+          "slope": 4.000000039963904,
+          "intercept": 1.9999999872430558,
+          "max_log10_error": 1.3566345202775665e-07
+        },
+        {
+          "component": "C1a",
+          "column": 2,
+          "slope": 5.000000004546652,
+          "intercept": -10.00000000394359,
+          "max_log10_error": 1.4318973207139152e-07
+        },
+        {
+          "component": "C2a",
+          "column": 3,
+          "slope": 5.000000001545459,
+          "intercept": -10.000000002181434,
+          "max_log10_error": 1.4257551939067525e-07
+        },
+        {
+          "component": "R1b",
+          "column": 4,
+          "slope": 3.9999999870109244,
+          "intercept": 1.9999999977429825,
+          "max_log10_error": 1.2174723096336493e-07
+        },
+        {
+          "component": "R2b",
+          "column": 5,
+          "slope": 4.000000010418291,
+          "intercept": 1.9999999939910875,
+          "max_log10_error": 1.199465291534807e-07
+        },
+        {
+          "component": "C1b",
+          "column": 6,
+          "slope": 4.999999989221033,
+          "intercept": -10.000000000250928,
+          "max_log10_error": 1.4684452676050341e-07
+        },
+        {
+          "component": "C2b",
+          "column": 7,
+          "slope": 4.999999979336391,
+          "intercept": -9.999999999629617,
+          "max_log10_error": 1.1236773378442422e-07
+        }
+      ],
+      "unusedColumnsZero": true,
+      "activeZeroCount": 305
+    }
+  },
+  "decodingMaxLog10Residual": 1.6794978918710513e-07,
+  "componentChecks": [
+    {
+      "topology": "mfb_bp2",
+      "component": "R1",
+      "column": 0,
+      "min": 100.0,
+      "max": 910000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "mfb_bp2",
+      "component": "R2",
+      "column": 1,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "mfb_bp2",
+      "component": "R3",
+      "column": 2,
+      "min": 220.00000000000003,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "mfb_bp2",
+      "component": "C1",
+      "column": 3,
+      "min": 1e-10,
+      "max": 1.1e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "mfb_bp2",
+      "component": "C2",
+      "column": 4,
+      "min": 1e-10,
+      "max": 1.3e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "mfb_lp2",
+      "component": "R1",
+      "column": 0,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "mfb_lp2",
+      "component": "R2",
+      "column": 1,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "mfb_lp2",
+      "component": "R3",
+      "column": 2,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "mfb_lp2",
+      "component": "C1",
+      "column": 3,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "mfb_lp2",
+      "component": "C2",
+      "column": 4,
+      "min": 1e-10,
+      "max": 7.5e-07,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "rc_lp2",
+      "component": "R1",
+      "column": 0,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "rc_lp2",
+      "component": "R2",
+      "column": 1,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "rc_lp2",
+      "component": "C1",
+      "column": 2,
+      "min": 1e-10,
+      "max": 4.2999999999999995e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "rc_lp2",
+      "component": "C2",
+      "column": 3,
+      "min": 1e-10,
+      "max": 1.3e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "rlc_lp2",
+      "component": "R1",
+      "column": 0,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "rlc_lp2",
+      "component": "C1",
+      "column": 2,
+      "min": 1e-10,
+      "max": 5.6e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "rlc_lp2",
+      "component": "L1",
+      "column": 1,
+      "min": 1e-06,
+      "max": 0.1,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2",
+      "component": "R1",
+      "column": 0,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2",
+      "component": "R2",
+      "column": 1,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2",
+      "component": "C1",
+      "column": 2,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2",
+      "component": "C2",
+      "column": 3,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2g",
+      "component": "R1",
+      "column": 0,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2g",
+      "component": "R2",
+      "column": 1,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2g",
+      "component": "C1",
+      "column": 2,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2g",
+      "component": "C2",
+      "column": 3,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2g",
+      "component": "Ra",
+      "column": 4,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_hp2g",
+      "component": "Rb",
+      "column": 5,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2",
+      "component": "R1",
+      "column": 0,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2",
+      "component": "R2",
+      "column": 1,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2",
+      "component": "C1",
+      "column": 2,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2",
+      "component": "C2",
+      "column": 3,
+      "min": 1e-10,
+      "max": 1.5e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2g",
+      "component": "R1",
+      "column": 0,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2g",
+      "component": "R2",
+      "column": 1,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2g",
+      "component": "C1",
+      "column": 2,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2g",
+      "component": "C2",
+      "column": 3,
+      "min": 1e-10,
+      "max": 3.6e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2g",
+      "component": "Ra",
+      "column": 4,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp2g",
+      "component": "Rb",
+      "column": 5,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4",
+      "component": "R1a",
+      "column": 0,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4",
+      "component": "R2a",
+      "column": 1,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4",
+      "component": "C1a",
+      "column": 2,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4",
+      "component": "C2a",
+      "column": 3,
+      "min": 1e-10,
+      "max": 2.2e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4",
+      "component": "R1b",
+      "column": 4,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4",
+      "component": "R2b",
+      "column": 5,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4",
+      "component": "C1b",
+      "column": 6,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4",
+      "component": "C2b",
+      "column": 7,
+      "min": 1e-10,
+      "max": 1.3e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "Ra",
+      "column": 8,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "Rb",
+      "column": 9,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "R1a",
+      "column": 0,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "R2a",
+      "column": 1,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "C1a",
+      "column": 2,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "C2a",
+      "column": 3,
+      "min": 1e-10,
+      "max": 1.5e-06,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "R1b",
+      "column": 4,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "R2b",
+      "column": 5,
+      "min": 100.0,
+      "max": 1000000.0,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "C1b",
+      "column": 6,
+      "min": 1e-10,
+      "max": 1e-05,
+      "notE24Within1ppm": 0
+    },
+    {
+      "topology": "sk_lp4g",
+      "component": "C2b",
+      "column": 7,
+      "min": 1e-10,
+      "max": 2.7e-06,
+      "notE24Within1ppm": 0
+    }
+  ],
+  "duplicates": {
+    "design": {
+      "train_repeated_rows": 435,
+      "val_repeated_rows": 14,
+      "shared_unique_keys": 113,
+      "val_rows_in_train": 114,
+      "train_rows_in_val": 113,
+      "valRowsByTopology": {
+        "sk_hp2": 2,
+        "rlc_lp2": 112
+      }
+    },
+    "input": {
+      "train_repeated_rows": 0,
+      "val_repeated_rows": 0,
+      "shared_unique_keys": 0,
+      "val_rows_in_train": 0,
+      "train_rows_in_val": 0
+    },
+    "full": {
+      "train_repeated_rows": 0,
+      "val_repeated_rows": 0,
+      "shared_unique_keys": 0,
+      "val_rows_in_train": 0,
+      "train_rows_in_val": 0
+    }
+  },
+  "formula": {
+    "expression": "H(s)=1/[1+s*C2*(R1+R2)+s^2*R1*R2*C1*C2]",
+    "sitePath": "lib/circuit.ts",
+    "compatibleTopologyId": 0,
+    "compatibleTopologyName": "sk_lp2",
+    "rows": 18075,
+    "withinCurrentBounds": 1821,
+    "zeroGainCurrentSpecAndBoundsFeasible": 1305,
+    "conditionalAssumptions": [
+      "fc interpreted as passband upper edge",
+      "passband includes frequencies through fc",
+      "stop band starts at fc*stop_ratio and extends upward",
+      "gain is the target passband dB value",
+      "relative stop attenuation is gain minus actual stop-band gain"
+    ],
+    "conditionalValidation": {
+      "siteFormula": {
+        "total": 18075,
+        "dc_impossible": 0,
+        "absolute_invalid": 2109,
+        "relative_invalid": 448,
+        "absolute_margin_error_quantiles": [
+          -12.901856916410136,
+          -3.98718906557411,
+          -0.003246903419494629,
+          0.5896374618196546,
+          1.1701201796531677
+        ],
+        "relative_margin_error_quantiles": [
+          -11.813998477918314,
+          -2.527807023921681,
+          -0.0035120248794555664,
+          0.003171578954954742,
+          0.42483830646021525
+        ],
+        "pass_invalid": 2,
+        "stop_abs_invalid": 2108,
+        "fc_over_f0_quantiles": [
+          0.0037939947560471986,
+          0.011585396217166578,
+          0.42772856349058924,
+          1.238063463761234,
+          1.36569000442921
+        ],
+        "gfc_quantiles": [
+          -2.916887205278508,
+          -2.6851920336752446,
+          -0.9251901921109156,
+          5.415819923906378,
+          6.904637483359052
+        ]
+      },
+      "swapC": {
+        "total": 18075,
+        "dc_impossible": 0,
+        "absolute_invalid": 16758,
+        "relative_invalid": 16937,
+        "absolute_margin_error_quantiles": [
+          -80.75066742391056,
+          -61.55185131769927,
+          -16.117011517851154,
+          -0.002149287462234508,
+          0.6965835835418193
+        ],
+        "relative_margin_error_quantiles": [
+          -80.75066742391056,
+          -61.55185131769927,
+          -16.36330696017798,
+          -0.002628381252288824,
+          0.5674958913196804
+        ],
+        "pass_invalid": 12985,
+        "stop_abs_invalid": 3773,
+        "fc_over_f0_quantiles": [
+          0.003793994756047198,
+          0.011585396217166578,
+          0.42772856349058924,
+          1.238063463761234,
+          1.36569000442921
+        ],
+        "gfc_quantiles": [
+          -80.7423854777283,
+          -61.63687692799165,
+          -13.59730402516365,
+          0.12428893415669494,
+          0.24147715608974918
+        ]
+      }
+    },
+    "relativeInvalidBySplit": {
+      "train": 405,
+      "val": 43
+    },
+    "relativeAtStopEdgeInvalid": 447,
+    "fcMinus3dBComparison": {
+      "withinOnePercentCount": 0,
+      "total": 18075,
+      "ratioQuantiles": [
+        0.17652788600370012,
+        0.2612722689258158,
+        0.6432609037793098,
+        0.9283760118717674,
+        0.9792569340507868
+      ]
+    },
+    "examples": [
+      {
+        "split": "train",
+        "rowIndex0": 10674,
+        "topology": "sk_lp2",
+        "R1": 130.0,
+        "R2": 110.00000000000001,
+        "C1": 4.2999999999999995e-06,
+        "C2": 1e-10,
+        "fc_Hz": 19306.9765625,
+        "gain_dB": 1.0878584384918213,
+        "ripple_dB": 2.5599138736724854,
+        "stop_ratio": 4.6784281730651855,
+        "stop_db": 11.258203506469727,
+        "declared_margin": 1.4741624593734741,
+        "q": 103.32156403078457,
+        "f0": 64182.690461756705,
+        "peakHz": 64181.187385311896,
+        "stopHz": 90326.30308670923,
+        "passDeviationAboutTargetDb": 1.0878584384918213,
+        "absoluteStopAttenuationDb": -0.16949157230962836,
+        "relativeStopAttenuationDb": 0.9183668661821929,
+        "relativeMarginDb": -10.339836640287533,
+        "atStopEdgeAttenuationDb": -0.16949157230962836
+      },
+      {
+        "split": "train",
+        "rowIndex0": 11582,
+        "topology": "sk_lp2",
+        "R1": 240.0,
+        "R2": 110.00000000000001,
+        "C1": 9.1e-08,
+        "C2": 1.1000000000000001e-10,
+        "fc_Hz": 84834.2890625,
+        "gain_dB": 0.8284686803817749,
+        "ripple_dB": 1.4204493761062622,
+        "stop_ratio": 5.594526290893555,
+        "stop_db": 12.846942901611328,
+        "declared_margin": 0.5936138033866882,
+        "q": 13.352365976893816,
+        "f0": 309600.16421174986,
+        "peakHz": 309165.7244666526,
+        "stopHz": 474607.6605294198,
+        "passDeviationAboutTargetDb": 0.8284686803817749,
+        "absoluteStopAttenuationDb": 2.6379467357241633,
+        "relativeStopAttenuationDb": 3.466415416105938,
+        "relativeMarginDb": -9.38052748550539,
+        "atStopEdgeAttenuationDb": 2.6379467357241633
+      },
+      {
+        "split": "train",
+        "rowIndex0": 15155,
+        "topology": "sk_lp2",
+        "R1": 180000.0,
+        "R2": 100.0,
+        "C1": 3.2999999999999997e-06,
+        "C2": 1e-10,
+        "fc_Hz": 571.6666259765625,
+        "gain_dB": 0.9375197887420654,
+        "ripple_dB": 2.178335428237915,
+        "stop_ratio": 5.594526290893555,
+        "stop_db": 12.970439910888672,
+        "declared_margin": 1.2426599264144897,
+        "q": 4.279367526448661,
+        "f0": 2065.03277372676,
+        "peakHz": 2036.6468525402588,
+        "stopHz": 3198.203968652291,
+        "passDeviationAboutTargetDb": 0.9375197887420654,
+        "absoluteStopAttenuationDb": 3.195368758615189,
+        "relativeStopAttenuationDb": 4.132888547357254,
+        "relativeMarginDb": -8.837551363531418,
+        "atStopEdgeAttenuationDb": 3.195368758615189
+      },
+      {
+        "split": "train",
+        "rowIndex0": 15675,
+        "topology": "sk_lp2",
+        "R1": 180.0,
+        "R2": 110.00000000000001,
+        "C1": 6.2e-06,
+        "C2": 1.3000000000000002e-10,
+        "fc_Hz": 15336.0771484375,
+        "gain_dB": 1.6323835849761963,
+        "ripple_dB": 2.5251145362854004,
+        "stop_ratio": 3.9123406410217285,
+        "stop_db": 11.458248138427734,
+        "declared_margin": 0.8957463502883911,
+        "q": 105.96409928898358,
+        "f0": 39840.064431532206,
+        "peakHz": 39839.17738301588,
+        "stopHz": 59999.95790167665,
+        "passDeviationAboutTargetDb": 1.6323835849761963,
+        "absoluteStopAttenuationDb": 2.0636022634056244,
+        "relativeStopAttenuationDb": 3.6959858483818206,
+        "relativeMarginDb": -7.762262290045914,
+        "atStopEdgeAttenuationDb": 2.0636022634056244
+      }
+    ],
+    "directCsvCounterexample": {
+      "csvDataRowIndex0": 1043,
+      "csvFileLine1": 1045,
+      "R1": 6200,
+      "R2": 110,
+      "C1": 1.1e-07,
+      "C2": 1.1e-10,
+      "fcHz": 19952.62,
+      "stopRatio": 5.595,
+      "stopHz": 111634.9089,
+      "targetGainDb": 1.52,
+      "requiredStopDb": 16.84,
+      "declaredMarginDb": 1.962,
+      "actualAbsoluteStopDb": 9.823087857948728,
+      "actualRelativeStopDb": 11.343087857948728,
+      "actualRelativeMarginDb": -5.496912142051272
+    },
+    "proofLimitation": "Conditional ideal-model comparison only, not proof of invalid labels. Later Claude work specifies a finite one-pole op-amp; independently derived diagnostics resolve the stop-edge mismatch in two former examples. Original source and full-band validation remain pending.",
+    "model": "ideal unity-gain op-amp",
+    "conditionalValidationInterpretation": "Legacy *_invalid keys count violations under the stated ideal-model assumptions, not verified generator errors."
+  },
+  "missingProvenance": [
+    "Generator source/version/commit",
+    "Circuit netlists and exact component naming for all 10 topologies",
+    "FilterSpec pass/stop interval definitions and relative/absolute attenuation definition",
+    "U decoding and topology ID manifest (reconstructed, not supplied)",
+    "Monte Carlo R/C/L tolerance magnitudes, distribution, correlations, sample count, seed, and exact p05_drop definition",
+    "Split method and grouping seed",
+    "Raw AC responses, rejected samples and independently validated evaluation results"
+  ],
+  "risks": [
+    "Exact design overlap across train and validation",
+    "Finite versus ideal op-amp model mismatch requires explicit engine and dataset versioning.",
+    "Most topology families unsupported by current model",
+    "Tolerance labels are missing for about 75% of rows",
+    "Zero is valid for minimum active U component; do not infer padding mask from nonzero values",
+    "Synthetic inverse design pairs do not establish optimality, physical build validity, or independent simulator agreement"
+  ],
+  "numericalSummary": {
+    "nonE24ComponentValuesBeyond1ppm": 0,
+    "activeUZeroValues": 4006,
+    "allUnusedUColumnsZero": true,
+    "topologySortedInBothSplits": true
+  },
+  "claudeContextUpdate": {
+    "date": "2026-09-05",
+    "source": "User-supplied pasted-text.txt and latest relevant Claude desktop conversation",
+    "sourceSha256": "fba52b03da2b76aff551597f1ef0cab75c7d3dfd225a224ec58c9395b22e6266",
+    "reportedOpAmp": {
+      "model": "one pole",
+      "openLoopGainDb": 100,
+      "gainBandwidthHz": 10000000
+    },
+    "sourceCodeReproduced": false,
+    "new13TopologyDatasetAvailable": false,
+    "newEngineIntegrated": false,
+    "status": "Source artifact required to reproduce and integrate the latest engine.",
+    "review": "claude-review.md"
+  }
+}

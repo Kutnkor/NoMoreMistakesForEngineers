@@ -1,0 +1,1416 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-05",
+  "scope": "Kaynakla sınırlandırılmış başlangıç kataloğu; tüm Arduino kombinasyonları veya fiziksel test kapsamı değildir.",
+  "notes": [
+    "partKind belirli breakout ile çıplak entegreyi ayırır.",
+    "null bilinmeyen veya parça modeline bağlı demektir; evrensel uyumluluk değildir.",
+    "core-template bağımsız kütüphane gerektirmeyen uygulama adayıdır; henüz üretilmiş/derlenmiş kod garantisi değildir.",
+    "library-template yalnız belirtilen kart çekirdeğinde kütüphane uygunluğu ve derleme kontrolü sonrası desteklenir.",
+    "Bu katalog parça ürün revizyonlarını ve 3.3 V / 5 V farklarını korur."
+  ],
+  "components": [
+    {
+      "id": "led-red",
+      "name": "Kırmızı LED",
+      "category": "LED ve görüntü",
+      "interface": "GPIO / PWM",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Akım sınırlama direnciyle 3.3 V veya 5 V GPIO; LED ileri voltajını kontrol edin.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Akım LED ve kartın pin/toplam akım sınırlarının altında seçilir; doğrudan beslemeye bağlanmaz.",
+      "requiredAdditionalParts": [
+        "Seri akım sınırlama direnci"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "led",
+        "libraries": []
+      },
+      "sourceUrl": "https://docs.arduino.cc/built-in-examples/basics/Blink/",
+      "description": "Durum göstergesi ve PWM ile parlaklık kontrolü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "led-rgb-cc",
+      "name": "RGB LED — ortak katot",
+      "category": "LED ve görüntü",
+      "interface": "3 × PWM",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Üç kanalın her biri ayrı dirençle sürülür; ortak anot varyantının kodu farklıdır.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Her LED kanalı ve kart toplam akım limiti ayrı kontrol edilir.",
+      "requiredAdditionalParts": [
+        "3 × seri direnç"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "rgb",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-arduino-lesson-3-rgb-leds/overview",
+      "description": "Üç PWM kanalıyla renk karışımı.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "resistor",
+      "name": "Direnç",
+      "category": "Pasif bileşenler",
+      "interface": "Analog",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Lojik seviyesi uygulanmaz.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "P = V²/R; güç, tolerans ve gerilim sınıfı seçilen parçaya bağlıdır.",
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "support-part",
+        "template": null,
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.sparkfun.com/tutorials/resistors/all",
+      "description": "Akım sınırlama, gerilim bölme ve RC filtreleri.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "ceramic-capacitor",
+      "name": "Seramik kondansatör",
+      "category": "Pasif bileşenler",
+      "interface": "Analog",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Lojik seviyesi uygulanmaz.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Üzerindeki anma gerilimi aşılmaz; kapasite toleransı ve DC bias etkisi parça tipine bağlıdır.",
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "support-part",
+        "template": null,
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.sparkfun.com/tutorials/capacitors/all",
+      "description": "Besleme bypass ve filtre kondansatörü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "electrolytic-capacitor",
+      "name": "Elektrolitik kondansatör",
+      "category": "Pasif bileşenler",
+      "interface": "Analog",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Lojik seviyesi uygulanmaz.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Kutupludur; ters bağlantıdan kaçının. Gerilim, ripple akımı ve ESR seçilen parçaya bağlıdır.",
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "support-part",
+        "template": null,
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.sparkfun.com/tutorials/capacitors/all",
+      "description": "Besleme hattında enerji depolama ve dalgalanma azaltma.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "pot-10k",
+      "name": "10 kΩ potansiyometre",
+      "category": "Giriş ve anahtarlar",
+      "interface": "ADC",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Uçları GND ve ADC referansını aşmayan raya; orta uç ADC girişine.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Güç sınıfı ve silecek akımı seçilen parçaya bağlıdır.",
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "analog",
+        "libraries": []
+      },
+      "sourceUrl": "https://docs.arduino.cc/built-in-examples/basics/AnalogReadSerial/",
+      "description": "Çevrilen düğmeden analog kullanıcı girdisi.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "pushbutton",
+      "name": "Anlık buton",
+      "category": "Giriş ve anahtarlar",
+      "interface": "GPIO",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "INPUT_PULLUP ile pin–GND arasında; aktif seviye LOW.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Kontak sıçraması yazılımda giderilir; besleme hatlarını kısa devre edecek bağlantı kurulmaz.",
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "button",
+        "libraries": []
+      },
+      "sourceUrl": "https://docs.arduino.cc/built-in-examples/digital/InputPullupSerial/",
+      "description": "Basılma durumunu okuyan dijital giriş.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "reed-switch",
+      "name": "Reed manyetik anahtar",
+      "category": "Giriş ve anahtarlar",
+      "interface": "GPIO",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "INPUT_PULLUP ile pin–GND arasında.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Cam gövde kırılgandır; burada yalnız düşük akımlı sinyal kontağı olarak kullanılır.",
+      "requiredAdditionalParts": [
+        "Mıknatıs"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "button",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.sparkfun.com/tutorials/reed-switch-hookup-guide/all",
+      "description": "Mıknatıs yakınlığını kontak açılıp kapanmasıyla algılar.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "ldr",
+      "name": "LDR foto direnç",
+      "category": "Işık ve çevre",
+      "interface": "ADC",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Gerilim bölücü çıkışı ADC referansını aşmamalı.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Kalibrasyon olmadan lux ölçümü değildir.",
+      "requiredAdditionalParts": [
+        "Gerilim bölücü için sabit direnç"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "analog",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.sparkfun.com/tutorials/tinker-kit-circuit-guide/circuit-3-photoresistor",
+      "description": "Işığa bağlı direnç değişiminden göreli aydınlık ölçümü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "fsr",
+      "name": "FSR kuvvete duyarlı direnç",
+      "category": "Giriş ve anahtarlar",
+      "interface": "ADC",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "ADC ile aynı besleme seviyesinde gerilim bölücü.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Hassas tartı yerine temas/göreli kuvvet algılama içindir.",
+      "requiredAdditionalParts": [
+        "Gerilim bölücü direnci"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "analog",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.sparkfun.com/tutorials/force-sensitive-resistor-hookup-guide/all",
+      "description": "Basınç uygulanmasını ve göreli kuvvet değişimini algılar.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "ntc-10k",
+      "name": "10 kΩ NTC termistör",
+      "category": "Sıcaklık ve çevre",
+      "interface": "ADC",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Gerilim bölücü çıkışı ADC referansını aşmamalı.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Kendi ısınması ölçümü etkiler; sıcaklık hesabında parçanın B veya Steinhart–Hart katsayıları gerekir.",
+      "requiredAdditionalParts": [
+        "10 kΩ hassas seri direnç"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "ntc",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.adafruit.com/thermistor/using-a-thermistor",
+      "description": "Direnç değişimini kullanarak sıcaklık tahmini.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "piezo-passive",
+      "name": "Pasif piezo buzzer",
+      "category": "Ses",
+      "interface": "GPIO / tone",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Sürücü sinyalinin genliği parçanın gerilim sınırına uymalı.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Aktif buzzer ve düşük empedanslı hoparlör aynı parça değildir; GPIO akım limiti kontrol edilir.",
+      "requiredAdditionalParts": [
+        "Gerekirse seri direnç veya sürücü"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "tone",
+        "libraries": []
+      },
+      "sourceUrl": "https://docs.arduino.cc/built-in-examples/digital/toneMelody/",
+      "description": "tone() ile uyarı sesi ve nota üretimi.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "tmp36",
+      "name": "Analog Devices TMP36",
+      "category": "Sıcaklık ve çevre",
+      "interface": "ADC",
+      "partKind": "bare IC",
+      "supplyRange": {
+        "min": 2.7,
+        "max": 5.5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Analog çıkış: 500 mV ofset + 10 mV/°C; ADC giriş sınırı ayrıca geçerlidir.",
+      "logicClass": "analog",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Besleme akımı 50 µA altında; çıkışı güç kaynağı olarak kullanmayın.",
+      "requiredAdditionalParts": [
+        "Besleme bypass kondansatörü"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "tmp36",
+        "libraries": []
+      },
+      "sourceUrl": "https://www.analog.com/media/en/technical-documentation/data-sheets/tmp35_36_37.pdf",
+      "description": "Analog gerilim çıkışlı sıcaklık sensörü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "lm35",
+      "name": "TI LM35",
+      "category": "Sıcaklık ve çevre",
+      "interface": "ADC",
+      "partKind": "bare IC",
+      "supplyRange": {
+        "min": 4,
+        "max": 30,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "3.3 V beslemeyle çalışması belirtilmez. Analog çıkış 10 mV/°C; ADC sınırı korunur.",
+      "logicClass": "analog",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Besleme geniş aralıklı olsa da Arduino ADC pinine yüksek gerilim bağlanmaz; negatif sıcaklıklar farklı devre gerektirir.",
+      "requiredAdditionalParts": [
+        "Besleme bypass kondansatörü"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "lm35",
+        "libraries": []
+      },
+      "sourceUrl": "https://www.ti.com/product/LM35",
+      "description": "Pozitif sıcaklıklar için basit analog sıcaklık ölçümü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "dht22",
+      "name": "DHT22 — dört pinli sensör",
+      "category": "Sıcaklık ve çevre",
+      "interface": "Dijital tek veri hattı",
+      "partKind": "sensor",
+      "supplyRange": {
+        "min": 3.3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Veri pull-up seviyesi denetleyicinin lojik seviyesine uygun olmalı; modül varyantını kontrol edin.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Ölçümler arasında en az 2 saniye bırakılır.",
+      "requiredAdditionalParts": [
+        "Veri hattına 10 kΩ pull-up"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "DHT sensor library by Adafruit",
+          "Adafruit Unified Sensor"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/dht/connecting-to-a-dhtxx-sensor",
+      "description": "Yavaş örneklemeli sıcaklık ve bağıl nem sensörü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "ds18b20",
+      "name": "Analog Devices DS18B20",
+      "category": "Sıcaklık ve çevre",
+      "interface": "1-Wire",
+      "partKind": "bare IC",
+      "supplyRange": {
+        "min": 3,
+        "max": 5.5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Yerel beslemede veri pull-up gerilimi en fazla VDD; 3.3 V host için 3.3 V yerel besleme uygundur.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Dönüşüm sırasında 1.5 mA maksimum; başlangıç şablonunda parazit besleme yerine üç telli yerel besleme.",
+      "requiredAdditionalParts": [
+        "4.7 kΩ veri pull-up direnci"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "OneWire",
+          "DallasTemperature"
+        ]
+      },
+      "sourceUrl": "https://www.analog.com/media/en/technical-documentation/data-sheets/DS18B20.pdf",
+      "description": "Adreslenebilir dijital sıcaklık sensörü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "bme280-bare",
+      "name": "Bosch BME280 — çıplak entegre",
+      "category": "Sıcaklık ve çevre",
+      "interface": "I2C / SPI",
+      "partKind": "bare IC",
+      "supplyRange": {
+        "min": 1.71,
+        "max": 3.6,
+        "unit": "V",
+        "notes": "VDD; ayrı VDDIO rayı 1.2–3.6 V"
+      },
+      "logicVoltage": "VDDIO 1.2–3.6 V; 5 V toleranslı değildir.",
+      "logicClass": "3v3-only",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [
+        "0x76",
+        "0x77"
+      ],
+      "i2cAddressNote": "Sabit varsayılan yok: SDO=GND → 0x76; SDO=VDDIO → 0x77.",
+      "powerCaveats": "Tipik H/P/T ölçüm akımı 1 Hz için 3.6 µA; bu bir breakout kartı değildir.",
+      "requiredAdditionalParts": [
+        "PCB adaptörü",
+        "Bypass kondansatörleri",
+        "Uygun I2C pull-up",
+        "5 V host için seviye dönüştürücü"
+      ],
+      "codeSupport": {
+        "status": "catalog-only",
+        "template": null,
+        "libraries": []
+      },
+      "sourceUrl": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf",
+      "description": "Sıcaklık, basınç ve nem ölçen çıplak sensör entegresi.",
+      "verifiedAt": "2026-09-05",
+      "additionalSourceUrls": [
+        "https://www.bosch-sensortec.com/products/environmental-sensors/humidity-sensors-bme280/"
+      ]
+    },
+    {
+      "id": "bme280-adafruit",
+      "name": "Adafruit BME280 breakout",
+      "category": "Sıcaklık ve çevre",
+      "interface": "I2C / SPI",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "VIN ile uyumlu 3–5 V lojik; regülatör ve seviye dönüştürme kart üzerindedir.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x77",
+      "i2cAlternativeAddresses": [
+        "0x76"
+      ],
+      "i2cAddressNote": "SDO GND veya ADDR jumper kapalı → 0x76.",
+      "powerCaveats": null,
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit BME280 Library",
+          "Adafruit Unified Sensor"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-bme280-humidity-barometric-pressure-temperature-sensor-breakout/pinouts",
+      "description": "Arduino ile çevresel sıcaklık, nem ve basınç okuma.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "bmp280-adafruit",
+      "name": "Adafruit BMP280 breakout",
+      "category": "Sıcaklık ve çevre",
+      "interface": "I2C / SPI",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Girişlerde 3–5 V seviye dönüştürücü; VIN host lojik seviyesine bağlanır.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x77",
+      "i2cAlternativeAddresses": [
+        "0x76"
+      ],
+      "i2cAddressNote": "Varsayılan 0x77; kartın SDO/ADDR bağlantısı ile 0x76 seçilebilir. Kart revizyonu kontrol edilir.",
+      "powerCaveats": null,
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit BMP280 Library"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-bmp280-barometric-pressure-plus-temperature-sensor-breakout?view=all",
+      "description": "Basınç ve sıcaklık ölçümü; nem sensörü içermez.",
+      "verifiedAt": "2026-09-05",
+      "additionalSourceUrls": [
+        "https://learn.adafruit.com/i2c-addresses?view=all"
+      ]
+    },
+    {
+      "id": "bh1750-adafruit",
+      "name": "Adafruit BH1750 breakout",
+      "category": "Işık ve çevre",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "VIN hostun 3.3 V veya 5 V lojik rayıyla eşleştirilir.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x23",
+      "i2cAlternativeAddresses": [
+        "0x5C"
+      ],
+      "i2cAddressNote": "ADDR yüksek veya AD0 jumper kapalı → 0x5C.",
+      "powerCaveats": null,
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "hp_BH1750"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-bh1750-ambient-light-sensor?view=all",
+      "description": "Sayısal ortam aydınlığı sensörü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "mpu6050-adafruit",
+      "name": "Adafruit MPU6050 breakout",
+      "category": "Hareket ve IMU",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Bu Adafruit kartı 3–5 V güç/lojik için hazırlanmıştır; çıplak MPU6050 ve genel GY-521 kartlarına genellenmez.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x68",
+      "i2cAlternativeAddresses": [
+        "0x69"
+      ],
+      "i2cAddressNote": "AD0 yüksek → 0x69; DS3231 ile varsayılan adres çakışır.",
+      "powerCaveats": null,
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit MPU6050",
+          "Adafruit Unified Sensor"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/mpu6050-6-dof-accelerometer-and-gyro/pinouts",
+      "description": "Üç eksenli ivme ve üç eksenli açısal hız ölçümü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "hcsr04-5v-sparkfun",
+      "name": "HC-SR04 5 V — SparkFun SEN-15569",
+      "category": "Mesafe",
+      "interface": "Trigger / Echo",
+      "partKind": "named module",
+      "supplyRange": {
+        "min": 5,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "ECHO 5 V sinyal olarak ele alınır; 3.3 V girişe doğrudan bağlanmaz.",
+      "logicClass": "5v-output",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Yaklaşık 15 mA; 2 cm–4 m nominal aralık; sonuç yüzey ve ortam koşullarına bağlıdır.",
+      "requiredAdditionalParts": [
+        "3.3 V hostta ECHO için direnç bölücü/seviye dönüştürücü"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "ultrasonic",
+        "libraries": []
+      },
+      "sourceUrl": "https://www.sparkfun.com/ultrasonic-distance-sensor-hc-sr04.html",
+      "description": "Ultrasonik uçuş süresiyle mesafe ölçümü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "vl53l0x-adafruit",
+      "name": "Adafruit VL53L0X breakout",
+      "category": "Mesafe",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Kartın I2C arayüzü 3–5 V host için; XSHUT pinine ilişkin kart pinout sınırı ayrıca kontrol edilir.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x29",
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": "Adres yazılımda değişir; güç kesilince varsayılana döner.",
+      "powerCaveats": "Aynı adresteki birden çok sensör XSHUT ile sırayla başlatılarak yeniden adreslenir.",
+      "requiredAdditionalParts": [
+        "Birden fazla sensör için ayrı XSHUT GPIO"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit VL53L0X"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout/arduino-code",
+      "description": "Işık uçuş süresiyle mesafe ölçümü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "ssd1306-adafruit-128x64",
+      "name": "Adafruit SSD1306 OLED 128×64 — 5V-ready sürüm",
+      "category": "LED ve görüntü",
+      "interface": "I2C / SPI",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Yalnız 5V-ready etiketli Adafruit sürüm; eski v1 0.96 inç kart 5 V uyumlu değildir.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x3D",
+      "i2cAlternativeAddresses": [
+        "0x3C"
+      ],
+      "i2cAddressNote": "Bu 128×64 varyant için 0x3D; jumper/revizyon kontrolü ve I2C taraması önerilir.",
+      "powerCaveats": "Tipik tüketim görüntüye bağlıdır; 128×64 tam kare arabelleği 1024 bayt RAM ister.",
+      "requiredAdditionalParts": [
+        "Kart revizyonuna göre RESET GPIO ve arayüz jumper ayarı"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit SSD1306",
+          "Adafruit GFX Library"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/monochrome-oled-breakouts?view=all",
+      "description": "Küçük grafik, metin ve sensör verisi ekranı.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "lcd-backpack-adafruit",
+      "name": "Adafruit I2C/SPI LCD backpack — boost devreli sürüm",
+      "category": "LED ve görüntü",
+      "interface": "I2C / SPI",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Belirtilen yeni kartta 3–5 V güç/lojik ve LCD için 5 V boost bulunur.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x20",
+      "i2cAlternativeAddresses": [
+        "0x21",
+        "0x22",
+        "0x23",
+        "0x24",
+        "0x25",
+        "0x26",
+        "0x27"
+      ],
+      "i2cAddressNote": "A0/A1/A2 jumperları adresi belirler.",
+      "powerCaveats": "LCD ve arka ışık tüketimi eklenecek ekran modeline bağlıdır.",
+      "requiredAdditionalParts": [
+        "Uyumlu 16-pin karakter LCD"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit LiquidCrystal"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/i2c-spi-lcd-backpack?view=all",
+      "description": "Karakter LCD ekranı daha az GPIO ile sürme.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "ds3231-adafruit",
+      "name": "Adafruit DS3231 RTC breakout",
+      "category": "Depolama ve zaman",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2.3,
+        "max": 5.5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "SDA/SCL pull-up VIN seviyesindedir; VIN host lojik seviyesiyle eşleştirilir.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x68",
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": "Adres değiştirilemez; MPU6050 ile çakışabilir.",
+      "powerCaveats": "Batarya tipi kart revizyonuna uygun olmalıdır.",
+      "requiredAdditionalParts": [
+        "İsteğe bağlı uyumlu yedek düğme pil"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "RTClib by Adafruit"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-ds3231-precision-rtc-breakout?view=all",
+      "description": "Yedek pille zamanı koruyan gerçek zaman saati.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "mcp4725-adafruit",
+      "name": "Adafruit MCP4725 DAC breakout — A1",
+      "category": "ADC DAC ve analog",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2.7,
+        "max": 5.5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "3–5 V I2C lojik; VIN ile uyumlu host seçilir. VOUT yaklaşık 0–VIN.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x62",
+      "i2cAlternativeAddresses": [
+        "0x63"
+      ],
+      "i2cAddressNote": "A0 yüksek veya ADDR kapalı → 0x63; farklı MCP4725 sipariş varyantları farklı adresler kullanabilir.",
+      "powerCaveats": "Analog sinyal çıkışıdır; motor/hoparlör gibi yükleri doğrudan beslemez.",
+      "requiredAdditionalParts": [
+        "Yüke göre çıkış tamponu"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "mcp4725",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.adafruit.com/mcp4725-12-bit-dac-tutorial/pinouts",
+      "description": "12 bit sayısal veriden analog çıkış gerilimi üretimi.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "ads1115-adafruit",
+      "name": "Adafruit ADS1115 ADC breakout",
+      "category": "ADC DAC ve analog",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "VIN host lojik seviyesiyle eşleşmeli; ADC analog girişleri GND–VIN aralığında tutulur.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x48",
+      "i2cAlternativeAddresses": [
+        "0x49",
+        "0x4A",
+        "0x4B"
+      ],
+      "i2cAddressNote": "ADDR: GND=0x48, VIN=0x49, SDA=0x4A, SCL=0x4B.",
+      "powerCaveats": "PGA tam ölçeği ±6.144 V seçilmesi, girişlerin besleme raylarını aşabileceği anlamına gelmez.",
+      "requiredAdditionalParts": [
+        "Giriş gerektiriyorsa gerilim bölücü/koruma"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit ADS1X15"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-4-channel-adc-breakouts/pinouts",
+      "description": "Dört girişli 16 bit analog-sayısal dönüştürücü.",
+      "verifiedAt": "2026-09-05",
+      "additionalSourceUrls": [
+        "https://cdn-shop.adafruit.com/datasheets/ads1115.pdf"
+      ]
+    },
+    {
+      "id": "pca9685-adafruit",
+      "name": "Adafruit PCA9685 16-kanal PWM/servo breakout",
+      "category": "Motor ve sürücüler",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "VCC lojik rayıdır; I2C pull-up ve PWM genliği buna bağlıdır. V+ ayrı yük beslemesidir.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x40",
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": "A0–A5 ile ana adres seçilir. Açılışta 7-bit 0x70 ALLCALL adresi ayrıca aktiftir; TCA9548A gibi 0x70 aygıtlarla çakışma ayrıca denetlenir.",
+      "powerCaveats": "Servolar için V+ tipik 5–6 V; motor gücünü Arduino GPIO veya lojik VCC üzerinden sağlamayın.",
+      "requiredAdditionalParts": [
+        "Harici servo beslemesi",
+        "Ortak GND",
+        "Yüke göre bulk kondansatör"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit PWM Servo Driver Library"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all",
+      "description": "16 kanallı 12 bit PWM çıkışı.",
+      "verifiedAt": "2026-09-05",
+      "i2cAdditionalActiveAddresses": [
+        "0x70"
+      ],
+      "additionalSourceUrls": [
+        "https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf"
+      ]
+    },
+    {
+      "id": "neopixel-ws2812b",
+      "name": "WS2812B tabanlı NeoPixel RGB zinciri",
+      "category": "LED ve görüntü",
+      "interface": "Zamanlamalı tek veri hattı",
+      "partKind": "named module",
+      "supplyRange": {
+        "min": 5,
+        "max": 5,
+        "unit": "V",
+        "notes": "5 V nominal zincir profili; kesin min/max ürün varyantından doğrulanır."
+      },
+      "logicVoltage": "5 V ile beslenen zincir için 5 V veri; 3.3 V hostta 74AHCT125 gibi uygun dönüştürücü.",
+      "logicClass": "5v-input",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Akım piksel modeli, renk ve parlaklığa bağlıdır; büyük zincir ayrı güç kaynağı ister. Her WS2812 revizyonunu aynı elektrik sınırında varsaymayın.",
+      "requiredAdditionalParts": [
+        "300–500 Ω veri direnci",
+        "500–1000 µF bulk kondansatör, en az 6.3 V",
+        "Uygun harici 5 V kaynak",
+        "Gerekirse lojik dönüştürücü"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit NeoPixel"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-neopixel-uberguide/best-practices",
+      "description": "Adreslenebilir RGB LED animasyonları.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "tb6612fng-sparkfun",
+      "name": "SparkFun TB6612FNG çift motor sürücü",
+      "category": "Motor ve sürücüler",
+      "interface": "GPIO / PWM",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2.7,
+        "max": 5.5,
+        "unit": "V",
+        "notes": "Bu aralık VCC; motor VM 2.5–13.5 V çalışma aralığı."
+      },
+      "logicVoltage": "VCC 2.7–5.5 V lojik; VM motor kaynağı ayrıdır.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "VM çalışma aralığı 2.5–13.5 V; kanal başına 1.2 A sürekli / kısa 3.2 A tepe. Durma akımı ve termal koşullar değerlendirilir.",
+      "requiredAdditionalParts": [
+        "Motorla uyumlu harici VM kaynağı",
+        "Ortak GND",
+        "STBY kontrolü"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "tb6612",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.sparkfun.com/tutorials/tb6612fng-hookup-guide/all",
+      "description": "İki fırçalı DC motorda yön, hız, fren ve durdurma kontrolü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "drv8833-adafruit",
+      "name": "Adafruit DRV8833 motor sürücü breakout",
+      "category": "Motor ve sürücüler",
+      "interface": "GPIO / PWM",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2.7,
+        "max": 10.8,
+        "unit": "V",
+        "notes": "Motor beslemesi VM"
+      },
+      "logicVoltage": "3.3 V ve 5 V GPIO kontrolü için; VM yük beslemesi GPIO pinlerinden ayrıdır.",
+      "logicClass": "3v3-5v-control",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Bu breakout için yaklaşık 1.2 A sürekli; 2 A yalnız kısa tepe ve uygun akım sınırlama koşullarıyla.",
+      "requiredAdditionalParts": [
+        "Uygun motor ve harici besleme",
+        "Ortak GND"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "drv8833",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-drv8833-dc-stepper-motor-driver-breakout-board",
+      "description": "İki DC motor veya bir bipolar step motor sürme.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "a4988-pololu",
+      "name": "Pololu A4988 Stepper Motor Driver Carrier",
+      "category": "Motor ve sürücüler",
+      "interface": "STEP / DIR",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5.5,
+        "unit": "V",
+        "notes": "Lojik VDD; motor VMOT 8–35 V"
+      },
+      "logicVoltage": "VDD 3–5.5 V lojik; VMOT 8–35 V ayrı motor kaynağı.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Yaklaşık 1 A/faz ek soğutmasız; 2 A için yeterli soğutma gerekir. Akım limiti VREF ile ayarlanır; enerjiliyken motor sökülmez.",
+      "requiredAdditionalParts": [
+        "Bipolar step motor",
+        "Harici 8–35 V VMOT",
+        "VMOT yakınına en az 47 µF elektrolitik",
+        "Akım limiti ayarı"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "step-dir",
+        "libraries": []
+      },
+      "sourceUrl": "https://www.pololu.com/product/1182",
+      "description": "Bipolar step motorda akım sınırlamalı mikro adımlama.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "hobby-servo",
+      "name": "Hobi servo — modeli seçilmeli",
+      "category": "Motor ve sürücüler",
+      "interface": "Servo darbe sinyali",
+      "partKind": "actuator",
+      "supplyRange": null,
+      "logicVoltage": "Sinyal eşiği ve darbe aralığı seçilen servonun veri sayfasından doğrulanmalı.",
+      "logicClass": "review",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Harici kaynak stall akımına göre seçilir; Arduino ve servo kaynağı GND ortak olur.",
+      "requiredAdditionalParts": [
+        "Belirli servo veri sayfası",
+        "Uygun harici besleme",
+        "Ortak GND"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Servo"
+        ]
+      },
+      "sourceUrl": "https://support.arduino.cc/hc/en-us/articles/360017053760-Troubleshoot-servo-motors",
+      "description": "Darbe genişliğiyle konum veya sürekli dönüş hızı kontrolü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "microsd-adafruit-254",
+      "name": "Adafruit microSD breakout — ürün 254",
+      "category": "Depolama ve zaman",
+      "interface": "SPI",
+      "partKind": "named breakout",
+      "supplyRange": null,
+      "logicVoltage": "3.3 V / 5 V host için regülatör ve giriş seviye dönüştürücülü kart; DO karttan 3.3 V çıkıştır.",
+      "logicClass": "review",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Yazma anındaki akım tepesine uygun besleme gerekir; 3V ve 5V pinlerinin kullanımını kart rehberinden doğrulayın.",
+      "requiredAdditionalParts": [
+        "FAT uyumlu microSD kart"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "SD",
+          "SPI"
+        ]
+      },
+      "sourceUrl": "https://www.adafruit.com/product/254",
+      "description": "SPI üzerinden SD karta veri kaydı.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "microsd-adafruit-4682",
+      "name": "Adafruit microSD SPI/SDIO breakout — ürün 4682",
+      "category": "Depolama ve zaman",
+      "interface": "SPI / SDIO",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3.3,
+        "max": 3.3,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Yalnız 3.3 V güç ve lojik; regülatör/seviye dönüştürücü yoktur.",
+      "logicClass": "3v3-only",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "5 V güç veya lojik uygulanmaz; yazma akımı için kaynak kapasitesi kontrol edilir.",
+      "requiredAdditionalParts": [
+        "microSD kart",
+        "5 V hostta uygun seviye dönüştürme"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "SD",
+          "SPI"
+        ]
+      },
+      "sourceUrl": "https://www.adafruit.com/product/4682",
+      "description": "3.3 V sistemler için ham microSD bağlantısı.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "sht31-adafruit",
+      "name": "Adafruit SHT31-D breakout",
+      "category": "Sıcaklık ve çevre",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2.5,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "SDA/SCL 10 kΩ pull-up VIN seviyesinde; host rayıyla eşleştirilir.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x44",
+      "i2cAlternativeAddresses": [
+        "0x45"
+      ],
+      "i2cAddressNote": "ADR VIN → 0x45.",
+      "powerCaveats": null,
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit SHT31 Library"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-sht31-d-temperature-and-humidity-sensor-breakout/pinouts",
+      "description": "Dijital sıcaklık ve bağıl nem ölçümü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "aht20-adafruit",
+      "name": "Adafruit AHT20 breakout",
+      "category": "Sıcaklık ve çevre",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2.7,
+        "max": 5.5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Lojik seviyesi VIN ile aynı; SDA/SCL üzerinde 10 kΩ pull-up vardır.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x38",
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": "Adres değiştirilemez.",
+      "powerCaveats": null,
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit AHTX0"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-aht20/pinouts",
+      "description": "Sabit adresli sıcaklık ve nem sensörü.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "ina219-adafruit",
+      "name": "Adafruit INA219 breakout",
+      "category": "ADC DAC ve analog",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2.7,
+        "max": 5.5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "VIN lojik gücü; VIN+/VIN− akım ölçüm yolu farklıdır. Host lojik seviyesiyle eşleştirilir.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x40",
+      "i2cAlternativeAddresses": [
+        "0x41",
+        "0x44",
+        "0x45"
+      ],
+      "i2cAddressNote": "A0/A1 jumper kombinasyonları; PCA9685 varsayılan adresiyle çakışır.",
+      "powerCaveats": "Ölçülen DC bara 26 V sınırını aşmamalı; şönt direnci/gücü ve indüktif darbeler ayrıca değerlendirilir.",
+      "requiredAdditionalParts": [
+        "Ölçülecek düşük gerilimli yük devresi"
+      ],
+      "codeSupport": {
+        "status": "library-template",
+        "template": null,
+        "libraries": [
+          "Adafruit INA219"
+        ]
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-ina219-current-sensor-breakout?view=all",
+      "description": "Şönt üzerinden akım, bara gerilimi ve güç izleme.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "tca9548a-adafruit",
+      "name": "Adafruit TCA9548A I2C çoklayıcı",
+      "category": "Lojik ve bağlantı",
+      "interface": "I2C",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 3,
+        "max": 5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Her alt I2C hattı kendi uygun pull-up rayını gerektirir.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": "0x70",
+      "i2cAlternativeAddresses": [
+        "0x71",
+        "0x72",
+        "0x73",
+        "0x74",
+        "0x75",
+        "0x76",
+        "0x77"
+      ],
+      "i2cAddressNote": "A0/A1/A2 ile seçilir.",
+      "powerCaveats": "Aynı adresli alt kanallar aynı anda açılmamalı; tüm pull-up yükleri değerlendirilir.",
+      "requiredAdditionalParts": [
+        "Gerekirse alt kanallarda I2C pull-up dirençleri"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "tca9548",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-tca9548a-1-to-8-i2c-multiplexer-breakout/pinouts",
+      "description": "Aynı adresli sensörleri ayrı I2C kanallarında kullanma.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "max9814-adafruit",
+      "name": "Adafruit MAX9814 AGC mikrofon breakout",
+      "category": "Ses",
+      "interface": "ADC",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2.7,
+        "max": 5.5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Analog çıkışın DC ofseti ve genliği ADC aralığına sığmalı.",
+      "logicClass": "analog",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Kalibre edilmiş ses basıncı ölçeri değildir; örnekleme hızı ve aliasing değerlendirilir.",
+      "requiredAdditionalParts": [],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "analog",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-agc-electret-microphone-amplifier-max9814",
+      "description": "Otomatik kazanç kontrollü mikrofon sinyali.",
+      "verifiedAt": "2026-09-05",
+      "additionalSourceUrls": [
+        "https://cdn-shop.adafruit.com/datasheets/MAX9814.pdf"
+      ]
+    },
+    {
+      "id": "pam8302-adafruit",
+      "name": "Adafruit PAM8302 mono amplifikatör",
+      "category": "Ses",
+      "interface": "Analog ses",
+      "partKind": "named breakout",
+      "supplyRange": {
+        "min": 2,
+        "max": 5.5,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "A+/A− analog giriş; sayısal haberleşme veya I2C yoktur.",
+      "logicClass": "analog",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Köprü çıkışının iki ucu doğrudan hoparlöre; hoparlör çıkışlarından hiçbiri GND’ye bağlanmaz.",
+      "requiredAdditionalParts": [
+        "Uyumlu hoparlör",
+        "Uygun güç kaynağı",
+        "Analog ses kaynağı"
+      ],
+      "codeSupport": {
+        "status": "support-part",
+        "template": null,
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.adafruit.com/adafruit-pam8302-mono-2-5w-class-d-audio-amplifier/pinouts",
+      "description": "Analog ses sinyalini hoparlör sürmek için yükseltir.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "lm358",
+      "name": "TI LM358 — klasik varyant",
+      "category": "ADC DAC ve analog",
+      "interface": "Analog",
+      "partKind": "bare IC",
+      "supplyRange": {
+        "min": 3,
+        "max": 30,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "Lojik arayüz değil; giriş ortak-mod ve çıkış salınımı besleme raylarına göre kontrol edilir.",
+      "logicClass": "analog",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Pozitif raya kadar giriş/çıkış yapmaz; LM358B gibi farklı varyantların sınırları aynı değildir.",
+      "requiredAdditionalParts": [
+        "Bypass kondansatörü",
+        "Geri besleme dirençleri"
+      ],
+      "codeSupport": {
+        "status": "support-part",
+        "template": null,
+        "libraries": []
+      },
+      "sourceUrl": "https://www.ti.com/product/LM358",
+      "description": "İki kanallı genel amaçlı işlemsel yükselteç.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "sn74hc595",
+      "name": "TI SN74HC595",
+      "category": "Lojik ve bağlantı",
+      "interface": "Shift register / SPI-benzeri",
+      "partKind": "bare IC",
+      "supplyRange": {
+        "min": 2,
+        "max": 6,
+        "unit": "V",
+        "notes": null
+      },
+      "logicVoltage": "HC CMOS giriş eşiği beslemeye bağlıdır; 5 V beslemede 3.3 V HIGH garanti varsayılmaz.",
+      "logicClass": "matched-rail",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Motor/LED şeridi güç sürücüsü değildir; çıkış ve paket toplam akım limitleri kontrol edilir.",
+      "requiredAdditionalParts": [
+        "100 nF bypass",
+        "LED kullanılıyorsa kanal başına direnç"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "shift-register",
+        "libraries": []
+      },
+      "sourceUrl": "https://www.ti.com/product/SN74HC595",
+      "description": "Seri veriden sekiz paralel sayısal çıkış.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "bss138-adafruit",
+      "name": "Adafruit BSS138 4-kanal seviye dönüştürücü",
+      "category": "Lojik ve bağlantı",
+      "interface": "I2C / yavaş dijital",
+      "partKind": "named breakout",
+      "supplyRange": null,
+      "logicVoltage": "Alçak taraf 1.8 V seviyesine kadar; yüksek taraf 10 V’a kadar. Her iki ray bağlanmalı.",
+      "logicClass": "level-shifter",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "10 kΩ pull-up kenar hızını sınırlar; yük sürmek ve yüksek hızlı SPI için uygun genel çözüm sayılmaz.",
+      "requiredAdditionalParts": [
+        "Alçak ve yüksek lojik besleme rayları",
+        "Ortak GND"
+      ],
+      "codeSupport": {
+        "status": "support-part",
+        "template": null,
+        "libraries": []
+      },
+      "sourceUrl": "https://www.adafruit.com/product/757",
+      "description": "Açık drenaj I2C hatlarında iki yönlü seviye dönüştürme.",
+      "verifiedAt": "2026-09-05"
+    },
+    {
+      "id": "flex-sensor",
+      "name": "Flex bükülme sensörü",
+      "category": "Giriş ve anahtarlar",
+      "interface": "ADC",
+      "partKind": "passive",
+      "supplyRange": null,
+      "logicVoltage": "Gerilim bölücü çıkışı ADC referansını aşmamalı.",
+      "logicClass": "passive",
+      "i2cDefaultAddress": null,
+      "i2cAlternativeAddresses": [],
+      "i2cAddressNote": null,
+      "powerCaveats": "Kalibrasyon ve mekanik tekrar edilebilirlik gerekir.",
+      "requiredAdditionalParts": [
+        "Gerilim bölücü için sabit direnç"
+      ],
+      "codeSupport": {
+        "status": "core-template",
+        "template": "analog",
+        "libraries": []
+      },
+      "sourceUrl": "https://learn.sparkfun.com/tutorials/flex-sensor-hookup-guide/example-circuit",
+      "description": "Bükülmeye bağlı direnç değişimini izleme.",
+      "verifiedAt": "2026-09-05"
+    }
+  ]
+}

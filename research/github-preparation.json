@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-05T20:26:00.742160+00:00",
+  "repository": "Kutnkor/NoMoreMistakesForEngineers",
+  "version": "0.5.0",
+  "environment": {
+    "node": "24.19.0",
+    "pnpm": "11.19.0",
+    "platform": "macOS arm64"
+  },
+  "checks": {
+    "frozenLockfileInstall": "passed",
+    "lint": "passed; vendored components/ui excluded, TypeScript coverage retained",
+    "typecheck": "passed",
+    "unitTests": {
+      "passed": 50,
+      "failed": 0
+    },
+    "productionBuild": "passed; five static routes",
+    "bundledWorkers": "passed; optimizer and laboratory workers",
+    "browser": "passed; isolated Chromium, localhost production preview",
+    "githubActions": "configured, not run on GitHub yet"
+  },
+  "portability": [
+    "Removed personal Sites plugin and hosting configuration",
+    "Added standalone static preview with clean route support",
+    "Redacted local image-reference filesystem paths",
+    "Excluded raw private datasets and local dependencies from source distribution"
+  ],
+  "scope": "Packaging validation; prior recorded scientific benchmarks were retained, not rerun during GitHub preparation."
+}

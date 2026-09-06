@@ -1,0 +1,448 @@
+{
+  "version": "fault-mlp-1.0",
+  "seed": 60260905,
+  "datasetSeed": 20260905,
+  "dataSha256": "4224b3f1c4aa82b11c6de98c10ec13cbc75d8d16fc22af420116410478706c8a",
+  "modelSha256": "399476238ca29da1861213f0c34199f316e3e64887d1e76f514f27c75dd4a85b",
+  "architecture": "24 residual AC features \u2192 32 tanh hidden units \u2192 6 softmax classes",
+  "optimizer": "Adam, learning rate 0.002, weight decay 0.0001, 40 minibatches/epoch, 250 epochs",
+  "selectedEpoch": 235,
+  "selection": "Minimum validation cross entropy; test evaluated only after model freeze. Fixed confidence-score threshold 0.60; scores are not calibrated probabilities.",
+  "splits": {
+    "train": {
+      "designs": 800,
+      "samples": 9600,
+      "groupsSha256": "b2f64e70d250af1f5d4b1d23cba7f06e4ebe23d56656c4312c05cd45d91106fc"
+    },
+    "val": {
+      "designs": 200,
+      "samples": 1200,
+      "groupsSha256": "1bec318a7906c68f0148b5fa21edd0c1cc1f48fd7f24b27f2952208639a787a9"
+    },
+    "test": {
+      "designs": 200,
+      "samples": 1200,
+      "groupsSha256": "3d23a77f55ea4389dc4672aecf1cfd1c49fb7117c08efb37cec2f8b52291d79c"
+    }
+  },
+  "designOverlap": 0,
+  "labels": [
+    "healthy",
+    "c1-drift",
+    "c2-drift",
+    "c1-open",
+    "r1-open",
+    "r2-short"
+  ],
+  "confusionColumns": [
+    "healthy",
+    "c1-drift",
+    "c2-drift",
+    "c1-open",
+    "r1-open",
+    "r2-short",
+    "uncertain"
+  ],
+  "confusionMatrix": [
+    [
+      200,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      196,
+      0,
+      0,
+      0,
+      0,
+      2
+    ],
+    [
+      0,
+      0,
+      200,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      192,
+      0,
+      0,
+      7
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      200,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      13,
+      0,
+      182,
+      5
+    ]
+  ],
+  "test": {
+    "samples": 1200,
+    "top1AccuracyPct": 98.0,
+    "correctIncludingUncertainAsWrongPct": 97.5,
+    "coveragePct": 98.83333333333333,
+    "acceptedAccuracyPct": 98.65092748735245,
+    "healthySamples": 200,
+    "falseAlarms": 0,
+    "falseAlarmPct": 0.0,
+    "faultySamples": 1000,
+    "missedFaults": 2,
+    "missedFaultPct": 0.2,
+    "uncertain": 14
+  },
+  "domain": {
+    "rOhm": [
+      1000,
+      100000
+    ],
+    "cF": [
+      1e-09,
+      1e-07
+    ],
+    "a0Db": [
+      80,
+      120
+    ],
+    "gbwHz": [
+      100000,
+      100000000
+    ]
+  },
+  "noise": {
+    "rTolerancePct": 1,
+    "cTolerancePct": 5,
+    "magnitudeSdDb": 0.15,
+    "phaseSdDeg": 1
+  },
+  "faults": {
+    "driftFactor": [
+      [
+        0.35,
+        0.7
+      ],
+      [
+        1.4,
+        2
+      ]
+    ],
+    "c1OpenFarads": 1e-15,
+    "r1OpenOhm": 1000000000,
+    "r2ShortOhm": 0.1
+  },
+  "limitations": [
+    "Synthetic single-fault AC measurements with known nominal circuit and excitation.",
+    "No hardware, manufacturer fault data or simultaneous-fault validation.",
+    "Only six trained classes; score threshold can defer but is not a proven out-of-distribution detector."
+  ],
+  "validationHistory": [
+    {
+      "epoch": 5,
+      "validationLoss": 0.7192324598295337,
+      "validationAccuracy": 0.775
+    },
+    {
+      "epoch": 10,
+      "validationLoss": 0.46739182763019055,
+      "validationAccuracy": 0.8683333333333333
+    },
+    {
+      "epoch": 15,
+      "validationLoss": 0.30048194749976087,
+      "validationAccuracy": 0.9125
+    },
+    {
+      "epoch": 20,
+      "validationLoss": 0.21878226979472287,
+      "validationAccuracy": 0.9408333333333333
+    },
+    {
+      "epoch": 25,
+      "validationLoss": 0.18111221026706173,
+      "validationAccuracy": 0.9466666666666667
+    },
+    {
+      "epoch": 30,
+      "validationLoss": 0.15999437253518897,
+      "validationAccuracy": 0.9416666666666667
+    },
+    {
+      "epoch": 35,
+      "validationLoss": 0.1422457643675481,
+      "validationAccuracy": 0.9558333333333333
+    },
+    {
+      "epoch": 40,
+      "validationLoss": 0.13060338779570457,
+      "validationAccuracy": 0.9575
+    },
+    {
+      "epoch": 45,
+      "validationLoss": 0.12183781327744896,
+      "validationAccuracy": 0.9633333333333334
+    },
+    {
+      "epoch": 50,
+      "validationLoss": 0.1163842484654512,
+      "validationAccuracy": 0.9633333333333334
+    },
+    {
+      "epoch": 55,
+      "validationLoss": 0.11035712414034156,
+      "validationAccuracy": 0.9666666666666667
+    },
+    {
+      "epoch": 60,
+      "validationLoss": 0.10665320185040768,
+      "validationAccuracy": 0.9691666666666666
+    },
+    {
+      "epoch": 65,
+      "validationLoss": 0.10253687873748143,
+      "validationAccuracy": 0.97
+    },
+    {
+      "epoch": 70,
+      "validationLoss": 0.10149290041240681,
+      "validationAccuracy": 0.9691666666666666
+    },
+    {
+      "epoch": 75,
+      "validationLoss": 0.0986127668017134,
+      "validationAccuracy": 0.9683333333333334
+    },
+    {
+      "epoch": 80,
+      "validationLoss": 0.0969026000428026,
+      "validationAccuracy": 0.9691666666666666
+    },
+    {
+      "epoch": 85,
+      "validationLoss": 0.09322011835122115,
+      "validationAccuracy": 0.9675
+    },
+    {
+      "epoch": 90,
+      "validationLoss": 0.09230336467634871,
+      "validationAccuracy": 0.97
+    },
+    {
+      "epoch": 95,
+      "validationLoss": 0.09018694722753537,
+      "validationAccuracy": 0.9683333333333334
+    },
+    {
+      "epoch": 100,
+      "validationLoss": 0.0887761944669099,
+      "validationAccuracy": 0.9691666666666666
+    },
+    {
+      "epoch": 105,
+      "validationLoss": 0.09712024485269301,
+      "validationAccuracy": 0.9641666666666666
+    },
+    {
+      "epoch": 110,
+      "validationLoss": 0.08915284378306162,
+      "validationAccuracy": 0.97
+    },
+    {
+      "epoch": 115,
+      "validationLoss": 0.08532790215669828,
+      "validationAccuracy": 0.97
+    },
+    {
+      "epoch": 120,
+      "validationLoss": 0.0864606546200108,
+      "validationAccuracy": 0.9716666666666667
+    },
+    {
+      "epoch": 125,
+      "validationLoss": 0.08552126923556237,
+      "validationAccuracy": 0.97
+    },
+    {
+      "epoch": 130,
+      "validationLoss": 0.08432184830070906,
+      "validationAccuracy": 0.9716666666666667
+    },
+    {
+      "epoch": 135,
+      "validationLoss": 0.08564016475751574,
+      "validationAccuracy": 0.965
+    },
+    {
+      "epoch": 140,
+      "validationLoss": 0.08347098634334567,
+      "validationAccuracy": 0.9716666666666667
+    },
+    {
+      "epoch": 145,
+      "validationLoss": 0.08208916522358717,
+      "validationAccuracy": 0.9708333333333333
+    },
+    {
+      "epoch": 150,
+      "validationLoss": 0.08111773005913783,
+      "validationAccuracy": 0.9716666666666667
+    },
+    {
+      "epoch": 155,
+      "validationLoss": 0.08085209699092448,
+      "validationAccuracy": 0.9716666666666667
+    },
+    {
+      "epoch": 160,
+      "validationLoss": 0.08329794060979803,
+      "validationAccuracy": 0.9716666666666667
+    },
+    {
+      "epoch": 165,
+      "validationLoss": 0.07956727600364388,
+      "validationAccuracy": 0.9725
+    },
+    {
+      "epoch": 170,
+      "validationLoss": 0.07941903032935639,
+      "validationAccuracy": 0.9725
+    },
+    {
+      "epoch": 175,
+      "validationLoss": 0.08036125686772864,
+      "validationAccuracy": 0.9733333333333334
+    },
+    {
+      "epoch": 180,
+      "validationLoss": 0.07950250140679645,
+      "validationAccuracy": 0.97
+    },
+    {
+      "epoch": 185,
+      "validationLoss": 0.07923878780478014,
+      "validationAccuracy": 0.9733333333333334
+    },
+    {
+      "epoch": 190,
+      "validationLoss": 0.0789614024191996,
+      "validationAccuracy": 0.9725
+    },
+    {
+      "epoch": 195,
+      "validationLoss": 0.08232028361223814,
+      "validationAccuracy": 0.9666666666666667
+    },
+    {
+      "epoch": 200,
+      "validationLoss": 0.07874800990287421,
+      "validationAccuracy": 0.9733333333333334
+    },
+    {
+      "epoch": 205,
+      "validationLoss": 0.07767612874570393,
+      "validationAccuracy": 0.9725
+    },
+    {
+      "epoch": 210,
+      "validationLoss": 0.07824026299589283,
+      "validationAccuracy": 0.9708333333333333
+    },
+    {
+      "epoch": 215,
+      "validationLoss": 0.07807248666410911,
+      "validationAccuracy": 0.97
+    },
+    {
+      "epoch": 220,
+      "validationLoss": 0.07739695537872573,
+      "validationAccuracy": 0.975
+    },
+    {
+      "epoch": 225,
+      "validationLoss": 0.0771800812059834,
+      "validationAccuracy": 0.9758333333333333
+    },
+    {
+      "epoch": 230,
+      "validationLoss": 0.0769484272201653,
+      "validationAccuracy": 0.9733333333333334
+    },
+    {
+      "epoch": 235,
+      "validationLoss": 0.07641384883069975,
+      "validationAccuracy": 0.9758333333333333
+    },
+    {
+      "epoch": 240,
+      "validationLoss": 0.07651200371489335,
+      "validationAccuracy": 0.9741666666666666
+    },
+    {
+      "epoch": 245,
+      "validationLoss": 0.0780254136088377,
+      "validationAccuracy": 0.97
+    },
+    {
+      "epoch": 250,
+      "validationLoss": 0.07702181829514572,
+      "validationAccuracy": 0.975
+    }
+  ],
+  "parityFixture": {
+    "features": [
+      0.00039493510721391907,
+      -0.0008187689634142526,
+      -0.0016558382609472941,
+      -0.0030736767544152937,
+      -0.012837166877008676,
+      -0.0010343647410794698,
+      0.0017553179743761548,
+      -8.668445834644122e-05,
+      -0.0012281308131702612,
+      0.010710336679271461,
+      -0.013318340827617658,
+      -0.006563389284889843,
+      0.003639728162056399,
+      0.0012234291225702528,
+      0.004400390241717211,
+      -0.0017598691251273604,
+      0.008485216647675476,
+      0.006485716446640134,
+      0.007502824592516966,
+      0.0049878232660444536,
+      0.025976602009319904,
+      0.005475774114534048,
+      0.011602772473612789,
+      -0.0027091634986896335
+    ],
+    "scores": [
+      0.9913533387920708,
+      0.006963847617673938,
+      0.0015026610054715774,
+      9.445617493510001e-05,
+      1.3787146980195632e-05,
+      7.19092628684304e-05
+    ]
+  }
+}

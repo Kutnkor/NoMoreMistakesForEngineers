@@ -1,0 +1,133 @@
+{
+  "browser": "151.0.7922.34",
+  "launchArguments": [
+    "--enable-gpu",
+    "--use-angle=metal"
+  ],
+  "date": "2026-09-05T19:56:02.269Z",
+  "checks": [
+    {
+      "name": "bidirectional schematic and board hover",
+      "result": true
+    },
+    {
+      "name": "2D pointer drag snaps and diagnoses wrong pin",
+      "result": {
+        "1": "7-B",
+        "2": "13-B"
+      }
+    },
+    {
+      "name": "attached jumpers follow a real 2D drag",
+      "result": {
+        "1": "4-C",
+        "2": "8-C"
+      }
+    },
+    {
+      "name": "empty board completes through 15 learning hints",
+      "result": true
+    },
+    {
+      "name": "manual hole-to-hole jumper creates a detectable short",
+      "result": true
+    },
+    {
+      "name": "net hover highlights physical copper group",
+      "result": true
+    },
+    {
+      "name": "five auto layouts export print-engine PDFs",
+      "result": true
+    },
+    {
+      "name": "3D pointer drag updates shared pin coordinates",
+      "result": {
+        "pins": {
+          "1": "9-B",
+          "2": "15-B"
+        },
+        "status": "830 holes \u00b7 3D view \u00b7 last drag 119 fps"
+      }
+    },
+    {
+      "name": "2D and 3D keep identical physical layout",
+      "result": true
+    },
+    {
+      "name": "3D PNG export",
+      "result": true
+    },
+    {
+      "name": "390px dark theme without page overflow",
+      "result": true
+    },
+    {
+      "name": "no browser page errors",
+      "result": true
+    }
+  ],
+  "pdfs": [
+    "sk-lp.pdf",
+    "sk-hp.pdf",
+    "mfb-bp.pdf",
+    "rc.pdf",
+    "cascade.pdf"
+  ],
+  "errors": [],
+  "gpuRenderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+  "unitTests": {
+    "total": 49,
+    "passed": 49,
+    "breadboardTests": 16
+  },
+  "pdfValidation": [
+    {
+      "example": "cascade",
+      "pageCount": 1,
+      "textCharacters": 3064,
+      "sha256": "e5b40e965edf70c5a6c8241f590a415d8094e0fe64ba965743b30af11760c6ba"
+    },
+    {
+      "example": "mfb-bp",
+      "pageCount": 1,
+      "textCharacters": 2733,
+      "sha256": "de37d22fea80737dff1798b53cc1810ca6abcde5293b2ec8cc255b73c196b348"
+    },
+    {
+      "example": "rc",
+      "pageCount": 1,
+      "textCharacters": 1026,
+      "sha256": "de1e6eb74eeab68160b2bf1fe91af7459cf8f6ddd9a184bacf460a91452ad7f4"
+    },
+    {
+      "example": "sk-hp",
+      "pageCount": 1,
+      "textCharacters": 2580,
+      "sha256": "46baf0e7bbdb11fe0b65c8b22e152d19504586dda572cf18cbe9d1421e97c9bf"
+    },
+    {
+      "example": "sk-lp",
+      "pageCount": 1,
+      "textCharacters": 2579,
+      "sha256": "66f826946d0a845f219335d1dc3f9888cd6b6f9a8f2f724f9300161650163b8e"
+    }
+  ],
+  "additionalDesktopChecks": [
+    "R / Delete / Ctrl+Z",
+    "Camera reset",
+    "2D PNG 2400x824",
+    "3D PNG",
+    "Filter AI R1/R2 8200 ohm and C2 8.2 nF transfer"
+  ],
+  "hardwareValidation": false,
+  "coreSourceSha256": {
+    "lib/breadboard/model.ts": "72e0e21a474b4367e5ba29555318b0dfbbf6aca16c08c5fed3a5100d62b08998",
+    "components/breadboard/board-2d.tsx": "1e8e00ae258779d9a6f9d0d5e79376192f642a540473c7d3988ac53988fda664",
+    "components/breadboard/board-3d.tsx": "82d95af81a166d5460090697a1e887c1accd4fc117950f6839654b2a3a7a91de"
+  },
+  "localization": {
+    "language": "en",
+    "note": "Display text translated from the recorded run; this is not a new browser measurement."
+  }
+}

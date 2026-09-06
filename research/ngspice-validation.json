@@ -1,0 +1,493 @@
+{
+  "version": "finite-ngspice-1.0",
+  "date": "2026-09-05",
+  "simulator": "ngspice 47 (KLU, macOS arm64, no OpenMP)",
+  "sourceArchiveSha256": "894e649651f1838a14095e5a5439e7d3aa63e87ede14d283173fda4fcdef675f",
+  "seed": 6092026,
+  "scope": "30 designs × 401 frequencies (1 Hz–100 MHz), one-pole finite op-amp unity Sallen–Key, A0 40–140 dB and GBW 10 kHz–1 GHz. Independent native ngspice AC solution compared with browser analytical transfer. No physical measurements, clipping, slew, noise, output impedance or parasitic component model.",
+  "points": 12030,
+  "maxRelativeError": 2.1596584967256795e-14,
+  "maxDbError": 1.8726166450822035e-13,
+  "cases": [
+    {
+      "parts": {
+        "r1": 8200,
+        "r2": 8200,
+        "c1": 2.2e-8,
+        "c2": 8.2e-9
+      },
+      "opAmp": {
+        "a0Db": 91.81907203514129,
+        "gbwHz": 3856433.8959202883
+      },
+      "frequencies": 401,
+      "maxComplexError": 7.832041159795667e-16,
+      "maxRelativeError": 1.3781469865714295e-15,
+      "maxDbError": 2.842170943040401e-14
+    },
+    {
+      "parts": {
+        "r1": 27000,
+        "r2": 5100,
+        "c1": 2.4e-9,
+        "c2": 1.5000000000000002e-9
+      },
+      "opAmp": {
+        "a0Db": 110.42288519442081,
+        "gbwHz": 41476.75770935643
+      },
+      "frequencies": 401,
+      "maxComplexError": 1.8906416838689214e-15,
+      "maxRelativeError": 1.8911470202327097e-15,
+      "maxDbError": 2.842170943040401e-14
+    },
+    {
+      "parts": {
+        "r1": 13000,
+        "r2": 9100,
+        "c1": 2.2000000000000002e-8,
+        "c2": 1e-9
+      },
+      "opAmp": {
+        "a0Db": 50.63124283682555,
+        "gbwHz": 48886227.32805727
+      },
+      "frequencies": 401,
+      "maxComplexError": 4.2711132545550575e-15,
+      "maxRelativeError": 2.3926793843176323e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 1600,
+        "r2": 10000,
+        "c1": 8.199999999999999e-9,
+        "c2": 3.6000000000000005e-8
+      },
+      "opAmp": {
+        "a0Db": 139.61995610501617,
+        "gbwHz": 84752406.29276456
+      },
+      "frequencies": 401,
+      "maxComplexError": 4.444989847405319e-16,
+      "maxRelativeError": 1.598349929112365e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 11000,
+        "r2": 5100,
+        "c1": 1.8000000000000002e-9,
+        "c2": 8.199999999999999e-8
+      },
+      "opAmp": {
+        "a0Db": 57.729548015631735,
+        "gbwHz": 124783.66955037857
+      },
+      "frequencies": 401,
+      "maxComplexError": 7.802476885071851e-16,
+      "maxRelativeError": 1.5734690457938797e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 3600,
+        "r2": 24000,
+        "c1": 1.3e-9,
+        "c2": 9.1e-8
+      },
+      "opAmp": {
+        "a0Db": 94.28178005386144,
+        "gbwHz": 454313679.305417
+      },
+      "frequencies": 401,
+      "maxComplexError": 5.551548787055442e-16,
+      "maxRelativeError": 1.2701438815880352e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 2400,
+        "r2": 5600,
+        "c1": 6.2e-8,
+        "c2": 1.2e-9
+      },
+      "opAmp": {
+        "a0Db": 79.36330694705248,
+        "gbwHz": 8821268.019940102
+      },
+      "frequencies": 401,
+      "maxComplexError": 1.0255037289023082e-14,
+      "maxRelativeError": 3.1062702254471483e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 1000,
+        "r2": 3600,
+        "c1": 1e-8,
+        "c2": 2.7000000000000004e-8
+      },
+      "opAmp": {
+        "a0Db": 135.04805742762983,
+        "gbwHz": 168001097.4236551
+      },
+      "frequencies": 401,
+      "maxComplexError": 5.553824967135427e-16,
+      "maxRelativeError": 1.7125697893968233e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 5600,
+        "r2": 43000,
+        "c1": 1.3e-9,
+        "c2": 2.2000000000000002e-8
+      },
+      "opAmp": {
+        "a0Db": 61.70941818039864,
+        "gbwHz": 5103629.708327124
+      },
+      "frequencies": 401,
+      "maxComplexError": 5.552090819334005e-16,
+      "maxRelativeError": 1.4860043456467868e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 6800,
+        "r2": 3000,
+        "c1": 7.5e-8,
+        "c2": 2.4e-8
+      },
+      "opAmp": {
+        "a0Db": 43.10938679613173,
+        "gbwHz": 325585345.4853017
+      },
+      "frequencies": 401,
+      "maxComplexError": 1.0007415106216803e-15,
+      "maxRelativeError": 1.4774228402302294e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 91000,
+        "r2": 1000,
+        "c1": 6.200000000000001e-9,
+        "c2": 3.9e-8
+      },
+      "opAmp": {
+        "a0Db": 65.5724442191422,
+        "gbwHz": 349524133.3998023
+      },
+      "frequencies": 401,
+      "maxComplexError": 2.1575726008044798e-14,
+      "maxRelativeError": 2.1596584967256795e-14,
+      "maxDbError": 1.8726166450822035e-13
+    },
+    {
+      "parts": {
+        "r1": 2200,
+        "r2": 3000,
+        "c1": 1e-8,
+        "c2": 3.9e-9
+      },
+      "opAmp": {
+        "a0Db": 76.5544316591695,
+        "gbwHz": 11523409.34980909
+      },
+      "frequencies": 401,
+      "maxComplexError": 8.275921921288956e-16,
+      "maxRelativeError": 1.3332577123993217e-15,
+      "maxDbError": 2.842170943040401e-14
+    },
+    {
+      "parts": {
+        "r1": 36000,
+        "r2": 2700,
+        "c1": 9.1e-9,
+        "c2": 2.2000000000000002e-8
+      },
+      "opAmp": {
+        "a0Db": 97.45512924622744,
+        "gbwHz": 147823.80077266556
+      },
+      "frequencies": 401,
+      "maxComplexError": 3.0263761239356783e-15,
+      "maxRelativeError": 3.033522441855957e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 68000,
+        "r2": 1300,
+        "c1": 3.6000000000000004e-9,
+        "c2": 1.8000000000000002e-9
+      },
+      "opAmp": {
+        "a0Db": 134.8117251507938,
+        "gbwHz": 118316116.95078084
+      },
+      "frequencies": 401,
+      "maxComplexError": 1.1777680931770555e-14,
+      "maxRelativeError": 1.1780001130116402e-14,
+      "maxDbError": 1.0223874698234159e-13
+    },
+    {
+      "parts": {
+        "r1": 1800,
+        "r2": 4300,
+        "c1": 8.199999999999999e-8,
+        "c2": 6.200000000000001e-9
+      },
+      "opAmp": {
+        "a0Db": 50.55643307045102,
+        "gbwHz": 153398.48282557883
+      },
+      "frequencies": 401,
+      "maxComplexError": 2.2315206618374916e-15,
+      "maxRelativeError": 1.58566836295405e-15,
+      "maxDbError": 2.842170943040401e-14
+    },
+    {
+      "parts": {
+        "r1": 51000,
+        "r2": 1600,
+        "c1": 2.7e-9,
+        "c2": 1.8000000000000002e-8
+      },
+      "opAmp": {
+        "a0Db": 95.7290437631309,
+        "gbwHz": 10197.770025529326
+      },
+      "frequencies": 401,
+      "maxComplexError": 8.120012120193287e-15,
+      "maxRelativeError": 8.1237050642457e-15,
+      "maxDbError": 7.042803840118239e-14
+    },
+    {
+      "parts": {
+        "r1": 75000,
+        "r2": 1800,
+        "c1": 1.5000000000000002e-9,
+        "c2": 3.9e-9
+      },
+      "opAmp": {
+        "a0Db": 133.3809232665226,
+        "gbwHz": 551099.5685951347
+      },
+      "frequencies": 401,
+      "maxComplexError": 1.3544800389375738e-14,
+      "maxRelativeError": 1.3544834331399779e-14,
+      "maxDbError": 1.1764824818559852e-13
+    },
+    {
+      "parts": {
+        "r1": 3600,
+        "r2": 3000,
+        "c1": 7.500000000000001e-9,
+        "c2": 4.700000000000001e-9
+      },
+      "opAmp": {
+        "a0Db": 137.6724412292242,
+        "gbwHz": 335251355.0971866
+      },
+      "frequencies": 401,
+      "maxComplexError": 6.708963146906154e-16,
+      "maxRelativeError": 1.0306219675001868e-15,
+      "maxDbError": 2.842170943040401e-14
+    },
+    {
+      "parts": {
+        "r1": 3300,
+        "r2": 5600,
+        "c1": 3.0000000000000004e-9,
+        "c2": 1.1000000000000001e-9
+      },
+      "opAmp": {
+        "a0Db": 139.43072395399213,
+        "gbwHz": 816962.9192218117
+      },
+      "frequencies": 401,
+      "maxComplexError": 8.121767085755588e-16,
+      "maxRelativeError": 1.2543380124340074e-15,
+      "maxDbError": 2.842170943040401e-14
+    },
+    {
+      "parts": {
+        "r1": 6800,
+        "r2": 3300,
+        "c1": 9.1e-9,
+        "c2": 5.6e-9
+      },
+      "opAmp": {
+        "a0Db": 105.68532034289092,
+        "gbwHz": 916844054.5954574
+      },
+      "frequencies": 401,
+      "maxComplexError": 7.802476885071851e-16,
+      "maxRelativeError": 1.3034007406495277e-15,
+      "maxDbError": 2.842170943040401e-14
+    },
+    {
+      "parts": {
+        "r1": 12000,
+        "r2": 1200,
+        "c1": 1.1000000000000001e-8,
+        "c2": 6.8000000000000005e-9
+      },
+      "opAmp": {
+        "a0Db": 96.56908112578094,
+        "gbwHz": 22078461.02558244
+      },
+      "frequencies": 401,
+      "maxComplexError": 2.9976217736679473e-15,
+      "maxRelativeError": 2.9976718039043086e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 100000,
+        "r2": 82000,
+        "c1": 6.8e-8,
+        "c2": 2e-8
+      },
+      "opAmp": {
+        "a0Db": 64.00869398843497,
+        "gbwHz": 14529124.465198195
+      },
+      "frequencies": 401,
+      "maxComplexError": 1.0190492755571723e-15,
+      "maxRelativeError": 1.424734414896423e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 43000,
+        "r2": 82000,
+        "c1": 1.5000000000000002e-9,
+        "c2": 2e-9
+      },
+      "opAmp": {
+        "a0Db": 123.21404405869544,
+        "gbwHz": 9889763.062895615
+      },
+      "frequencies": 401,
+      "maxComplexError": 7.771638615002563e-16,
+      "maxRelativeError": 1.1923533559412366e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 5100,
+        "r2": 3600,
+        "c1": 3.3e-8,
+        "c2": 2.4e-8
+      },
+      "opAmp": {
+        "a0Db": 93.05587872862816,
+        "gbwHz": 2470227.4831309994
+      },
+      "frequencies": 401,
+      "maxComplexError": 8.88181066674141e-16,
+      "maxRelativeError": 1.6531454371971662e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 10000,
+        "r2": 56000,
+        "c1": 1.5000000000000002e-9,
+        "c2": 3.0000000000000004e-9
+      },
+      "opAmp": {
+        "a0Db": 80.28868980240077,
+        "gbwHz": 61991.58622562787
+      },
+      "frequencies": 401,
+      "maxComplexError": 5.564218504178287e-16,
+      "maxRelativeError": 2.1492974799621975e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 51000,
+        "r2": 4300,
+        "c1": 2.7000000000000004e-8,
+        "c2": 9.1e-9
+      },
+      "opAmp": {
+        "a0Db": 99.40533403772861,
+        "gbwHz": 305369926.58207834
+      },
+      "frequencies": 401,
+      "maxComplexError": 2.7758697942264674e-15,
+      "maxRelativeError": 2.7759546723116567e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 18000,
+        "r2": 2400,
+        "c1": 2.4e-9,
+        "c2": 6.200000000000001e-9
+      },
+      "opAmp": {
+        "a0Db": 75.1835923269391,
+        "gbwHz": 428085598.85404265
+      },
+      "frequencies": 401,
+      "maxComplexError": 2.22080448466338e-15,
+      "maxRelativeError": 2.2213140645749182e-15,
+      "maxDbError": 2.842170943040401e-14
+    },
+    {
+      "parts": {
+        "r1": 18000,
+        "r2": 27000,
+        "c1": 2e-9,
+        "c2": 3.6000000000000005e-8
+      },
+      "opAmp": {
+        "a0Db": 100.49309615045786,
+        "gbwHz": 5512424.064863048
+      },
+      "frequencies": 401,
+      "maxComplexError": 6.713178136967714e-16,
+      "maxRelativeError": 1.3878355803183031e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 10000,
+        "r2": 27000,
+        "c1": 6.8e-8,
+        "c2": 1.2e-9
+      },
+      "opAmp": {
+        "a0Db": 134.6130309952423,
+        "gbwHz": 2638557.3174062003
+      },
+      "frequencies": 401,
+      "maxComplexError": 1.643467609588604e-14,
+      "maxRelativeError": 4.856376142107474e-15,
+      "maxDbError": 5.684341886080802e-14
+    },
+    {
+      "parts": {
+        "r1": 51000,
+        "r2": 1100,
+        "c1": 3.3e-9,
+        "c2": 3.9e-9
+      },
+      "opAmp": {
+        "a0Db": 82.31993509456515,
+        "gbwHz": 9003552.041806724
+      },
+      "frequencies": 401,
+      "maxComplexError": 9.33339783217036e-15,
+      "maxRelativeError": 9.336133979272613e-15,
+      "maxDbError": 8.102763252026968e-14
+    }
+  ]
+}

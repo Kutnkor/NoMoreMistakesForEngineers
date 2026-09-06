@@ -1,0 +1,398 @@
+{
+  "diagnosticVersion": "1.0.0",
+  "auditDate": "2026-09-05",
+  "status": "Conditional independent algebraic diagnostic, not reproduction of Claude source.",
+  "runtime": {
+    "python": "3.11.1",
+    "numpy": "2.4.6"
+  },
+  "artifacts": [
+    {
+      "role": "Selected physical-value example",
+      "file": "cf_veri_ornegi.csv",
+      "bytes": 318620,
+      "sha256": "ed52a2227afb093f7cedd171381ea47679ebf5e22801ef3a7b731bf898d52e0a"
+    },
+    {
+      "role": "Selected normalized-value example",
+      "file": "cf_train.npz",
+      "bytes": 3530515,
+      "sha256": "0d6cb0603cd55b872e333c6d6f29313fc2684e4bacf5049f29830a0813af9be9"
+    },
+    {
+      "role": "Supplied statement of finite op-amp assumptions",
+      "file": "pasted-text.txt",
+      "bytes": 35013,
+      "sha256": "fba52b03da2b76aff551597f1ef0cab75c7d3dfd225a224ec58c9395b22e6266"
+    },
+    {
+      "role": "Existing ideal-model reference; read/hash only",
+      "file": "circuit.ts",
+      "bytes": 8623,
+      "sha256": "04123308bf373521b342ba9a79bae17f1939636b938da325f6132a377d9a60e6"
+    },
+    {
+      "role": "Independent diagnostic source",
+      "file": "finite-model-comparison.py",
+      "bytes": 12383,
+      "sha256": "189e5cf3a615f39372be4c61fcef16d2c69f530f5d614cfdb5547f63721d27e3"
+    }
+  ],
+  "model": {
+    "topologyAssumption": "R1: input→x; R2: x→y; C1: x→output; C2: y→ground; op-amp follower input y.",
+    "a0Db": 100.0,
+    "a0Linear": 100000.0,
+    "gainBandwidthHz": 10000000.0,
+    "openLoopPoleHz": 100.0,
+    "idealTransfer": "H=1/D0; D0=1+s*C2*(R1+R2)+s^2*R1*R2*C1*C2",
+    "onePoleTransfer": "H=G/[D0+s*R1*C1*(1-G)]; A=A0/(1+s/wp); G=A/(1+A); wp=2*pi*GBW/A0",
+    "evaluatedEquivalentFormula": "H=A0/[(A0+1+s/wp)*D0+s*R1*C1*(1+s/wp)]",
+    "assumptionProvenance": "pasted-text.txt lines 383–388 state the ideal topology; 851–852 state one-pole A0/GBW. Actual MNA/netlist implementation was not supplied to this diagnostic.",
+    "exclusions": [
+      "Real op-amp macro-model",
+      "Slew, offset, clipping, noise, input/output impedance",
+      "PCB parasitics",
+      "Tolerance/temperature distributions"
+    ]
+  },
+  "specInterpretation": {
+    "stopEdgeHz": "fc * stop_ratio",
+    "absoluteAttenuationDb": "-20*log10(abs(H))",
+    "relativeAttenuationDb": "targetGainDb - 20*log10(abs(H))",
+    "stopEdgeMarginDb": "attenuationDb - requiredStopDb"
+  },
+  "cases": [
+    {
+      "caseId": "csv-data-row-1043",
+      "sourceArtifact": "cf_veri_ornegi.csv",
+      "dataRowIndex0": 1043,
+      "csvFileLine1": 1045,
+      "rawInputRow": {
+        "filtre_tipi": "lowpass",
+        "topoloji": "sk_lp2",
+        "fc_Hz": "19952.62",
+        "kazanc_dB": "1.52",
+        "gecirme_dalgalanma_dB": "3.48",
+        "durdurma_orani": "5.595",
+        "durdurma_bastirma_dB": "16.84",
+        "bant_genisligi_orani": "1.576",
+        "garanti_marj_dB": "1.962",
+        "tolerans_kaybi_dB": "0.076",
+        "R1": "6200.0",
+        "R2": "110.0",
+        "R3": "",
+        "C1": "1.1e-07",
+        "C2": "1.1e-10",
+        "Ra": "",
+        "Rb": "",
+        "L1": "",
+        "R1a": "",
+        "R2a": "",
+        "C1a": "",
+        "C2a": "",
+        "R1b": "",
+        "R2b": "",
+        "C1b": "",
+        "C2b": ""
+      },
+      "partsSIUsed": {
+        "r1Ohm": 6200.0,
+        "r2Ohm": 110.0,
+        "c1F": 1.1e-07,
+        "c2F": 1.1e-10
+      },
+      "componentDecoding": "Direct physical component values from CSV; no U inference.",
+      "specValues": {
+        "fcHz": 19952.62,
+        "targetGainDb": 1.52,
+        "rippleDb": 3.48,
+        "stopRatio": 5.595,
+        "requiredStopDb": 16.84,
+        "bandwidthRatio": 1.576,
+        "declaredMarginDb": 1.962,
+        "declaredToleranceDropDb": 0.076
+      },
+      "results": {
+        "ideal": {
+          "points": {
+            "dc": {
+              "frequencyHz": 0.0,
+              "transferReal": 1.0,
+              "transferImag": 0.0,
+              "magnitude": 1.0,
+              "gainDb": 0.0
+            },
+            "passEdgeAssumption": {
+              "frequencyHz": 19952.62,
+              "transferReal": 1.137651958917124,
+              "transferImag": -0.11374719486473518,
+              "magnitude": 1.1433242776953376,
+              "gainDb": 1.1633885106163344
+            },
+            "stopEdgeAssumption": {
+              "frequencyHz": 111634.9089,
+              "transferReal": -0.31872584032686296,
+              "transferImag": -0.050709946139680884,
+              "magnitude": 0.32273465870518814,
+              "gainDb": -9.823087857948728
+            }
+          },
+          "absoluteStopAttenuationDb": 9.823087857948728,
+          "relativeStopAttenuationDb": 11.343087857948728,
+          "absoluteStopEdgeMarginDb": -7.016912142051272,
+          "relativeStopEdgeMarginDb": -5.496912142051272,
+          "stopEdgePassAbsolute": false,
+          "stopEdgePassRelative": false
+        },
+        "onePoleConditional": {
+          "points": {
+            "dc": {
+              "frequencyHz": 0.0,
+              "transferReal": 0.999990000099999,
+              "transferImag": 0.0,
+              "magnitude": 0.999990000099999,
+              "gainDb": -8.685846208858971e-05
+            },
+            "passEdgeAssumption": {
+              "frequencyHz": 19952.62,
+              "transferReal": 1.4064249147885612,
+              "transferImag": -0.18015759192462208,
+              "magnitude": 1.4179167108353334,
+              "gainDb": 3.0330144182529715
+            },
+            "stopEdgeAssumption": {
+              "frequencyHz": 111634.9089,
+              "transferReal": -0.11861439178165654,
+              "transferImag": -0.006455600239051921,
+              "magnitude": 0.11878993523097299,
+              "gainDb": -18.504407089254723
+            }
+          },
+          "absoluteStopAttenuationDb": 18.504407089254723,
+          "relativeStopAttenuationDb": 20.024407089254723,
+          "absoluteStopEdgeMarginDb": 1.6644070892547234,
+          "relativeStopEdgeMarginDb": 3.184407089254723,
+          "stopEdgePassAbsolute": true,
+          "stopEdgePassRelative": true
+        }
+      },
+      "finiteFormulaConsistencyMaxRelativeError": 7.655387161417412e-15,
+      "classificationScope": "Only the stated stop-edge frequency; not full-spec feasibility."
+    },
+    {
+      "caseId": "npz-train-row-10674",
+      "sourceArtifact": "cf_train.npz",
+      "dataRowIndex0": 10674,
+      "rawInputRow": {
+        "fc": 19306.9765625,
+        "gain": 1.0878584384918213,
+        "ripple": 2.5599138736724854,
+        "stop_ratio": 4.6784281730651855,
+        "stop_db": 11.258203506469727,
+        "bw": 3.9564924240112305,
+        "margin": 1.4741624593734741,
+        "p05_drop": null,
+        "has_mc": 0.0,
+        "U": [
+          0.028485838323831558,
+          0.01034817099571228,
+          0.9266936779022217,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "topo_id": 0,
+        "kind_id": 0
+      },
+      "npzSchema": {
+        "fc": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32"
+        },
+        "gain": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32"
+        },
+        "ripple": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32"
+        },
+        "stop_ratio": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32"
+        },
+        "stop_db": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32"
+        },
+        "bw": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32"
+        },
+        "margin": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32"
+        },
+        "p05_drop": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32"
+        },
+        "has_mc": {
+          "shape": [
+            121006
+          ],
+          "dtype": "float32"
+        },
+        "U": {
+          "shape": [
+            121006,
+            10
+          ],
+          "dtype": "float32"
+        },
+        "topo_id": {
+          "shape": [
+            121006
+          ],
+          "dtype": "int16"
+        },
+        "kind_id": {
+          "shape": [
+            121006
+          ],
+          "dtype": "int16"
+        }
+      },
+      "nonFiniteInputValuesEncodedAsNull": {
+        "p05_drop": "NaN"
+      },
+      "componentDecoding": {
+        "status": "Inferred in earlier audit from 3000 matched CSV/training rows; no generator manifest supplied.",
+        "mapping": {
+          "U0": "R1=10^(2+4u) ohm",
+          "U1": "R2=10^(2+4u) ohm",
+          "U2": "C1=10^(-10+5u) F",
+          "U3": "C2=10^(-10+5u) F"
+        },
+        "rawDecodedSI": {
+          "r1Ohm": 130.00000029589054,
+          "r2Ohm": 109.99999970229567,
+          "c1F": 4.299999345848391e-06,
+          "c2F": 1e-10
+        },
+        "rounding": "Nearest E24 to remove float32 encoding noise only.",
+        "maxRelativeDecodeToE24Difference": 1.5212828130550804e-07
+      },
+      "partsSIUsed": {
+        "r1Ohm": 130.0,
+        "r2Ohm": 110.0,
+        "c1F": 4.3e-06,
+        "c2F": 1e-10
+      },
+      "specValues": {
+        "fcHz": 19306.9765625,
+        "targetGainDb": 1.0878584384918213,
+        "rippleDb": 2.5599138736724854,
+        "stopRatio": 4.6784281730651855,
+        "requiredStopDb": 11.258203506469727,
+        "bandwidthRatio": 3.9564924240112305,
+        "declaredMarginDb": 1.4741624593734741,
+        "declaredToleranceDropDb": null
+      },
+      "results": {
+        "ideal": {
+          "points": {
+            "dc": {
+              "frequencyHz": 0.0,
+              "transferReal": 1.0,
+              "transferImag": 0.0,
+              "magnitude": 1.0,
+              "gainDb": 0.0
+            },
+            "passEdgeAssumption": {
+              "frequencyHz": 19306.9765625,
+              "transferReal": 1.099479897720009,
+              "transferImag": -0.00351952793291447,
+              "magnitude": 1.0994855308585338,
+              "gainDb": 0.8237903690768102
+            },
+            "stopEdgeAssumption": {
+              "frequencyHz": 90326.30308670923,
+              "transferReal": -1.0196063943504305,
+              "transferImag": -0.014162966741610878,
+              "magnitude": 1.019704755812784,
+              "gainDb": 0.16948889636988043
+            }
+          },
+          "absoluteStopAttenuationDb": -0.16948889636988043,
+          "relativeStopAttenuationDb": 0.9183695421219409,
+          "absoluteStopEdgeMarginDb": -11.427692402839607,
+          "relativeStopEdgeMarginDb": -10.339833964347786,
+          "stopEdgePassAbsolute": false,
+          "stopEdgePassRelative": false
+        },
+        "onePoleConditional": {
+          "points": {
+            "dc": {
+              "frequencyHz": 0.0,
+              "transferReal": 0.999990000099999,
+              "transferImag": 0.0,
+              "magnitude": 0.999990000099999,
+              "gainDb": -8.685846208858971e-05
+            },
+            "passEdgeAssumption": {
+              "frequencyHz": 19306.9765625,
+              "transferReal": 1.2843111459482133,
+              "transferImag": -0.00881768289188661,
+              "magnitude": 1.284341415332541,
+              "gainDb": 2.173609743898667
+            },
+            "stopEdgeAssumption": {
+              "frequencyHz": 90326.30308670923,
+              "transferReal": -0.2599860073739257,
+              "transferImag": -0.0005364400161610358,
+              "magnitude": 0.25998656080291127,
+              "gainDb": -11.700982019044094
+            }
+          },
+          "absoluteStopAttenuationDb": 11.700982019044094,
+          "relativeStopAttenuationDb": 12.788840457535915,
+          "absoluteStopEdgeMarginDb": 0.4427785125743675,
+          "relativeStopEdgeMarginDb": 1.5306369510661888,
+          "stopEdgePassAbsolute": true,
+          "stopEdgePassRelative": true
+        }
+      },
+      "finiteFormulaConsistencyMaxRelativeError": 8.057260464609816e-15,
+      "classificationScope": "Only the stated stop-edge frequency; not full-spec feasibility."
+    }
+  ],
+  "conclusion": "Both selected stop-edge violations of the ideal engine disappear under the specified conditional one-pole model. This demonstrates that model mismatch can explain these counterexamples; it does not establish validity of all labels or full-band compliance.",
+  "limitations": [
+    "No Claude module, pasted command or supplied dataset script executed.",
+    "No ngspice reproduction performed by this diagnostic.",
+    "Only DC, assumed pass edge and assumed stop edge evaluated; no full-band extrema search.",
+    "NPZ physical decoding is explicitly inferred, and its float32/E24 normalization is recorded.",
+    "Original CSV rounding and the exact generator FilterSpec remain unverified."
+  ]
+}
