@@ -1,0 +1,15 @@
+# Reproducible AVR fixtures
+
+The adjacent sketches are original Circuit Forge test code (MIT). Their HEX
+files were compiled on 2026-09-09 by https://hexi.wokwi.com/build, the public
+compiler used by the official AVR8js demo. Target: Arduino UNO, ATmega328P,
+16 MHz. Tests run these actual binaries offline, not a sketch-text parser.
+
+Recompile by POSTing JSON `{ "sketch": "<contents of .ino>" }` to that endpoint
+(or use Arduino IDE, Arduino UNO target, Export Compiled Binary). Commit both
+source and new HEX; compiler/core version changes may affect byte output.
+
+Arduino AVR core code linked into these binaries is LGPL-2.1-or-later; its
+source/build definitions are https://github.com/arduino/ArduinoCore-avr.
+The sketches plus this procedure permit modification and relinking using the
+Arduino toolchain. Serial baud is 115200. No external libraries are needed.

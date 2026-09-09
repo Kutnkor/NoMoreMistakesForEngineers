@@ -1,0 +1,126 @@
+{
+  "date": "2026-09-09",
+  "scope": "3D navigation and 12 reference accessories",
+  "source_tests": 109,
+  "wokwi_cli_version": "0.26.1",
+  "definitions": "refreshed online before offline batch",
+  "diagram_results": [
+    {
+      "fixture": "ds18b20",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\n\u2139 [unsupported-part] Part \"accessory\" uses undocumented type \"wokwi-ds18b20\". This part may change or be removed in future versions. (accessory)\n"
+    },
+    {
+      "fixture": "esp32-devkitc-v4",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\nFound 1 info\n\u2139 [unsupported-part] Part \"controller\" uses undocumented type \"board-esp32-devkit-c-v4\". This part may change or be removed in future versions. (controller)\n"
+    },
+    {
+      "fixture": "lcd",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "led",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "mega-2560",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "module-encoder",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "module-hc-sr04",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "module-joystick",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "module-keypad",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "module-lcd1602-i2c",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "module-ldr",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "module-mpu6050",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "module-pir",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "module-servo",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "nano",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "neopixel-ws2812b",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "piezo-passive",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "raspberry-pi-pico",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "servo",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "sonar",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "station",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    },
+    {
+      "fixture": "uno-rev3",
+      "exit_code": 0,
+      "output": "Wokwi CLI v0.26.1 (9d71b975b7eb)\n\u2713 No issues found\n"
+    }
+  ],
+  "limitations": [
+    "No browser pointer or WebGL visual QA",
+    "No physical hardware validation",
+    "Accessory footprints illustrative",
+    "Diagram lint does not establish sketch execution",
+    "New peripherals require Wokwi; not emulated locally"
+  ]
+}

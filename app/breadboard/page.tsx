@@ -2,15 +2,33 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { CircuitBoard, ArrowUpRight } from 'lucide-react';
+import { Workbench } from '@/components/workbench/bench';
+import { migrateV1 } from '@/lib/workbench/project';
+import { autoPlace } from '@/lib/breadboard/model';
+import { Button } from '@/components/ui/button';
 import { BreadboardWorkspace } from '@/components/breadboard/workspace';
 import { sallenKeyCircuit } from '@/lib/breadboard/circuits';
 import '../studio.css';
 import './breadboard.css';
+import './workbench.css';
+const cache = new WeakMap<object, ReturnType<typeof migrateV1>>();
+function initialWorkbench(circuit: ReturnType<typeof sallenKeyCircuit>) {
+  let w = cache.get(circuit);
+  if (!w) {
+    w = migrateV1(circuit, autoPlace(circuit));
+    cache.set(circuit, w);
+  }
+  return w;
+}
 export default function BreadboardPage() {
+  const [guided, setGuided] = useState(false);
+  const [custom, setCustom] = useState(false);
   const [initial, setInitial] = useState(sallenKeyCircuit());
   useEffect(() => {
     const q = new URLSearchParams(location.search);
     if (!q.has('r1')) return;
+    // oxlint-disable-next-line react/react-compiler -- URL is an external source read once after hydration.
+    setCustom(true);
     const p = {
       r1: Number(q.get('r1')),
       r2: Number(q.get('r2')),
@@ -42,10 +60,35 @@ export default function BreadboardPage() {
           Research evidence <ArrowUpRight size={15} />
         </a>
       </header>
-      <BreadboardWorkspace
-        key={JSON.stringify(initial)}
-        initialCircuit={initial}
-      />
+      <div className="wb-modebar">
+        <Button
+          size="sm"
+          variant={guided ? 'ghost' : 'default'}
+          onClick={() => setGuided(false)}
+        >
+          Workbench
+        </Button>
+        <Button
+          size="sm"
+          variant={guided ? 'default' : 'ghost'}
+          onClick={() => setGuided(true)}
+        >
+          Guided analog lab
+        </Button>
+      </div>
+      <div hidden={guided}>
+        <Workbench
+          key={custom ? JSON.stringify(initial) : 'default'}
+          active={!guided}
+          initial={custom ? initialWorkbench(initial) : undefined}
+        />
+      </div>
+      {guided && (
+        <BreadboardWorkspace
+          key={JSON.stringify(initial)}
+          initialCircuit={initial}
+        />
+      )}
     </div>
   );
 }

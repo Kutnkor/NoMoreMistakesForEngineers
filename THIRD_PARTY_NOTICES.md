@@ -15,3 +15,14 @@ For other manufacturer/product photographs, an explicit open reuse license has *
 The pinned dependency versions are listed in `package.json` and `pnpm-lock.yaml`. Their licenses and copyright notices remain with the respective packages. The UI includes shadcn/Base UI components and Lucide icons. These are third-party building blocks, not independently invented components.
 
 The breadboard screenshots in `docs/images/` show the application's rendered circuit geometry; they are not manufacturer product photographs.
+
+## AVR8js and Arduino CAD additions
+
+The in-browser AVR runtime uses AVR8js 0.21.0 (MIT), copyright Uri Shaked
+and contributors: https://github.com/wokwi/avr8js. Sketch compilation is an
+external request to the compiler used by the official AVR8js demo, made only
+when Run sketch is pressed; no compiler credentials are bundled.
+
+Arduino UNO/Mega Rev3e planar CAD derivatives have a separate **CC BY-SA 4.0**
+license. See `public/models/arduino-cad-NOTICE.md` for original source downloads,
+license, changes and limitations. These data are not relicensed under MIT.

@@ -1,6 +1,6 @@
 {
   "name": "nomoremistakesforengineers",
-  "version": "0.5.0",
+  "version": "0.8.0",
   "private": true,
   "engines": {
     "node": ">=24.0.0"
@@ -11,15 +11,16 @@
     "start": "node scripts/serve.mjs",
     "lint": "oxlint",
     "format": "oxfmt",
-    "test": "node --experimental-strip-types --test tests/circuit.test.ts tests/hardware.test.ts tests/lab.test.ts tests/wokwi.test.ts tests/breadboard.test.ts tests/preview.test.mjs",
+    "test": "node --experimental-strip-types --test tests/circuit.test.ts tests/hardware.test.ts tests/lab.test.ts tests/wokwi.test.ts tests/breadboard.test.ts tests/workbench.test.ts tests/workbench-upgrade.test.ts tests/workbench-runtime.test.ts tests/workbench-navigation.test.ts tests/preview.test.mjs",
     "benchmark": "node --experimental-strip-types scripts/benchmark.ts",
     "typecheck": "tsc --noEmit",
-    "test:bundle": "node tests/bundled-worker.mjs",
+    "test:bundle": "node tests/bundled-worker.mjs && node tests/avr-bundled-worker.mjs",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm test:bundle"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
     "@shadcn/react": "0.3.0",
+    "avr8js": "0.21.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "cmdk": "1.1.1",

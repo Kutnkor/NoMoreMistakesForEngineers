@@ -10,6 +10,11 @@ Circuit Forge is a browser-based electronics workbench by [Kutnkor](https://gith
 
 [Quick start](#quick-start) · [Research and results](docs/RESEARCH.md) · [Türkçe dokümantasyon](README.tr.md) · [GitHub'a yükleme](docs/GITHUB_KURULUM.tr.md)
 
+
+## Interactive workbench
+
+Open `/breadboard` to wire Arduino, ESP32 and Pico boards on a shared 2D/3D table. The editor includes local autosave, undo/redo, editable wire bends, reference-circuit comparison, reversible repair previews and continuity-based fault practice. Five UNO examples can be exported with firmware to Wokwi, including distance sensing, servo sweep and an I²C LCD. See [the workbench guide and validation scope](docs/workbench.md) for exact supported models, reproduction steps and remaining limits.
+
 ## Explore the workbench
 
 | Workspace | What you can do |
@@ -19,6 +24,8 @@ Circuit Forge is a browser-based electronics workbench by [Kutnkor](https://gith
 | **AI Laboratory** `/lab` | Compare ideal and finite-bandwidth op-amps, investigate six fault classes, compare simulation-budget strategies, and explore sensor aliasing. |
 | **Breadboard Lab** `/breadboard` | Place components on an 830-hole board; switch between 2D and 3D; diagnose physical connectivity; export PNGs and a printable assembly guide. |
 | **Research** `/research` | Read methods, recorded experiments, validation reports, and the boundaries of the current models. |
+
+The 3D view separates part editing, panning and orbiting. Trackpad scrolling pans; pinching zooms. Use **Fit (F)**, **Top (T)** or double-click a component to recover the view. Twelve additional wired accessories have distinct 2D/3D representations and documented Wokwi terminal mappings; their mechanical footprints are illustrative. See [navigation and accessories](docs/workbench.md#navigation-and-accessories-08).
 
 The application interface, validation messages, export guides, and downloadable research notes are in English. The hardware catalog is broader than the executable support: **12 detailed board profiles**, **24 module code templates**, and a Wokwi export subset of **5 boards / 10 part types**. Support boundaries are visible in the interface and documented in [Arduino scope](research/ARDUINO_SCOPE.md).
 
@@ -30,6 +37,24 @@ The application interface, validation messages, export guides, and downloadable 
 4. Export a circuit report, SPICE netlist, PNG, or assembly guide. Supported embedded designs can also be exported as Wokwi projects.
 
 Breadboard Lab includes five circuit presets, manual wiring, rotation, undo, bidirectional net highlighting, JSON circuit import, and a guided assembly mode. Physical copper connectivity is computed independently of the intended circuit labels.
+
+## Run an Arduino sketch
+
+In Breadboard Lab, choose **UNO live inputs · run code** and press **Run sketch**.
+Turn the virtual potentiometer, press the button and observe PWM-driven LED
+brightness in 2D or 3D. Serial output and input use the emulated UART.
+
+AVR8js executes compiled ATmega328P machine code in a Web Worker. In-app runs
+support one UNO R3/classic Nano plus checked LED/resistor, button and potentiometer
+circuits. Other supported controller/peripheral combinations retain Wokwi export.
+Online compilation sends the sketch to Wokwi's public demo compiler only on Run;
+there is no API key. **Load HEX** runs a binary compiled for Arduino UNO locally.
+Compilation requires the external service; local HEX execution does not.
+
+UNO/Mega planar geometry now follows official Arduino Rev3e CAD. Their 3D package
+heights and materials are illustrative. See [Workbench details](docs/workbench.md)
+and [CAD attribution](public/models/arduino-cad-NOTICE.md) for exact scope and the
+separate CC BY-SA 4.0 license on Arduino CAD derivatives.
 
 ## Quick start
 
@@ -59,12 +84,12 @@ These are recorded results for the stated experiments, not guarantees for other 
 
 | Check | Recorded result | Evidence |
 | --- | --- | --- |
-| Regression suite | 50 tests: 49 domain checks plus one standalone preview-server regression | [Tests](tests/) |
+| Regression suite | 109 tests across existing engines, the workbench and the preview server | [Tests](tests/) |
 | Finite op-amp model | Compared with native ngspice 47: 30 designs × 401 frequency points | [Report](research/ngspice-validation.json) |
 | Fault classifier | 98% top-1 accuracy on 1,200 held-out **synthetic** examples | [Report](research/fault-model-report.json) |
 | Embedded export | 53/53 Wokwi diagrams validated; 33/33 additional sketches compiled | [Report](research/embedded-validation.json) |
 | Budget allocation | 30 experiments across three conditions; results are mixed across methods | [Benchmark](research/budget-benchmark.json) |
-| Breadboard browser checks | Dragging, wiring, guided assembly, mobile/dark display, and five single-page print guides | [Report](research/breadboard-browser-validation.json) |
+| Historical guided-breadboard browser checks | Dragging, wiring, guided assembly, mobile/dark display, and five single-page print guides | [Report](research/breadboard-browser-validation.json) |
 
 The trained fault model is included. Its synthetic data generator and training script are available in `scripts/`. The externally supplied NPZ data audited in `research/data-audit.md` is **not bundled** and was **not used to train this classifier**.
 
