@@ -36,6 +36,8 @@ import {
 export type View = { x: number; y: number; scale: number; focus?: string };
 
 type Props = {
+  showWires?: boolean;
+  activeEndpoint?: ConnectionEndpoint | null;
   runtime: RuntimeFrame;
   workbench: Workbench;
   lookup: ModelLookup;
@@ -177,8 +179,8 @@ function UnoBody({
           fill={p.drill ? '#b4a876' : '#bac7cd'}
         />
       ))}
-      {cad.elements.map((e) => (
-        <g key={e.name}>
+      {cad.elements.map((e, index) => (
+        <g key={`${e.name}-${index}`}>
           {e.kind === 'can' ? (
             <g>
               <circle
@@ -859,7 +861,11 @@ export function Bench2D(props: Props) {
                   brightness={props.runtime.leds[inst.id] ?? 0}
                 />
               ) : model.accessoryVisual ? (
-                <AccessoryBody model={model} />
+                <AccessoryBody
+                  model={model}
+                  angle={props.runtime.servos?.[inst.id]}
+                  display={props.runtime.displays?.[inst.id]}
+                />
               ) : ['uno-rev3', 'mega-2560'].includes(model.id) ? (
                 <UnoBody
                   mega={model.id === 'mega-2560'}
@@ -1013,82 +1019,101 @@ export function Bench2D(props: Props) {
 
       {/* Wires last so they sit above the boards. */}
       <g className="wb-wires">
-        {workbench.wires.map((wire: BenchWire) => {
-          const a = endpointPoint(wire.a, workbench, lookup),
-            b = endpointPoint(wire.b, workbench, lookup);
-          if (!a || !b) return null;
-          const net = netOf(wire.a);
-          const lit = highlightNet !== null && net === highlightNet;
-          return (
-            <g key={wire.id} data-wire-group={wire.id}>
-              <path
-                d={wirePath(a, b, wire.route)}
+        {(props.showWires === false ? [] : workbench.wires).map(
+          (wire: BenchWire) => {
+            const a = endpointPoint(wire.a, workbench, lookup),
+              b = endpointPoint(wire.b, workbench, lookup);
+            if (!a || !b) return null;
+            const net = netOf(wire.a);
+            const lit = highlightNet !== null && net === highlightNet;
+            return (
+              <g key={wire.id} data-wire-group={wire.id}>
+                <path
+                  d={wirePath(a, b, wire.route)}
+                  fill="none"
+                  stroke={wire.color}
+                  strokeWidth={
+                    selectedWire === wire.id ? 1.5 : lit ? 1.25 : 0.95
+                  }
+                  strokeLinecap="round"
+                  opacity={highlightNet !== null && !lit ? 0.35 : 1}
+                />
+                <path
+                  d={wirePath(a, b, wire.route)}
+                  fill="none"
+                  stroke="transparent"
+                  strokeWidth={3}
+                  data-wire={wire.id}
+                  style={{ cursor: 'pointer' }}
+                  onPointerDown={(ev) => {
+                    ev.stopPropagation();
+                    onSelectWire(wire.id);
+                  }}
+                />
+                {selectedWire === wire.id && (
+                  <>
+                    {[a, b].map((p, i) => (
+                      <circle
+                        key={i}
+                        cx={p.x}
+                        cy={p.y}
+                        r={1.8}
+                        fill="#f59e0b"
+                        stroke="white"
+                        strokeWidth={0.4}
+                        onPointerDown={(ev) => {
+                          ev.stopPropagation();
+                          props.onRewire(wire.id, i === 0 ? 'a' : 'b');
+                        }}
+                      >
+                        <title>Reconnect end {i === 0 ? 'A' : 'B'}</title>
+                      </circle>
+                    ))}
+                    {wire.route.map((p, i) => (
+                      <circle
+                        key={i}
+                        cx={p.x}
+                        cy={p.y}
+                        r={1.8}
+                        fill="#0d9488"
+                        stroke="white"
+                        strokeWidth={0.4}
+                        onPointerDown={(ev) => {
+                          ev.stopPropagation();
+                          bendDrag.current = { id: wire.id, index: i };
+                          ev.currentTarget.setPointerCapture(ev.pointerId);
+                        }}
+                        onDoubleClick={(ev) => {
+                          ev.stopPropagation();
+                          props.onEditWire(wire.id, {
+                            route: wire.route.filter((_, n) => n !== i),
+                          });
+                        }}
+                      >
+                        <title>Drag bend · double-click to remove</title>
+                      </circle>
+                    ))}
+                  </>
+                )}
+              </g>
+            );
+          },
+        )}
+        {props.activeEndpoint &&
+          (() => {
+            const p = endpointPoint(props.activeEndpoint!, workbench, lookup);
+            return p ? (
+              <circle
+                cx={p.x}
+                cy={p.y}
+                r={1.7}
                 fill="none"
-                stroke={wire.color}
-                strokeWidth={selectedWire === wire.id ? 1.5 : lit ? 1.25 : 0.95}
-                strokeLinecap="round"
-                opacity={highlightNet !== null && !lit ? 0.35 : 1}
+                stroke="#ed8c19"
+                strokeWidth={0.6}
+                pointerEvents="none"
               />
-              <path
-                d={wirePath(a, b, wire.route)}
-                fill="none"
-                stroke="transparent"
-                strokeWidth={3}
-                data-wire={wire.id}
-                style={{ cursor: 'pointer' }}
-                onPointerDown={(ev) => {
-                  ev.stopPropagation();
-                  onSelectWire(wire.id);
-                }}
-              />
-              {selectedWire === wire.id && (
-                <>
-                  {[a, b].map((p, i) => (
-                    <circle
-                      key={i}
-                      cx={p.x}
-                      cy={p.y}
-                      r={1.8}
-                      fill="#f59e0b"
-                      stroke="white"
-                      strokeWidth={0.4}
-                      onPointerDown={(ev) => {
-                        ev.stopPropagation();
-                        props.onRewire(wire.id, i === 0 ? 'a' : 'b');
-                      }}
-                    >
-                      <title>Reconnect end {i === 0 ? 'A' : 'B'}</title>
-                    </circle>
-                  ))}
-                  {wire.route.map((p, i) => (
-                    <circle
-                      key={i}
-                      cx={p.x}
-                      cy={p.y}
-                      r={1.8}
-                      fill="#0d9488"
-                      stroke="white"
-                      strokeWidth={0.4}
-                      onPointerDown={(ev) => {
-                        ev.stopPropagation();
-                        bendDrag.current = { id: wire.id, index: i };
-                        ev.currentTarget.setPointerCapture(ev.pointerId);
-                      }}
-                      onDoubleClick={(ev) => {
-                        ev.stopPropagation();
-                        props.onEditWire(wire.id, {
-                          route: wire.route.filter((_, n) => n !== i),
-                        });
-                      }}
-                    >
-                      <title>Drag bend · double-click to remove</title>
-                    </circle>
-                  ))}
-                </>
-              )}
-            </g>
-          );
-        })}
+            ) : null;
+          })()}
         {wireStartPoint && cursor && (
           <path
             d={wirePath(wireStartPoint, cursor)}

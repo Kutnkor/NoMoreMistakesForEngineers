@@ -1,6 +1,6 @@
 {
   "name": "nomoremistakesforengineers",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "engines": {
     "node": ">=24.0.0"
@@ -11,7 +11,7 @@
     "start": "node scripts/serve.mjs",
     "lint": "oxlint",
     "format": "oxfmt",
-    "test": "node --experimental-strip-types --test tests/circuit.test.ts tests/hardware.test.ts tests/lab.test.ts tests/wokwi.test.ts tests/breadboard.test.ts tests/workbench.test.ts tests/workbench-upgrade.test.ts tests/workbench-runtime.test.ts tests/workbench-navigation.test.ts tests/preview.test.mjs",
+    "test": "node --experimental-strip-types --test tests/circuit.test.ts tests/hardware.test.ts tests/lab.test.ts tests/wokwi.test.ts tests/breadboard.test.ts tests/workbench.test.ts tests/workbench-upgrade.test.ts tests/workbench-runtime.test.ts tests/workbench-navigation.test.ts tests/workbench-integrated.test.ts tests/preview.test.mjs",
     "benchmark": "node --experimental-strip-types scripts/benchmark.ts",
     "typecheck": "tsc --noEmit",
     "test:bundle": "node tests/bundled-worker.mjs && node tests/avr-bundled-worker.mjs",
@@ -19,11 +19,17 @@
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
+    "@codemirror/autocomplete": "6.18.6",
+    "@codemirror/lang-cpp": "6.0.3",
+    "@codemirror/lint": "6.8.5",
+    "@codemirror/state": "6.7.4",
+    "@codemirror/view": "6.38.6",
     "@shadcn/react": "0.3.0",
     "avr8js": "0.21.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "cmdk": "1.1.1",
+    "codemirror": "6.0.2",
     "date-fns": "4.1.0",
     "embla-carousel-react": "8.5.2",
     "input-otp": "1.4.2",

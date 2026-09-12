@@ -1,4 +1,5 @@
 'use client';
+/* oxlint-disable react/react-compiler -- The Three.js scene is an imperative external system; effects intentionally mutate scene objects held by refs. */
 // Editable 3D workbench. The scene is a projection of the same project state
 // the 2D view renders; it never owns geometry of its own.
 //
@@ -45,6 +46,8 @@ export type Bench3DApi = {
 };
 
 type Props = {
+  showWires?: boolean;
+  activeEndpoint?: ConnectionEndpoint | null;
   cameraPose?: React.RefObject<CameraPose | null>;
   runtime: RuntimeFrame;
   workbench: Workbench;
@@ -172,6 +175,17 @@ export default function Bench3D(props: Props) {
     netOf,
   } = props;
   const [navigation, setNavigation] = useState<NavigationMode>('edit');
+  const [sensitivity, setSensitivity] = useState(0.7);
+  const sensitivityRef = useRef(0.7);
+  useEffect(() => {
+    sensitivityRef.current = sensitivity;
+    const s = state.current;
+    if (s) {
+      s.controls.rotateSpeed = sensitivity;
+      s.controls.zoomSpeed = sensitivity;
+      s.controls.panSpeed = sensitivity;
+    }
+  }, [sensitivity]);
   const [inputMode, setInputMode] = useState<'trackpad' | 'mouse'>('trackpad');
   const navigationRef = useRef({ navigation, inputMode, space: false });
   useEffect(() => {
@@ -263,9 +277,9 @@ export default function Bench3D(props: Props) {
     controls.maxPolarAngle = Math.PI / 2 - 0.15;
     controls.minDistance = 12;
     controls.maxDistance = 2400;
-    controls.rotateSpeed = 0.55;
-    controls.panSpeed = 0.85;
-    controls.zoomSpeed = 0.65;
+    controls.rotateSpeed = sensitivityRef.current;
+    controls.panSpeed = sensitivityRef.current;
+    controls.zoomSpeed = sensitivityRef.current;
     controls.screenSpacePanning = true;
     controls.zoomToCursor = true;
     controls.mouseButtons = {
@@ -352,7 +366,7 @@ export default function Bench3D(props: Props) {
     const resize = () => {
       const w = host.clientWidth || 800,
         h = host.clientHeight || 520;
-      renderer.setSize(w, h, false);
+      renderer.setSize(w, h);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       if (state.current) state.current.dirty = true;
@@ -727,7 +741,8 @@ export default function Bench3D(props: Props) {
       if (s.pick) targets.push(s.pick);
       targets.push(s.handles);
       for (const g of s.groups.values()) targets.push(g.userData.pickProxy);
-      for (const m of s.wires.values()) targets.push(m);
+      if (latest.current.showWires !== false)
+        for (const m of s.wires.values()) targets.push(m);
       targets.push(
         ...s.scene.children.filter((o) => o.userData.pickable === 'table'),
       );
@@ -939,7 +954,10 @@ export default function Bench3D(props: Props) {
         block(ev);
         const scale =
           ev.deltaMode === 1 ? 16 : ev.deltaMode === 2 ? el.clientHeight : 1;
-        s.controls.pan(-ev.deltaX * scale, -ev.deltaY * scale);
+        s.controls.pan(
+          -ev.deltaX * scale * sensitivityRef.current,
+          -ev.deltaY * scale * sensitivityRef.current,
+        );
         s.dirty = true;
       }
     };
@@ -993,6 +1011,44 @@ export default function Bench3D(props: Props) {
   }, [frameScene]);
 
   useEffect(() => {
+    const s = state.current;
+    if (!s) return;
+    for (const wire of s.wires.values())
+      wire.visible = props.showWires !== false;
+    s.handles.visible = props.showWires !== false;
+    s.dirty = true;
+  }, [props.showWires, workbench]);
+  useEffect(() => {
+    const s = state.current;
+    if (!s) return;
+    let marker = s.scene.getObjectByName('active-terminal') as
+      | THREE.Mesh
+      | undefined;
+    if (!marker) {
+      marker = new THREE.Mesh(
+        GEO.highlight,
+        material('#f4a126', {
+          depthTest: false,
+          transparent: true,
+          opacity: 0.85,
+        }),
+      );
+      marker.name = 'active-terminal';
+      marker.renderOrder = 10;
+      marker.raycast = () => {};
+      s.scene.add(marker);
+    }
+    const p = props.activeEndpoint
+      ? endpointPoint(props.activeEndpoint, workbench, lookup)
+      : null;
+    marker.visible = !!p;
+    if (p) {
+      marker.position.set(p.x, p.z + 0.8, p.y);
+      marker.scale.setScalar(1.2);
+    }
+    s.dirty = true;
+  }, [props.activeEndpoint, workbench, lookup]);
+  useEffect(() => {
     if (state.current) state.current.dirty = true;
   }, [props.showLabels, props.active]);
 
@@ -1001,6 +1057,27 @@ export default function Bench3D(props: Props) {
     if (!s) return;
     for (const [id, g] of s.groups)
       g.traverse((o) => {
+        if (o.userData.servoHorn)
+          o.rotation.y =
+            (-((props.runtime.servos?.[id] ?? 90) - 90) * Math.PI) / 180;
+        if (o instanceof THREE.Mesh && o.userData.lcdRow !== undefined) {
+          const lcd = props.runtime.displays?.[id],
+            row = lcd?.rows[o.userData.lcdRow] ?? '',
+            signature = row + String(lcd?.backlight);
+          if (o.userData.lastLCD !== signature) {
+            o.userData.lastLCD = signature;
+            const m = o.material as THREE.MeshBasicMaterial;
+            const canvas = m.map!.image as HTMLCanvasElement;
+            const ctx = canvas.getContext('2d')!;
+            ctx.clearRect(0, 0, 512, 128);
+            ctx.fillStyle = lcd?.backlight ? '#bcf2c1' : '#598275';
+            ctx.font = '500 48px monospace';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(row, 256, 64, 500);
+            m.map!.needsUpdate = true;
+          }
+        }
         if (o.userData.control === 'button')
           o.position.y = props.runtime.inputs?.buttons[id] ? 3.4 : 4;
         if (o.userData.control === 'pot')
@@ -1112,6 +1189,18 @@ export default function Bench3D(props: Props) {
         >
           −
         </Button>
+        <label className="wb-sensitivity">
+          Sensitivity{' '}
+          <input
+            aria-label="3D movement sensitivity"
+            type="range"
+            min="0.25"
+            max="1.5"
+            step="0.05"
+            value={sensitivity}
+            onChange={(e) => setSensitivity(Number(e.target.value))}
+          />
+        </label>
         <select
           aria-label="Navigation input device"
           value={inputMode}

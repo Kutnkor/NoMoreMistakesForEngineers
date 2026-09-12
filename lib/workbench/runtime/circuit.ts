@@ -4,16 +4,25 @@ import type { Instance, Workbench } from '../types.ts';
 
 export type RuntimeCircuit = {
   boardId: string;
+  servos?: { id: string; pin: number }[];
+  sonars?: { id: string; trigger: number; echo: number }[];
+  lcds?: { id: string; address: number }[];
   leds: { id: string; pin: number; activeLow: boolean; resistance: number }[];
   buttons: { id: string; pin: number }[];
   pots: { id: string; channel: number; reverse: boolean }[];
 };
 export type RuntimeInputs = {
+  distances?: Record<string, number>;
   buttons: Record<string, boolean>;
   pots: Record<string, number>;
 };
 export type RuntimeFrame = {
   inputs?: RuntimeInputs;
+  servos?: Record<string, number>;
+  displays?: Record<string, { rows: string[]; backlight: boolean }>;
+  duties?: number[];
+  traces?: { at: number; pin: number; value: number }[];
+  traceDropped?: boolean;
   milliseconds: number;
   leds: Record<string, number>;
   pins: number[];
@@ -36,15 +45,7 @@ export function runtimeCircuit(w: Workbench): RuntimeCircuit {
     throw Error(
       'In-app execution needs one Arduino UNO R3 or classic Nano (ATmega328P). Use Export simulation for other controllers.',
     );
-  const allowed = new Set([
-    'uno-rev3',
-    'nano',
-    'breadboard-830',
-    'part-resistor',
-    'part-led',
-    'part-button',
-    'part-potentiometer',
-  ]);
+  const allowed = new Set(LOCAL_MODELS);
   const unsupported = w.instances.filter((i) => !allowed.has(i.modelId));
   if (unsupported.length)
     throw Error(
@@ -106,6 +107,9 @@ export function runtimeCircuit(w: Workbench): RuntimeCircuit {
     leds: [],
     buttons: [],
     pots: [],
+    servos: [],
+    sonars: [],
+    lcds: [],
   };
   const resistors = w.instances.filter((i) => i.modelId === 'part-resistor');
   const used = new Set<string>();
@@ -180,11 +184,47 @@ export function runtimeCircuit(w: Workbench): RuntimeCircuit {
       );
     result.pots.push({ id: p.id, channel: pin - 14, reverse: gnd.has(a) });
   }
+  const signalPin = (i: Instance, label: string) => {
+    const n = net(i, label),
+      p = n ? gpio.get(n) : undefined;
+    if (p === undefined)
+      throw Error(`${i.name}: connect ${label} to its own Arduino GPIO.`);
+    return p;
+  };
+  for (const i of w.instances.filter((i) =>
+    ['module-servo', 'module-hc-sr04', 'module-lcd1602-i2c'].includes(
+      i.modelId,
+    ),
+  )) {
+    if (
+      !gnd.has(net(i, 'GND')) ||
+      !supply.has(net(i, i.modelId === 'module-servo' ? 'V+' : 'VCC'))
+    )
+      throw Error(`${i.name}: the reference model needs 5 V and common GND.`);
+    if (i.modelId === 'module-servo')
+      result.servos!.push({ id: i.id, pin: signalPin(i, 'PWM') });
+    if (i.modelId === 'module-hc-sr04')
+      result.sonars!.push({
+        id: i.id,
+        trigger: signalPin(i, 'TRIG'),
+        echo: signalPin(i, 'ECHO'),
+      });
+    if (i.modelId === 'module-lcd1602-i2c') {
+      if (signalPin(i, 'SDA') !== 18 || signalPin(i, 'SCL') !== 19)
+        throw Error(`${i.name}: connect SDA to A4 and SCL to A5.`);
+      if (result.lcds!.length)
+        throw Error('Only one LCD at I2C address 0x27 is supported.');
+      result.lcds!.push({ id: i.id, address: 0x27 });
+    }
+  }
   if (resistors.some((r) => !used.has(r.id)))
     throw Error(
       'This runtime supports LED series resistors. Use the analog lab for resistor networks or remove unused resistors.',
     );
   const driven = [
+    ...result.servos!.map((s) => s.pin),
+    ...result.sonars!.flatMap((s) => [s.trigger, s.echo]),
+    ...(result.lcds!.length ? [18, 19] : []),
     ...result.buttons.map((b) => b.pin),
     ...result.pots.map((p) => p.channel + 14),
   ];
@@ -197,3 +237,16 @@ export function runtimeCircuit(w: Workbench): RuntimeCircuit {
     );
   return result;
 }
+
+export const LOCAL_MODELS = [
+  'uno-rev3',
+  'nano',
+  'breadboard-830',
+  'part-resistor',
+  'part-led',
+  'part-button',
+  'part-potentiometer',
+  'module-servo',
+  'module-hc-sr04',
+  'module-lcd1602-i2c',
+];

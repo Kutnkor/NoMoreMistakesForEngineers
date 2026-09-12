@@ -10,20 +10,19 @@ Circuit Forge is a browser-based electronics workbench by [Kutnkor](https://gith
 
 [Quick start](#quick-start) · [Research and results](docs/RESEARCH.md) · [Türkçe dokümantasyon](README.tr.md) · [GitHub'a yükleme](docs/GITHUB_KURULUM.tr.md)
 
-
 ## Interactive workbench
 
-Open `/breadboard` to wire Arduino, ESP32 and Pico boards on a shared 2D/3D table. The editor includes local autosave, undo/redo, editable wire bends, reference-circuit comparison, reversible repair previews and continuity-based fault practice. Five UNO examples can be exported with firmware to Wokwi, including distance sensing, servo sweep and an I²C LCD. See [the workbench guide and validation scope](docs/workbench.md) for exact supported models, reproduction steps and remaining limits.
+Open `/breadboard` to wire Arduino, ESP32 and Pico boards on a shared 2D/3D table. The editor includes local autosave, undo/redo, editable wire bends, reference-circuit comparison, reversible repair previews and continuity-based fault practice. Six UNO examples can be exported with firmware to Wokwi. Servo, HC-SR04 and I²C LCD1602 also execute locally on the supported UNO/Nano runtime. The workbench includes a C++ editor, digital signal traces, scoped Fault AI diagnosis and project share links. See [the workbench guide and validation scope](docs/workbench.md) for exact supported models, reproduction steps and remaining limits.
 
 ## Explore the workbench
 
-| Workspace | What you can do |
-| --- | --- |
-| **Hardware Studio** `/` | Browse 47 boards and 46 physical components, select supported profiles, inspect pin/voltage/address conflicts, and export code and wiring. |
-| **Filter AI** `/filter` | Optimize a Sallen–Key low-pass filter using Gaussian-process Bayesian optimization; compare it with random search at the same evaluation budget. |
-| **AI Laboratory** `/lab` | Compare ideal and finite-bandwidth op-amps, investigate six fault classes, compare simulation-budget strategies, and explore sensor aliasing. |
-| **Breadboard Lab** `/breadboard` | Place components on an 830-hole board; switch between 2D and 3D; diagnose physical connectivity; export PNGs and a printable assembly guide. |
-| **Research** `/research` | Read methods, recorded experiments, validation reports, and the boundaries of the current models. |
+| Workspace                        | What you can do                                                                                                                                  |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Hardware Studio** `/`          | Browse 47 boards and 46 physical components, select supported profiles, inspect pin/voltage/address conflicts, and export code and wiring.       |
+| **Filter AI** `/filter`          | Optimize a Sallen–Key low-pass filter using Gaussian-process Bayesian optimization; compare it with random search at the same evaluation budget. |
+| **AI Laboratory** `/lab`         | Compare ideal and finite-bandwidth op-amps, investigate six fault classes, compare simulation-budget strategies, and explore sensor aliasing.    |
+| **Breadboard Lab** `/breadboard` | Place components on an 830-hole board; switch between 2D and 3D; diagnose physical connectivity; export PNGs and a printable assembly guide.     |
+| **Research** `/research`         | Read methods, recorded experiments, validation reports, and the boundaries of the current models.                                                |
 
 The 3D view separates part editing, panning and orbiting. Trackpad scrolling pans; pinching zooms. Use **Fit (F)**, **Top (T)** or double-click a component to recover the view. Twelve additional wired accessories have distinct 2D/3D representations and documented Wokwi terminal mappings; their mechanical footprints are illustrative. See [navigation and accessories](docs/workbench.md#navigation-and-accessories-08).
 
@@ -82,13 +81,13 @@ The static build is written to `dist/client/`. A deployment host must serve this
 
 These are recorded results for the stated experiments, not guarantees for other circuits or hardware.
 
-| Check | Recorded result | Evidence |
-| --- | --- | --- |
-| Regression suite | 109 tests across existing engines, the workbench and the preview server | [Tests](tests/) |
-| Finite op-amp model | Compared with native ngspice 47: 30 designs × 401 frequency points | [Report](research/ngspice-validation.json) |
-| Fault classifier | 98% top-1 accuracy on 1,200 held-out **synthetic** examples | [Report](research/fault-model-report.json) |
-| Embedded export | 53/53 Wokwi diagrams validated; 33/33 additional sketches compiled | [Report](research/embedded-validation.json) |
-| Budget allocation | 30 experiments across three conditions; results are mixed across methods | [Benchmark](research/budget-benchmark.json) |
+| Check                                       | Recorded result                                                                           | Evidence                                              |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Regression suite                            | 115 tests across existing engines, the workbench and the preview server                   | [Tests](tests/)                                       |
+| Finite op-amp model                         | Compared with native ngspice 47: 30 designs × 401 frequency points                        | [Report](research/ngspice-validation.json)            |
+| Fault classifier                            | 98% top-1 accuracy on 1,200 held-out **synthetic** examples                               | [Report](research/fault-model-report.json)            |
+| Embedded export                             | 53/53 Wokwi diagrams validated; 33/33 additional sketches compiled                        | [Report](research/embedded-validation.json)           |
+| Budget allocation                           | 30 experiments across three conditions; results are mixed across methods                  | [Benchmark](research/budget-benchmark.json)           |
 | Historical guided-breadboard browser checks | Dragging, wiring, guided assembly, mobile/dark display, and five single-page print guides | [Report](research/breadboard-browser-validation.json) |
 
 The trained fault model is included. Its synthetic data generator and training script are available in `scripts/`. The externally supplied NPZ data audited in `research/data-audit.md` is **not bundled** and was **not used to train this classifier**.

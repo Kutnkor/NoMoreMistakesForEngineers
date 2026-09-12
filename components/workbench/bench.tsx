@@ -60,6 +60,12 @@ import {
   ACCESSORY_EXAMPLES,
   accessoryWorkbench,
 } from '@/lib/workbench/accessory-examples';
+import { SketchEditor } from './sketch-editor';
+import { SignalPanel } from './signal-panel';
+import { DiagnosisPanel } from './diagnosis-panel';
+import { encodeProject, decodeProject } from '@/lib/workbench/sharing';
+import { LOCAL_MODELS } from '@/lib/workbench/runtime/circuit';
+import { explainCompilerIssue, type CodeIssue } from '@/lib/workbench/compiler';
 import { RuntimePanel } from './runtime-panel';
 import { EMPTY_FRAME } from '@/lib/workbench/runtime/circuit';
 import type { CameraPose } from '@/lib/workbench/navigation';
@@ -169,6 +175,18 @@ export function Workbench({
     before: Workbench;
     text: string;
   } | null>(null);
+  const [showDiagnosis, setShowDiagnosis] = useState(false);
+  const [showSignals, setShowSignals] = useState(false);
+  const [signalPin, setSignalPin] = useState(9);
+  const [codeIssues, setCodeIssues] = useState<CodeIssue[]>([]);
+  const [jump, setJump] = useState<{ line: number; nonce: number } | null>(
+    null,
+  );
+  const [showWires, setShowWires] = useState(true);
+  const [supportFilter, setSupportFilter] = useState('all');
+  const [shareURL, setShareURL] = useState('');
+  const [shared, setShared] = useState(false);
+  const [shareLoading, setShareLoading] = useState(false);
   const [showCode, setShowCode] = useState(false);
   const [runtime, setRuntime] = useState(EMPTY_FRAME);
   const [exercise, setExercise] = useState<{
@@ -200,16 +218,43 @@ export function Workbench({
   useEffect(() => {
     savingAllowed.current = false;
     writer.current = crypto.randomUUID();
+    let disposed = false;
+    let shareRequest = 0;
+    const openShared = () => {
+      if (!location.hash.startsWith('#cf1=')) return;
+      const request = ++shareRequest;
+      savingAllowed.current = false;
+      setShared(true);
+      setShareLoading(true);
+      setSaveState('Shared snapshot — make a copy to save');
+      void decodeProject(location.hash)
+        .then((w) => {
+          if (disposed || request !== shareRequest) return;
+          current.current = w;
+          setWorkbench(w);
+          setShowCode(true);
+          setShareLoading(false);
+        })
+        .catch((e) => {
+          if (!disposed && request === shareRequest) {
+            setNotice(`Share link could not be opened: ${e.message}`);
+            setShareLoading(false);
+          }
+        });
+    };
+    addEventListener('hashchange', openShared);
     try {
+      const isShared = location.hash.startsWith('#cf1=');
+      if (isShared) openShared();
       const raw = localStorage.getItem(draftKey);
-      if (raw && !initial) {
+      if (raw && !initial && !isShared) {
         const restored = parseWorkbench(JSON.parse(raw).project);
         // Update the flush snapshot before React's next render. Strict Mode may
         // run cleanup immediately; it must never overwrite the loaded draft.
         current.current = restored;
         setWorkbench(restored);
       }
-      savingAllowed.current = true;
+      savingAllowed.current = !isShared;
     } catch {
       setNotice(
         'The previous local draft could not be read. It has been retained; download the current project before replacing it.',
@@ -232,6 +277,8 @@ export function Workbench({
     addEventListener('storage', changed);
     addEventListener('pagehide', hide);
     return () => {
+      disposed = true;
+      removeEventListener('hashchange', openShared);
       removeEventListener('storage', changed);
       removeEventListener('pagehide', hide);
       persist();
@@ -280,6 +327,12 @@ export function Workbench({
     const list = entries.filter(
       (e) =>
         (!placeableOnly || e.hasPhysicalModel) &&
+        (supportFilter === 'all' ||
+          (supportFilter === 'local'
+            ? LOCAL_MODELS.includes(e.id)
+            : supportFilter === 'wokwi'
+              ? e.support.wokwiExport && !LOCAL_MODELS.includes(e.id)
+              : e.hasPhysicalModel && !e.support.wokwiExport)) &&
         (!q ||
           `${e.name} ${e.variant} ${e.family} ${e.id}`
             .toLowerCase()
@@ -290,7 +343,7 @@ export function Workbench({
         Number(b.hasPhysicalModel) - Number(a.hasPhysicalModel) ||
         a.name.localeCompare(b.name),
     );
-  }, [entries, query, placeableOnly]);
+  }, [entries, query, placeableOnly, supportFilter]);
 
   const addInstance = (modelId: string) => {
     const model = lookupModel(modelId);
@@ -333,6 +386,17 @@ export function Workbench({
 
   // ---------------- wiring ----------------
   const pickEndpoint = (e: ConnectionEndpoint) => {
+    if (e.kind === 'board-pin') {
+      const inst = workbench.instances.find((i) => i.id === e.instanceId);
+      if (inst && ['uno-rev3', 'nano'].includes(inst.modelId)) {
+        const label =
+          lookupModel(inst.modelId)?.pins.find((p) => p.id === e.pinId)
+            ?.label ?? '';
+        const match = /^([DA])(\d+)/.exec(label);
+        if (match) setSignalPin(Number(match[2]) + (match[1] === 'A' ? 14 : 0));
+      }
+    }
+
     if (rewire) {
       apply('reconnect', (w) =>
         replaceWire(w, rewire.id, { [rewire.side]: e }),
@@ -487,6 +551,7 @@ export function Workbench({
             : id === 'live'
               ? interactiveWorkbench()
               : demoWorkbench(id === 'station');
+    if (id === 'led') next.firmware = generateFirmware(next).code;
     apply('load-example', () => next);
     if (id === 'live' || ACCESSORY_EXAMPLES.some((e) => e.id === id))
       setShowCode(true);
@@ -631,6 +696,16 @@ export function Workbench({
             apply('rename', (w) => ({ ...w, title: e.target.value }))
           }
         />
+        <input
+          className="wb-projectname"
+          aria-label="Project description"
+          placeholder="Short project description"
+          value={workbench.lesson ?? ''}
+          maxLength={500}
+          onChange={(e) =>
+            apply('description', (w) => ({ ...w, lesson: e.target.value }))
+          }
+        />
         <select
           aria-label="Load example"
           value=""
@@ -665,6 +740,79 @@ export function Workbench({
           <Maximize2 size={15} />
           {fullScreen ? 'Exit full screen' : 'Full screen'}
         </Button>
+      </div>
+      {shared && (
+        <div className="wb-share">
+          <b>
+            {shareLoading
+              ? 'Opening shared project…'
+              : 'Shared project snapshot'}
+          </b>
+          <span>Explore this copy without replacing your saved draft.</span>
+          <Button
+            size="sm"
+            disabled={shareLoading}
+            onClick={() => {
+              try {
+                const previous = localStorage.getItem(draftKey);
+                if (previous)
+                  localStorage.setItem(draftKey + '-backup', previous);
+                savingAllowed.current = true;
+                setShared(false);
+                window.history.replaceState(
+                  null,
+                  '',
+                  location.pathname + location.search,
+                );
+                persist();
+              } catch {
+                setNotice(
+                  'Could not save a local copy. Export JSON to keep it.',
+                );
+              }
+            }}
+          >
+            Make a copy
+          </Button>
+        </div>
+      )}
+      <div className="wb-starts">
+        <b>Try a circuit</b>
+        <button
+          onClick={() => {
+            loadExample('led');
+            setShowCode(true);
+          }}
+        >
+          Light an LED
+        </button>
+        <button
+          onClick={() => {
+            loadExample('distance-servo');
+            setShowCode(true);
+          }}
+        >
+          Read a sensor
+        </button>
+        <button
+          onClick={() => {
+            const base = demoWorkbench();
+            base.firmware = generateFirmware(base).code;
+            apply('fault-starter', () => injectFault(base).workbench);
+            setShowDiagnosis(true);
+            setTool('probe');
+          }}
+        >
+          Find a fault
+        </button>
+        <button
+          onClick={() => {
+            loadExample('sk-lp');
+            setShowDiagnosis(true);
+          }}
+        >
+          Explore Fault AI
+        </button>
       </div>
       {conflict && (
         <div className="wb-conflict" role="alert">
@@ -911,6 +1059,47 @@ export function Workbench({
           >
             Code & Run
           </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setShowDiagnosis(!showDiagnosis)}
+          >
+            Diagnose my circuit
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setShowSignals(!showSignals)}
+          >
+            Signals
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() =>
+              void encodeProject(workbench)
+                .then((hash) => {
+                  const url = location.origin + location.pathname + '#' + hash;
+                  setShareURL(url);
+                  return navigator.clipboard?.writeText(url);
+                })
+                .then(() =>
+                  setNotice(
+                    'Share link ready. It contains this circuit and code; recipients need access to this site.',
+                  ),
+                )
+                .catch((e) => setNotice(e.message))
+            }
+          >
+            Share project
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={() => setShowWires(!showWires)}
+          >
+            {showWires ? 'Hide wires' : 'Show wires'}
+          </Button>
           <Button size="sm" onClick={downloadSimulation}>
             Export simulation
           </Button>
@@ -941,8 +1130,33 @@ export function Workbench({
         </div>
       </div>
 
+      {shareURL && (
+        <div className="wb-share">
+          <span>Project link</span>
+          <input
+            aria-label="Project share link"
+            readOnly
+            value={shareURL}
+            onFocus={(e) => e.target.select()}
+          />
+          <Button size="sm" variant="ghost" onClick={() => setShareURL('')}>
+            Close
+          </Button>
+        </div>
+      )}
+      {showDiagnosis && (
+        <DiagnosisPanel
+          workbench={workbench}
+          onLocate={locateIssue}
+          onRepair={previewRepair}
+        />
+      )}
+      {showSignals && (
+        <SignalPanel frame={runtime} pin={signalPin} onPin={setSignalPin} />
+      )}
       <div className="wb-program" hidden={!showCode}>
         <RuntimePanel
+          onIssues={setCodeIssues}
           workbench={workbench}
           onFrame={setRuntime}
           active={active}
@@ -971,14 +1185,31 @@ export function Workbench({
                 Open Wokwi ↗
               </a>
             </div>
-            <textarea
-              aria-label="Arduino sketch"
+            <SketchEditor
               value={workbench.firmware ?? ''}
-              placeholder="Generate code or paste your Arduino-compatible sketch…"
-              onChange={(e) =>
-                apply('code', (w) => ({ ...w, firmware: e.target.value }), true)
-              }
+              issues={codeIssues}
+              jump={jump}
+              onChange={(value) => {
+                apply('code', (w) => ({ ...w, firmware: value }), true);
+                setCodeIssues([]);
+              }}
             />
+            {!!codeIssues.length && (
+              <div className="wb-errors">
+                {codeIssues.map((issue, index) => (
+                  <button
+                    key={index}
+                    onClick={() =>
+                      setJump({ line: issue.line, nonce: Date.now() })
+                    }
+                  >
+                    Line {issue.line}: {issue.message}
+                    <br />
+                    <small>{explainCompilerIssue(issue.message)}</small>
+                  </button>
+                ))}
+              </div>
+            )}
             <label>
               Libraries (one per line)
               <textarea
@@ -1016,6 +1247,16 @@ export function Workbench({
             />{' '}
             Ready to place only
           </label>
+          <select
+            aria-label="Simulation support filter"
+            value={supportFilter}
+            onChange={(e) => setSupportFilter(e.target.value)}
+          >
+            <option value="all">All support levels</option>
+            <option value="local">Runs in this app</option>
+            <option value="wokwi">Wokwi export</option>
+            <option value="visual">Placement only</option>
+          </select>
           <div className="wb-liblist">
             {filtered.slice(0, 140).map((e) => (
               <button
@@ -1082,6 +1323,8 @@ export function Workbench({
           )}
           {mode === '2d' ? (
             <Bench2D
+              showWires={showWires}
+              activeEndpoint={hover ?? wireStart ?? probe}
               runtime={runtime}
               workbench={workbench}
               lookup={lookupModel}
@@ -1113,6 +1356,8 @@ export function Workbench({
                 fallback={<div className="wb-loading">Loading 3D view…</div>}
               >
                 <Bench3D
+                  showWires={showWires}
+                  activeEndpoint={hover ?? wireStart ?? probe}
                   cameraPose={cameraPose}
                   runtime={runtime}
                   workbench={workbench}
@@ -1298,8 +1543,11 @@ export function Workbench({
                   <h4>Connection guide</h4>
                   <p>{selectedModel.connectionGuide}</p>
                   <p className="wb-note">
-                    Wire here, then export to Wokwi with your sketch. This
-                    accessory is not emulated by the local AVR runner.
+                    Wire here and use the supported simulation route. This
+                    accessory{' '}
+                    {LOCAL_MODELS.includes(selectedModel.id)
+                      ? 'can run in this app with supported wiring.'
+                      : 'uses Wokwi for code simulation.'}
                   </p>
                 </div>
               )}

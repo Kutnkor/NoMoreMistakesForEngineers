@@ -140,6 +140,7 @@ function marking(
   mesh.userData.ownedMaterial = true;
   mesh.raycast = () => {};
   g.add(mesh);
+  return mesh;
 }
 function lamp(
   g: T.Group,
@@ -717,7 +718,11 @@ function accessory(g: T.Group, m: PhysicalModel) {
   } else if (v === 'servo') {
     box(g, x, 18, z, w - 2, 5, h - 1, mat('#2989d2'), 1);
     cylinder(g, 7, 23, 5, 3.8, 5, white);
-    box(g, 11, 26, 5, 20, 1.2, 3, white, 1);
+    const horn = new T.Group();
+    horn.position.set(7, 26, 5);
+    horn.userData.servoHorn = true;
+    box(horn, 4, 0, 0, 20, 1.2, 3, white, 1);
+    g.add(horn);
     cylinder(g, 7, 26.7, 5, 0.9, 0.2, metal);
     for (const cx of [2, 20]) cylinder(g, cx, 26.65, 5, 0.55, 0.2, black);
     marking(g, 'MICRO SERVO', 16, 7, 20.6, 7, 2);
@@ -741,6 +746,10 @@ function accessory(g: T.Group, m: PhysicalModel) {
           mat('#2c7095'),
           0.05,
         );
+    for (let row = 0; row < 2; row++) {
+      const text = marking(g, ' ', w / 2, 11 + row * 8, 6.85, w - 18, 6);
+      text.userData.lcdRow = row;
+    }
   } else if (v === 'pir') {
     cylinder(g, x, 3, z - 2, 10, 3, white);
     const dome = new T.Mesh(

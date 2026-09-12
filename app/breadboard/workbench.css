@@ -819,3 +819,131 @@
   margin: 0 0 7px;
   font-size: 13px;
 }
+
+/* Keep CSS pixels independent of the WebGL drawing-buffer pixel ratio. */
+.wb-3d canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.wb-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.wb-signals {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--wb-line);
+  background: var(--wb-panel);
+  font-size: 14px;
+}
+.wb-signals svg {
+  width: 100%;
+  height: 100px;
+  display: block;
+}
+.wb-signals p {
+  margin: 4px 0;
+}
+.wb-signals small {
+  color: var(--wb-ink-2);
+}
+.wb-editor {
+  border: 1px solid var(--wb-line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  color: #182938;
+}
+.wb-errors button {
+  display: block;
+  text-align: left;
+  padding: 8px;
+  color: #a72828;
+  font-size: 14px;
+}
+.wb-starts {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--wb-line);
+  align-items: center;
+}
+.wb-starts button {
+  padding: 7px 12px;
+  border: 1px solid var(--wb-line);
+  border-radius: 8px;
+  background: var(--wb-panel);
+}
+.wb-diagnosis {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--wb-line);
+  background: var(--wb-panel);
+  font-size: 14px;
+  max-height: 340px;
+  overflow: auto;
+}
+.wb-diagnosis article {
+  margin: 10px 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.wb-diagnosis article p {
+  flex: 1;
+  min-width: 200px;
+  margin: 0;
+}
+.wb-share {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--wb-line);
+}
+.wb-share input {
+  flex: 1;
+  min-width: 240px;
+  border: 1px solid var(--wb-line);
+  padding: 8px;
+}
+.wb-peripheral-output {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+.wb-lcd-output {
+  font:
+    16px ui-monospace,
+    monospace;
+  background: #153548;
+  color: #a6ecae;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: pre;
+}
+
+.wb-sensitivity {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--wb-panel);
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+.wb-sensitivity input {
+  width: 75px;
+}
+.wb-lib > select {
+  margin: 8px 12px;
+  font-size: 14px;
+  width: calc(100% - 24px);
+  padding: 7px;
+}

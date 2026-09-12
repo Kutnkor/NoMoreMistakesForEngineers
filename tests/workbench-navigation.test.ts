@@ -28,7 +28,10 @@ import { lookupModel } from '../lib/workbench/registry.ts';
 import { analyzeWorkbench } from '../lib/workbench/netlist.ts';
 import { compareTarget } from '../lib/workbench/target.ts';
 import { parseWorkbench } from '../lib/workbench/project.ts';
-import { runtimeCircuit } from '../lib/workbench/runtime/circuit.ts';
+import {
+  LOCAL_MODELS,
+  runtimeCircuit,
+} from '../lib/workbench/runtime/circuit.ts';
 
 void test('fit keeps all corners in landscape, portrait and narrow split panes, including top view', () => {
   for (const aspect of [0.35, 0.6, 1, 1.8, 3])
@@ -146,7 +149,10 @@ void test('all 12 accessories round-trip with documented mappings and no implici
     assert.equal(m.verification.mechanical, 'unverified');
     assert.ok(m.pins.every((p) => m.simulator?.pins[p.id]));
     assert.doesNotThrow(() => parseWorkbench(w));
-    assert.throws(() => runtimeCircuit(w), /peripheral models/);
+    assert.throws(
+      () => runtimeCircuit(w),
+      LOCAL_MODELS.includes(m.id) ? /5 V and common GND/ : /peripheral models/,
+    );
     assert.equal(generateFirmware(w).code, '');
     const d = JSON.parse(exportSimulation(w).files['diagram.json']);
     assert.equal(
@@ -171,7 +177,8 @@ void test('LCD export selects I2C terminals and all three examples have valid wi
         (p: { id: string }) => p.id === 'module',
       );
       assert.deepEqual(lcd.attrs, { pins: 'i2c', i2cAddress: '0x27' });
-      assert.equal(files['libraries.txt'], 'LiquidCrystal I2C\n');
+      assert.equal(files['libraries.txt'], '');
+      assert.match(files['sketch.ino'], /#include <Wire.h>/);
     }
   }
 });

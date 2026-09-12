@@ -1,5 +1,8 @@
 'use client';
+// oxlint-disable-next-line import/default -- Vite supplies the worker constructor for ?worker imports.
+import AVRWorker from '@/lib/workbench/runtime/worker?worker';
 import { useEffect, useRef, useState } from 'react';
+import { compilerIssues, type CodeIssue } from '@/lib/workbench/compiler';
 import { Play, Square, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { EMPTY_FRAME, runtimeCircuit } from '@/lib/workbench/runtime/circuit';
@@ -14,11 +17,15 @@ export function RuntimePanel({
   workbench,
   onFrame,
   active,
+  onIssues,
 }: {
   workbench: Workbench;
   onFrame: (frame: RuntimeFrame) => void;
   active: boolean;
+  onIssues: (issues: CodeIssue[]) => void;
 }) {
+  const [peripheralFrame, setPeripheralFrame] =
+    useState<RuntimeFrame>(EMPTY_FRAME);
   const [status, setStatus] = useState('Ready');
   const [busy, setBusy] = useState(false);
   const [running, setRunning] = useState(false);
@@ -54,6 +61,7 @@ export function RuntimePanel({
     setBusy(false);
     setRunning(false);
     onFrame(EMPTY_FRAME);
+    setPeripheralFrame(EMPTY_FRAME);
   }
   /* oxlint-disable react/react-compiler, react-hooks/exhaustive-deps -- Terminate and reset the external worker when the circuit changes; cleanup intentionally reads the latest worker created by Run. */
   useEffect(() => {
@@ -67,6 +75,7 @@ export function RuntimePanel({
     setBusy(false);
     setStatus('Ready — run after wiring or code changes.');
     onFrame(EMPTY_FRAME);
+    setPeripheralFrame(EMPTY_FRAME);
     return () => {
       generation.current++;
       request.current?.abort();
@@ -76,10 +85,7 @@ export function RuntimePanel({
   /* oxlint-enable react/react-compiler, react-hooks/exhaustive-deps */
   function launch(hex: string) {
     const circuit = runtimeCircuit(workbench);
-    const w = new Worker(
-      new URL('../../lib/workbench/runtime/worker.ts', import.meta.url),
-      { type: 'module' },
-    );
+    const w = new AVRWorker();
     worker.current = w;
     w.onmessage = (
       e: MessageEvent<{ type: string; frame?: RuntimeFrame; message?: string }>,
@@ -92,6 +98,7 @@ export function RuntimePanel({
       }
       if (e.data.frame) {
         onFrame(e.data.frame);
+        setPeripheralFrame(e.data.frame);
         setSerial(e.data.frame.serial);
         setMilliseconds(e.data.frame.milliseconds);
       }
@@ -113,6 +120,7 @@ export function RuntimePanel({
   async function run() {
     stop();
     setSerial('');
+    onIssues([]);
     setMilliseconds(0);
     const requestedGeneration = generation.current;
     try {
@@ -121,7 +129,11 @@ export function RuntimePanel({
         throw Error(
           'Generate a sketch from the wiring or paste your Arduino code first.',
         );
-      if (workbench.libraries?.trim())
+      if (
+        workbench.libraries
+          ?.split('\n')
+          .some((l) => l.trim() && !['Servo', 'Wire'].includes(l.trim()))
+      )
         throw Error(
           'The in-app compiler supports the Arduino core and built-in libraries. For external libraries, compile for Arduino UNO in Arduino IDE and load the exported HEX, or use Export simulation.',
         );
@@ -148,6 +160,7 @@ export function RuntimePanel({
           stderr?: string;
         };
         if (runId !== generation.current) return;
+        onIssues(compilerIssues(data.stderr || data.stdout || ''));
         if (!data.hex)
           throw Error(
             (data.stderr || data.stdout || 'Compilation failed.').slice(
@@ -178,7 +191,7 @@ export function RuntimePanel({
     } satisfies RuntimeCommand);
   }
   const controls = workbench.instances.filter((i) =>
-    ['part-button', 'part-potentiometer'].includes(i.modelId),
+    ['part-button', 'part-potentiometer', 'module-hc-sr04'].includes(i.modelId),
   );
   return (
     <section className="wb-runtime" aria-label="Arduino runtime">
@@ -219,8 +232,8 @@ export function RuntimePanel({
       <p className="wb-runtime-note">
         Run sends this sketch to Wokwi’s online compiler. HEX execution stays in
         your browser. Supports UNO R3 / classic Nano, LEDs with series
-        resistors, buttons and potentiometers. Other parts use Export
-        simulation.
+        resistors, buttons, potentiometers, servos, HC-SR04 and an I²C LCD1602.
+        Other parts use Export simulation.
       </p>
       <input
         hidden
@@ -274,21 +287,37 @@ export function RuntimePanel({
               </Button>
             ) : (
               <label key={i.id}>
-                {i.name} · {Math.round((inputs.pots[i.id] ?? 0.5) * 100)}%
+                {i.name} ·{' '}
+                {i.modelId === 'module-hc-sr04'
+                  ? `${inputs.distances?.[i.id] ?? 100} cm`
+                  : `${Math.round((inputs.pots[i.id] ?? 0.5) * 100)}%`}
                 <input
                   aria-label={`${i.name} position`}
                   type="range"
-                  min="0"
-                  max="100"
+                  min={i.modelId === 'module-hc-sr04' ? 2 : 0}
+                  max={i.modelId === 'module-hc-sr04' ? 400 : 100}
                   disabled={!running}
-                  value={(inputs.pots[i.id] ?? 0.5) * 100}
+                  value={
+                    i.modelId === 'module-hc-sr04'
+                      ? (inputs.distances?.[i.id] ?? 100)
+                      : (inputs.pots[i.id] ?? 0.5) * 100
+                  }
                   onChange={(e) =>
                     input({
                       ...inputs,
-                      pots: {
-                        ...inputs.pots,
-                        [i.id]: Number(e.target.value) / 100,
-                      },
+                      ...(i.modelId === 'module-hc-sr04'
+                        ? {
+                            distances: {
+                              ...inputs.distances,
+                              [i.id]: Number(e.target.value),
+                            },
+                          }
+                        : {
+                            pots: {
+                              ...inputs.pots,
+                              [i.id]: Number(e.target.value) / 100,
+                            },
+                          }),
                     })
                   }
                 />
@@ -297,6 +326,24 @@ export function RuntimePanel({
           )}
         </div>
       )}
+      <div className="wb-peripheral-output">
+        {Object.entries(peripheralFrame.servos ?? {}).map(([id, angle]) => (
+          <span key={id}>
+            {id}: {angle.toFixed(0)}°
+          </span>
+        ))}
+        {Object.entries(peripheralFrame.displays ?? {}).map(([id, lcd]) => (
+          <div key={id}>
+            <small>{id}</small>
+            <pre
+              className="wb-lcd-output"
+              style={{ opacity: lcd.backlight ? 1 : 0.5 }}
+            >
+              {lcd.rows.join('\n')}
+            </pre>
+          </div>
+        ))}
+      </div>
       <details open={running || serial.length > 0}>
         <summary>Serial monitor</summary>
         <pre className="wb-serial" aria-label="Serial output">

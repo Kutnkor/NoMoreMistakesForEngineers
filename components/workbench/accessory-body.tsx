@@ -1,7 +1,15 @@
 import type { PhysicalModel } from '@/lib/workbench/physical';
 
 /** Illustrative top views. Terminal geometry is shared with the 3D scene. */
-export function AccessoryBody({ model: m }: { model: PhysicalModel }) {
+export function AccessoryBody({
+  model: m,
+  angle = 90,
+  display,
+}: {
+  model: PhysicalModel;
+  angle?: number;
+  display?: { rows: string[]; backlight: boolean };
+}) {
   const { w, h, color } = m.body;
   const v = m.accessoryVisual;
   const circle = (x: number, y: number, r: number, fill: string, key = '') => (
@@ -51,7 +59,15 @@ export function AccessoryBody({ model: m }: { model: PhysicalModel }) {
             fill="#2d8bd0"
           />
           {circle(7, 5, 3.8, '#cfdce5')}
-          <rect x={2} y={3.6} width={18} height={2.8} rx={1.4} fill="#f7f7ed" />
+          <rect
+            x={2}
+            y={3.6}
+            width={18}
+            height={2.8}
+            rx={1.4}
+            fill="#f7f7ed"
+            transform={`rotate(${angle - 90} 7 5)`}
+          />
           {circle(7, 5, 0.9, '#697580')}
         </g>
       )}
@@ -83,18 +99,31 @@ export function AccessoryBody({ model: m }: { model: PhysicalModel }) {
             fill="#152638"
           />
           <rect x={8} y={7} width={w - 16} height={h - 16} fill="#1b577c" />
-          {[0, 1].flatMap((row) =>
-            Array.from({ length: 16 }, (_, col) => (
-              <rect
-                key={`${row}-${col}`}
-                x={10 + col * 3.75}
-                y={10 + row * 8}
-                width={2.7}
-                height={5}
-                fill="#2e7397"
-              />
-            )),
-          )}
+          {display?.rows.map((row, i) => (
+            <text
+              key={i}
+              x={10}
+              y={14 + i * 8}
+              fontFamily="monospace"
+              fontSize={4.6}
+              fill={display.backlight ? '#beecb9' : '#658782'}
+            >
+              {row}
+            </text>
+          ))}
+          {!display &&
+            [0, 1].flatMap((row) =>
+              Array.from({ length: 16 }, (_, col) => (
+                <rect
+                  key={`${row}-${col}`}
+                  x={10 + col * 3.75}
+                  y={10 + row * 8}
+                  width={2.7}
+                  height={5}
+                  fill="#2e7397"
+                />
+              )),
+            )}
         </g>
       )}
       {v === 'pir' && (

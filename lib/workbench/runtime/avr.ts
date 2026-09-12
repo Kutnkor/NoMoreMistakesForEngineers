@@ -1,5 +1,7 @@
 import {
   CPU,
+  AVRTWI,
+  twiConfig,
   AVREEPROM,
   EEPROMMemoryBackend,
   avrInstruction,
@@ -17,6 +19,7 @@ import {
   adcConfig,
   PinState,
 } from 'avr8js';
+import { CharacterLCD } from './peripherals.ts';
 import type { RuntimeCircuit, RuntimeFrame, RuntimeInputs } from './circuit.ts';
 
 /** Validate Intel HEX records before allowing them into the 32 KiB flash. */
@@ -65,6 +68,12 @@ export class CircuitAVR {
   private since = 0;
   private frameStart = 0;
   private applying = false;
+  private traces: { at: number; pin: number; value: number }[] = [];
+  private traceDropped = false;
+  private rises = new Map<number, number>();
+  private servoAngles: Record<string, number> = {};
+  private echoHigh = new Set<string>();
+  private lcdDevices = new Map<string, CharacterLCD>();
   readonly circuit: RuntimeCircuit;
   constructor(hex: string, circuit: RuntimeCircuit) {
     this.circuit = circuit;
@@ -82,6 +91,28 @@ export class CircuitAVR {
     this.usart = new AVRUSART(this.cpu, usart0Config, 16e6);
     this.usart.onByteTransmit = (b) => {
       this.serial = (this.serial + String.fromCharCode(b)).slice(-16000);
+    };
+    const twi = new AVRTWI(this.cpu, twiConfig, 16e6);
+    for (const lcd of circuit.lcds ?? [])
+      this.lcdDevices.set(lcd.id, new CharacterLCD());
+    let selectedLCD: CharacterLCD | undefined;
+    twi.eventHandler = {
+      start: () => twi.completeStart(),
+      stop: () => {
+        selectedLCD = undefined;
+        twi.completeStop();
+      },
+      connectToSlave: (address, write) => {
+        const config = circuit.lcds?.find((l) => l.address === address);
+        selectedLCD =
+          write && config ? this.lcdDevices.get(config.id) : undefined;
+        twi.completeConnect(!!selectedLCD);
+      },
+      writeByte: (value) => {
+        selectedLCD?.write(value);
+        twi.completeWrite(!!selectedLCD);
+      },
+      readByte: () => twi.completeRead(0xff),
     };
     for (const port of this.ports)
       port.addListener(() => {
@@ -105,8 +136,61 @@ export class CircuitAVR {
   private sampleLevels() {
     for (let p = 0; p < 20; p++) {
       const { port, bit } = this.port(p);
-      this.levels[p] = port.pinState(bit) === PinState.High ? 1 : 0;
+      const state = port.pinState(bit);
+      // Output listeners run before AVR8js updates PIN; pinState already reflects PWM/PORT.
+      const value =
+        state < PinState.Input
+          ? Number(state === PinState.High)
+          : (this.cpu.data[port.portConfig.PIN] >> bit) & 1;
+      if (value !== this.levels[p]) {
+        this.traces.push({ at: this.cpu.cycles / 16000, pin: p, value });
+        if (this.traces.length > 2048) {
+          this.traces.splice(0, 512);
+          this.traceDropped = true;
+        }
+        if (value) this.rises.set(p, this.cpu.cycles);
+        else if (this.rises.has(p)) {
+          const width = (this.cpu.cycles - this.rises.get(p)!) / 16;
+          for (const servo of this.circuit.servos ?? [])
+            if (servo.pin === p && width >= 400 && width <= 2600)
+              this.servoAngles[servo.id] = Math.max(
+                0,
+                Math.min(180, ((width - 544) * 180) / 1856),
+              );
+          for (const sonar of this.circuit.sonars ?? [])
+            if (
+              sonar.trigger === p &&
+              width >= 10 &&
+              !this.echoHigh.has(sonar.id)
+            ) {
+              this.echoHigh.add(sonar.id);
+              const distance = Math.max(
+                2,
+                Math.min(400, this.inputs.distances?.[sonar.id] ?? 100),
+              );
+              this.cpu.addClockEvent(() => {
+                this.driveEcho(sonar.echo, true);
+                this.cpu.addClockEvent(
+                  () => {
+                    this.driveEcho(sonar.echo, false);
+                    this.echoHigh.delete(sonar.id);
+                  },
+                  Math.round(distance * 58 * 16),
+                );
+              }, 1600);
+            }
+        }
+      }
+      this.levels[p] = value;
     }
+  }
+  private driveEcho(pin: number, value: boolean) {
+    const { port, bit } = this.port(pin);
+    if (port.pinState(bit) < PinState.Input)
+      throw Error('ECHO must be configured as INPUT.');
+    this.accumulate();
+    port.setPin(bit, value);
+    this.sampleLevels();
   }
   private applyInputs() {
     if (this.applying) return;
@@ -138,9 +222,11 @@ export class CircuitAVR {
       this.adc.channelValues[p.channel] = voltage;
       port.setPin(bit, voltage >= 3);
     }
+    this.sampleLevels();
     this.applying = false;
   }
   setInputs(inputs: RuntimeInputs) {
+    this.accumulate();
     this.inputs = inputs;
     this.applyInputs();
   }
@@ -177,6 +263,16 @@ export class CircuitAVR {
     leds[this.circuit.boardId] = this.high[13] / elapsed;
     const frame = {
       inputs: this.inputs,
+      servos: { ...this.servoAngles },
+      displays: Object.fromEntries(
+        [...this.lcdDevices].map(([id, lcd]) => [
+          id,
+          { rows: lcd.rows(), backlight: lcd.backlight },
+        ]),
+      ),
+      traces: this.traces.slice(),
+      traceDropped: this.traceDropped,
+      duties: Array.from(this.high, (h) => h / elapsed),
       milliseconds: this.cpu.cycles / 16000,
       leds,
       pins: Array.from(this.levels),

@@ -107,7 +107,7 @@ advance slower than wall time on a slow device.
 
 Runtime boundary: exactly one UNO R3 or classic ATmega328P Nano, LEDs each with
 one 150 Ω–1 MΩ series resistor, ground-switched INPUT_PULLUP buttons, and pots
-between 5 V/GND with wipers on A0–A5. AVR8js executes compiled instructions,
+between 5 V/GND with wipers on A0–A5, plus servo, HC-SR04 and I²C LCD1602 reference models (see 0.9 below). AVR8js executes compiled instructions,
 timers, ADC, UART and session-local EEPROM in a dedicated worker. PWM brightness
 integrates pin transitions across each frame. LED intensity uses a nominal red
 LED approximation and is not a SPICE diode/current result. General resistor
@@ -131,13 +131,13 @@ with the actual binary and interactive inputs. Browser pointer/WebGL rendering
 and physical hardware were not exercised in this validation pass.
 
 Sources checked 2026-09-09:
+
 - https://docs.arduino.cc/hardware/uno-rev3/
 - https://docs.arduino.cc/hardware/mega-2560/
 - https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html
 - https://github.com/wokwi/avr8js
 - https://github.com/wokwi/avr8js/blob/main/demo/src/compile.ts
 - https://github.com/wokwi/avr8js/blob/main/demo/src/execute.ts
-
 
 ## Navigation and accessories (0.8)
 
@@ -172,7 +172,7 @@ The outlines, package heights and terminal positions of these new reference
 models are illustrative, not fabrication drawings or exact vendor assemblies.
 Generic modules with variant-dependent supply requirements retain unknown
 voltage metadata. Servo, sonar and NeoPixel guides explain power/level issues.
-Local AVR peripheral execution remains limited to the previously documented
+In the 0.8 release, local AVR peripheral execution was limited to the documented
 LED/button/potentiometer set; new accessories run in Wokwi after export.
 Automatic firmware generation refuses unsupported accessories instead of
 silently omitting them. Three preset projects contain matching sketches:
@@ -194,6 +194,67 @@ Reproduce with `pnpm check`, then generate fixtures using
 Sources checked on 2026-09-09 are recorded per model in
 `lib/workbench/models/accessories.ts`. They include the official Wokwi part
 contracts and these manufacturer guides:
+
 - [Arduino servo motors](https://docs.arduino.cc/learn/electronics/servo-motors/)
 - [Adafruit HC-SR04 pinouts](https://learn.adafruit.com/ultrasonic-sonar-distance-sensors/pinouts)
 - [Adafruit NeoPixel best practices](https://learn.adafruit.com/adafruit-neopixel-uberguide/best-practices)
+
+## Integrated workbench (0.9)
+
+- **Read a sensor** loads a distance-controlled servo with matching wiring and
+  editable code. Run compiles actual C++ and executes ATmega328P instructions.
+  Change the HC-SR04 distance from 2–400 cm; its ECHO pulse lasts 58 µs per cm
+  after a TRIG pulse of at least 10 µs. The ideal model uses a fixed 100 µs
+  response delay, not acoustic propagation/environmental noise. Servo horn
+  orientation follows measured GPIO pulse width (544–2400 µs → 0–180°), in
+  both views. It does not model inertia, torque or supply droop.
+- **UNO I²C LCD** runs a built-in Wire sketch against the AVR TWI controller and
+  a PCF8574/HD44780 reference at 0x27. Supported display behavior is two 16-byte
+  ASCII rows, DDRAM addressing, increment/decrement, clear, home, display-enable
+  and backlight. Custom glyphs, busy reads, display shifts and alternate backpack
+  mappings are outside this implementation. The preview is not an arbitrary
+  display-library emulator. Servo and Wire are available in the online compiler;
+  external libraries still require a separately compiled HEX or Wokwi export.
+- **Diagnose my circuit** separates exact connection/reference checks from
+  learned signal predictions. Show connection focuses the relevant item;
+  repair is previewed and applied through undoable edits. Fault AI only accepts
+  the verified Sallen–Key low-pass terminal partition, a nominal reference and
+  values inside its declared training range. It synthesizes the 24 input features
+  from 12 finite-op-amp AC probes of the current values. A single C1/C2 drift
+  or unchanged circuit is supported; arbitrary wiring faults, multiple value
+  changes, resistance faults and unsupported boards cause abstention. These
+  are synthetic predictions, not measured signals or physical validation.
+- The Arduino editor has C++ syntax, line numbers, Arduino-name completion and
+  clickable compiler diagnostics. Compiler line references come from its output;
+  explanatory hints do not rewrite code automatically.
+- **Signals** captures digital edges with simulation timestamps in a bounded
+  buffer, plots a chosen pin, reports HIGH duty and estimates pulse frequency.
+  Probe a controller pin or select it from the dropdown. Freeze preserves a
+  snapshot. Buffer rollover clips the unavailable past. This is a digital
+  instrument, not a voltage/current oscilloscope; I²C bus protocol waveforms
+  are not synthesized by the AVR TWI device.
+- **Share project** compresses a complete project into the URL fragment (layout,
+  wires, firmware and description). It stores no server record. Opening a link
+  never runs code or overwrites a local draft; **Make a copy** enables local
+  saving and backs up the previous draft. Links require the recipient to have
+  access to the hosted app. Large projects use JSON export (250 KB decoded /
+  24,000 encoded characters); some messaging services may truncate long links.
+- Four starter tasks, execution-support filters, wire visibility and a bright
+  active-terminal marker reduce setup work. Hidden wires remain electrically
+  connected. 3D canvas CSS dimensions now match its container at high DPI,
+  preserving pointer calibration. Movement sensitivity applies to orbit, zoom
+  and trackpad pan; existing mouse/trackpad presets, fit, top and focus remain.
+
+Validation includes offline execution of original, compiled distance-servo and
+LCD fixtures, pulse timing, live input changes, display output, broken-power and
+I²C rejection, Unicode share round-trips, decoded size limits, diagnosis
+abstention/repair and compiler source locations. The unchanged earlier suites
+continue to cover camera projection, drag planes and GPIO/ADC/PWM/UART behavior.
+See `tests/workbench-integrated.test.ts` and `tests/fixtures/avr/README.md`.
+
+Primary references checked 2026-09-12:
+[HC-SR04 behavior](https://docs.wokwi.com/parts/wokwi-hc-sr04),
+[LCD1602 mapping](https://docs.wokwi.com/parts/wokwi-lcd1602),
+[Arduino Servo pulse limits](https://github.com/arduino-libraries/Servo/blob/master/src/Servo.h),
+[AVR8js TWI](https://github.com/wokwi/avr8js/blob/main/src/peripherals/twi.ts),
+[CodeMirror](https://codemirror.net/docs/).
